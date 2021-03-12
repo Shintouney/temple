@@ -1,9 +1,0 @@
-I"R(function() {
-  $("#subscription_payment_finished").on("hidden.bs.modal", ".modal", function() {
-    return $(this).removeData("bs.modal").find('.modal-content').html('');
-  }).on("ajax:success", ".remote_invitation_form", function(e, data) {
-    return $("#invitationModal .modal-content").html(data.html_content);
-  });
-
-}).call(this);
-:ET
