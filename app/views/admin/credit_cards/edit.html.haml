@@ -1,0 +1,54 @@
+= render 'admin/users/menu', user: @user
+
+.padding-md
+  .row
+    = render 'admin/users/infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-edit.tab-pane.active
+          .row
+            .col-sm-6
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title
+                    = t('.title')
+                .panel-body
+                  - if @current_credit_card
+                    %dl.dl-horizontal.m-bottom-none
+                      %dt
+                        = t('.credit_card_owner_name')
+                      %dd
+                        = @current_credit_card.owner_name
+                      %dt
+                        = t('number', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+                      %dd
+                        = @current_credit_card.number
+                      %dt
+                        = t('.credit_card_expiration_date')
+                      %dd
+                        = @current_credit_card.expiration_date
+                  - else
+                    .lead= t('.no_credit_card')
+
+            .col-sm-6
+              = render partial: 'slimpay/mandate', locals: { mandate: @mandate, user: @user }
+
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title
+                = t('.edit')
+
+            .panel-body
+              = simple_form_for :credit_card, method: :put, url: admin_user_credit_card_url(@user) do |form|
+                -if @credit_card.present? && @credit_card.message_from_paybox.present?
+                  %strong.text-danger= @credit_card.message_from_paybox
+                = render partial: 'account/credit_cards/form', locals: {form: form}
+
+          .row
+            .col-sm-6
+              .panel.panel-default.hidden-sm
+                .panel-body.text-center
+                  .form-group.m-bottom-none
+                    %label.col-sm-7.control-label{ 'for' => 'payment_mode' }= t('.payment_mode_change')
+                    %input#payment_mode{ type: 'checkbox', name: 'payment_mode', checked: @user.payment_mode.cb?, data: { toggle: 'toggle', onstyle: 'primary', offstyle: 'info', on: 'CB', off: 'SEPA', path: change_payment_mode_admin_user_path(@user) }, disabled: @user.payment_mode.none? }

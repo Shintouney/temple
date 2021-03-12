@@ -1,0 +1,95 @@
+I"{(function() {
+  var ready;
+
+  ready = function() {
+    var accountLessonsCalendar, afterModernizrMediaQueriesLoaded, calendarOptions, hash;
+    calendarOptions = '';
+    accountLessonsCalendar = $("#account_lessons_calendar");
+    afterModernizrMediaQueriesLoaded = function() {
+      enquire.register("screen and (max-width:767px)", {
+        match: function() {
+          return $.fn.fullCalendar.defaults.defaultView = 'agendaDay';
+        }
+      });
+      enquire.register("screen and (min-width:768px)", {
+        match: function() {
+          return $.fn.fullCalendar.defaults.defaultView = 'agendaFiveDay';
+        }
+      });
+      return accountLessonsCalendar.fullCalendar($.extend({}, $.fn.fullCalendar.defaults, {
+        header: {
+          left: 'prev today',
+          center: 'title',
+          right: 'next'
+        },
+        events: accountLessonsCalendar.data('events-url'),
+        eventRender: function(event, element) {
+          element.data('url', '/lessons/' + event.id + '.json');
+          return element.attr('id', 'lesson_' + event.id);
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+          return $('#lessonModal .modal-content').load('/lessons/' + calEvent.id, function() {
+            $('#lessonModal').modal('show');
+            WebuiPopovers.hideAll();
+            return $('[data-toggle=confirmation]').confirmation({
+              rootSelector: '[data-toggle=confirmation]'
+            });
+          });
+        },
+        windowResize: function() {
+          var viewMode;
+          viewMode = '';
+          enquire.register("screen and (max-width:767px)", {
+            match: function() {
+              return viewMode = 'agendaDay';
+            }
+          });
+          enquire.register("screen and (min-width:768px) ", {
+            match: function() {
+              return viewMode = 'agendaFiveDay';
+            }
+          });
+          return $(this).fullCalendar('changeView', viewMode);
+        }
+      }));
+    };
+    if (Modernizr.matchmedia) {
+      $.ajax({
+        url: "/assets/enquirejs/enquire-c333464153c5b271edce473a88841d64234a64ada40c8004dfafb0b643c7a42b.js",
+        cache: true,
+        async: false,
+        dataType: 'script',
+        success: function(response) {
+          return afterModernizrMediaQueriesLoaded();
+        }
+      });
+    } else {
+      $.ajax({
+        url: "/assets/media.match.min-ba6c23fd3fc4bfec049e2a4fe47cf3978c3986ff1bf56a4c78ed9e8ec9a2a0ff.js",
+        cache: true,
+        async: false,
+        dataType: 'script',
+        success: function(response) {
+          return $.ajax({
+            url: "/assets/enquirejs/enquire-c333464153c5b271edce473a88841d64234a64ada40c8004dfafb0b643c7a42b.js",
+            cache: true,
+            async: false,
+            dataType: 'script',
+            success: function(response) {
+              return afterModernizrMediaQueriesLoaded();
+            }
+          });
+        }
+      });
+    }
+    if (window.location.hash) {
+      hash = window.location.hash.substring(1);
+      $('#lessonModal .modal-content').load('/lessons/' + hash);
+      return $('#lessonModal').modal('show');
+    }
+  };
+
+  $(document).ready(ready);
+
+}).call(this);
+:ET

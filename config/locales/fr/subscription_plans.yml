@@ -1,0 +1,16 @@
+fr:
+  subscription_plans:
+    index:
+      buy: Choisir cette formule
+      discount: Promo
+      first_month: le premier mois
+      per_month: par mois
+      title: "ABONNEMENTS"
+    show:
+      buy: Valider
+      code_required: Code (obligatoire)
+      first_month: le premier mois
+      per_month: par mois
+      site_name: Temple - Noble Art
+      sponsor_email_required: E-mail du parrain (obligatoire)
+      title: "Abonnement"

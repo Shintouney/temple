@@ -1,0 +1,88 @@
+.row
+  .col-xs-12.text-right
+    = wicked_pdf_image_tag 'logo-pdf.jpg'
+%hr
+.row
+  .col-xs-4
+    %h4.no-margin-bottom
+      = t('.invoice_reference')
+      =  @invoice.reference
+    %p
+      %strong
+        = t('.issue_date')
+        = @invoice.end_at
+
+  .col-xs-4
+    %h4.no-margin-bottom
+      - if @invoice.user.billing_name.present?
+        = @invoice.user.billing_name
+      - else
+        = @invoice.user_full_name
+    %p
+      - if @invoice.user.billing_address.present?
+        = @invoice.user.billing_address
+      - else
+        = @invoice.user_street1
+        %br
+        - if @invoice.user_street2.present?
+          = @invoice.user_street2
+          %br
+        = @invoice.user_postal_code
+        = @invoice.user_city
+      %br
+      = t('.telephone')
+      = @invoice.user.phone
+      %br
+  .col-xs-4
+    %h4.no-margin-bottom
+      = t('.company_name')
+    %p
+      = t('.company_infos_html')
+.row
+  .col-xs-12
+    .panel.panel-default
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th
+              = OrderItem.human_attribute_name(:product_name)
+            %th.text-right
+              = OrderItem.human_attribute_name(:product_price_te)
+            %th.text-right
+              = OrderItem.human_attribute_name(:product_taxes_rate)
+            %th.text-right
+              = OrderItem.human_attribute_name(:product_price_ati)
+        %tbody
+          - @invoice.order_items.each do |order_item|
+            %tr
+              %td
+                = @invoice.order_item_product_name(order_item)
+              %td.text-right
+                = order_item.product_price_te
+              %td.text-right
+                = order_item.product_taxes_rate
+              %td.text-right
+                = order_item.product_price_ati
+
+.row
+  .col-xs-6.col-xs-offset-6
+    %ul.list-group.list-group-bold.text-right
+      %li.list-group-item
+        .row
+          .col-xs-5
+            = t('.total_price_te')
+          .col-xs-7.padding-right-table
+            = @invoice.total_price_te
+      - @invoice.taxes_amounts.each do |taxes_rate, tax_amount|
+        %li.list-group-item
+          .row
+            .col-xs-5
+              = t('.taxes_rate', rate: taxes_rate)
+            .col-xs-7.padding-right-table
+              = tax_amount
+      %li.list-group-item.list-group-item-info
+        .row
+          .col-xs-5
+            = t('.total_price_ati')
+          .col-xs-7.padding-right-table
+            = @invoice.total_price_ati

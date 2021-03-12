@@ -1,0 +1,68 @@
+.row
+  .col-sm-12.text-center.payment-way
+    - credit_card_brand_options.each do |card_name, card_type|
+      %label.radio-inline
+        = image_tag "payment/#{card_type}.png", title: card_name, alt: card_name, class: 'payment-way-icon'
+        %span.sr-only= card_name
+        %br
+        = form.radio_button :brand, card_type
+
+.row
+  .col-sm-6
+
+    .form-group.string.required.credit_card_first_name
+      = form.label :first_name, class: 'string required control-label' do
+        %abbr{ title: 'required' } *
+        = t('first_name', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+      = form.input :first_name, required: true, as: :string, label: false, input_html: { autocomplete: 'off' }, wrapper: false
+      - if @credit_card.errors.keys.include?('first_name')
+        %small.error.text-danger= @credit_card.errors[:first_name].join(', ')
+
+    .form-group.string.required.credit_card_last_name
+      = form.label :last_name, class: 'string required control-label' do
+        %abbr{ title: 'required' } *
+        = t('last_name', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+      = form.input :last_name, required: true, as: :string, label: false, input_html: { autocomplete: 'off' }, wrapper: false
+      - if @credit_card.errors.keys.include?('last_name')
+        %small.error.text-danger= @credit_card.errors[:last_name].join(', ')
+
+  .col-sm-6
+    .form-group.string.required.credit_card_number
+      = form.label :number, class: 'string required control-label' do
+        %abbr{ title: 'required' } *
+        = t('number', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+      = form.input :number, required: true, as: :string, label: false, input_html: { autocomplete: 'off' }, wrapper: false
+      - if @credit_card.errors.keys.include?('number')
+        %small.error.text-danger= @credit_card.errors[:number].join(', ')
+
+    .row
+      .col-sm-4
+        .form-group.string.required.credit_card_month
+          = form.label :month, class: 'string required control-label' do
+            %abbr{ title: 'required' } *
+            = t('month', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+          = form.input :month, required: true, as: :select, collection: 1..12, include_blank: true, label: false, wrapper: false
+          - if @credit_card.errors.keys.include?('month')
+            %small.error.text-danger= @credit_card.errors[:month].join(', ')
+
+      .col-sm-4
+        .form-group.string.required.credit_card_year
+          = form.label :year, class: 'string required control-label' do
+            %abbr{ title: 'required' } *
+            = t('year', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+          = form.input :year, required: true, as: :select, collection: Date.today.year.upto((Date.today + 20.years).year), label: false, wrapper: false
+          - if @credit_card.errors.keys.include?('year')
+            %small.error.text-danger= @credit_card.errors[:year].join(', ')
+
+      .col-sm-4
+        .form-group.string.required.credit_card_verification_value
+          = form.label :verification_value, class: 'string required control-label' do
+            %abbr{ title: 'required' } *
+            = t('verification_value', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+          = form.input :verification_value, required: true, as: :string, label: false, input_html: { autocomplete: 'off' }, wrapper: false
+          - if @credit_card.errors.keys.include?('cvv')
+            %small.error.text-danger= @credit_card.errors[:cvv].join(', ')
+
+.row
+  .col-sm-12
+    = form.button :submit, id: 'credit_card_submit', value: t('.submit'), class: 'btn btn-success'

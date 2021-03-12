@@ -1,0 +1,20 @@
+#top-nav.fixed
+  = link_to root_path, class: 'brand' do
+    = image_tag 'logo-top-nav-white.png', title: t('.admin_name'), class: 'top-nav-logo'
+    = image_tag 'logo-top-nav-small.jpg', title: t('.admin_name'), class: 'top-nav-logo-small'
+  %button#sidebarToggle.navbar-toggle.pull-left{ type: 'button'}
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+  %ul.nav-notification.clearfix
+    %li
+      = link_to edit_admin_admin_user_path(current_user), class: 'clearfix' do
+        .detail
+          %strong
+            = current_user.firstname
+            = current_user.lastname
+
+    %li
+      = link_to logout_path, method: "delete" do
+        %em.fa.fa-power-off
+        = t('.log_out')

@@ -1,0 +1,71 @@
+sidekiq:
+  verbose: false
+  strict: false
+  username: "tscnemo"
+  password: "93vAGrwRkC*U"
+api:
+  resamania:
+    auth_token: 'bMHDlMfYUUeVIwMB'
+    user_url: 'https://api.resamania.fr/rest/novagile/user'
+  token: 'boCh3ae9inReNu2quev7gephiafokohz'
+payment:
+  credit_card_salt: '95u<h&:8k@'
+  gateways:
+    paybox:
+      login:    '627480701'
+      password: 'rnPH7Eps0L'
+user:
+  paybox_reference_prefix: 'prod'
+  cash:
+    email: visiteur.cash@novagile.com
+    firstname: Visiteur
+    lastname: CASH
+  cb:
+    email: visiteur.cb@novagile.com
+    firstname: Visiteur
+    lastname: CB
+  cheque:
+    email: visiteur.cheque@novagile.com
+    firstname: Visiteur
+    lastname: CHEQUE
+  ghost_one:
+    email: aucomptoirdesfleurs@orange.fr
+    firstname: Elenio
+    lastname: Gabbarelli
+    phone: 01 40 15 03 19
+  ghost_two:
+    email: developers@tsc.digital
+    firstname: Nova
+    lastname: Gile
+    phone: 07 83 43 45 75
+  compensation:
+    email: visiteur.compensation@novagile.com
+    firstname: Visiteur
+    lastname: COMPENSATION
+mailer:
+  ics_path: "/srv/temple_production/shared/tmp/"
+  admin:
+    from: "Temple | Noble Art <contact@temple-nobleart.fr>"
+    to:
+      - cyril.durand@temple-nobleart.fr
+      - dorian.goetz@temple-nobleart.fr
+  default:
+    from: "Temple | Noble Art <contact@temple-nobleart.fr>"
+    'Content-Transfer-Encoding': '7bit'
+    charset: 'utf-8'
+slimpay:
+  client_id: "pugilinvest01"
+  client_secret: "N7prGDrll1YXHtUlT7Uu1Ruol6WcV1rMJIC8Y2HA"
+  creditor_reference: "pugilinvest"
+  sandbox: false
+  notify_url: "https://membres.temple-nobleart.fr/ipn"
+  return_url: "https://membres.temple-nobleart.fr/mandate_signature_return"
+  username: 'jb@novagile.com'
+  password: 'T8n234b6QxDLvEh'
+  sftp:
+    host: slimprod.slimpay.net
+    login: pugilinvest01
+    port: 6321
+    keys:
+      - "<%= Pathname.new(ENV['HOME']).join('.ssh', 'id_rsa_pugilinvest01') %>"
+    remote_directory: '/out'

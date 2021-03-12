@@ -1,0 +1,34 @@
+= simple_form_for @user, url: account_user_path do |form|
+
+  .col-sm-6
+
+    = form.input :email, disabled: true, hint: t('.notice_email_disabled')
+
+    = form.input :gender, required: true, disabled: true, hint: t('.notice_gender_disabled')
+    = form.input :lastname, required: true, disabled: true, hint: t('.notice_lastname_disabled')
+    = form.input :firstname, required: true, disabled: true, hint: t('.notice_firstname_disabled')
+
+    = form.input :street1, required: true
+    = form.input :street2
+    = form.input :postal_code, required: true
+    = form.input :city, required: true
+
+  .col-sm-6
+
+    = form.input :phone, required: true
+    = form.input :birthdate, required: true, as: :datepicker, input_html: {data: { provide: 'birthdaypicker' }}
+
+    = form.input :facebook_url
+    = form.input :linkedin_url
+
+    .well.well-sm
+      = form.input :billing_name
+      = form.input :billing_address
+
+    = form.input :receive_booking_confirmation, wrapper: :checkbox do
+      = form.input_field :receive_booking_confirmation, boolean_style: :inline
+
+    = form.input :receive_mail_ical, wrapper: :checkbox do
+      = form.input_field :receive_mail_ical, boolean_style: :inline
+
+    = form.submit id: 'user_submit', class: 'btn btn-success btn-block'

@@ -1,0 +1,153 @@
+.btn    {
+  @include transition(all 0.3s ease);
+
+  &.btn-transparent   {
+    background: transparent;
+    border: none;
+  }
+
+  &.quick-btn {
+    padding: 5px 20px;
+    font-size: 40px;
+    @include border-radius(6px);
+
+    span    {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+
+  &.btn-primary   {
+    background: $bg-primary;
+    border: 1px solid darken($bg-primary,10%);
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-primary,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+  &.btn-info   {
+    background: $bg-info;
+    border: 1px solid darken($bg-info,10%);
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-info,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+  &.btn-success   {
+    background: $bg-success;
+    border: 1px solid darken($bg-success,10%);
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-success,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+
+  &.btn-warning   {
+    background: $bg-warning;
+    border: 1px solid darken($bg-warning,10%);
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-warning,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+  &.btn-danger   {
+    background: $bg-danger;
+    border: 1px solid darken($bg-danger,10%);
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-danger,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+
+  &.btn-moliere   {
+    background: $bg-btn-moliere;
+    border: 1px solid darken($bg-btn-moliere,10%);
+    color: $fg-btn-moliere;
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-btn-moliere,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+
+  &.btn-maillot   {
+    background: $bg-btn-maillot;
+    border: 1px solid darken($bg-btn-maillot,10%);
+    color: $fg-btn-maillot;
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-btn-maillot,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+
+  &.btn-amelot   {
+    background: $bg-btn-amelot;
+    border: 1px solid darken($bg-btn-amelot,10%);
+    color: $fg-btn-amelot;
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-btn-amelot,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+
+  &.btn-active   {
+    background: $bg-btn-maillot;
+    border: 1px solid darken($bg-btn-maillot,10%);
+    color: $fg-btn-maillot;
+
+    &:hover, &:focus, &:active, &.active {
+      background: darken($bg-btn-maillot,7%);
+      @include transition(all 0.3s ease);
+    }
+  }
+}
+
+.open .dropdown-toggle  {
+  &.btn-primary {
+    background: darken($bg-primary,5%);
+    border-color: darken($bg-primary,7%);
+  }
+
+  &.btn-info {
+    background: darken($bg-info,5%);
+    border-color: darken($bg-info,7%);
+  }
+
+  &.btn-success {
+    background: darken($bg-success,5%);
+    border-color: darken($bg-success,7%);
+  }
+
+  &.btn-warning {
+    background: darken($bg-warning,5%);
+    border-color: darken($bg-warning,7%);
+  }
+
+  &.btn-danger {
+    background: darken($bg-danger,5%);
+    border-color: darken($bg-danger,7%);
+  }
+
+  &.btn-moliere {
+    background: darken($bg-btn-moliere,5%);
+    border-color: darken($bg-btn-moliere,7%);
+  }
+
+  &.btn-maillot {
+    background: darken($bg-btn-maillot,5%);
+    border-color: darken($bg-btn-maillot,7%);
+  }
+
+  &.btn-amelot {
+    background: darken($bg-btn-amelot,5%);
+    border-color: darken($bg-btn-amelot,7%);
+  }
+}

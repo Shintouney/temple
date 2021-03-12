@@ -1,0 +1,54 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title')
+    %span.label.label-success
+      = @records_count
+
+    .btn-group.pull-right
+      = link_to new_admin_article_path, id: 'new_article', class: 'btn btn-success btn-sm' do
+        %em.fa.fa-plus
+        = t('.new_link')
+
+  .panel.panel-default
+    %table.table.table-striped.table-hover.dt-responsive.no-wrap{ data: {datatable: 'true'}}
+      %thead
+        %tr
+          %th{ data: { priority:1, orderable: 'false'}}
+            = Article.human_attribute_name(:image)
+          %th{ data: { priority:1 }}
+            = Article.human_attribute_name(:name)
+          %th{ data: { priority:3 }}
+            = Article.human_attribute_name(:price_ati)
+          %th{ data: { priority:4 }}
+            = Article.human_attribute_name(:taxes_rate)
+          %th{ data: { priority:5 }}
+            = t('.state')
+          %th.text-right{ data: { priority:2, orderable: 'false' }}
+            = t('.actions')
+      %tbody
+        - @records.each do |article|
+          %tr
+            %td
+              = article.image_thumbnail
+            %td
+              = article.name
+            %td
+              = article.price_ati
+            %td
+              = article.formatted_taxes_rate
+            %td
+              %em.fa{ class: article.visible? ? 'fa-check-circle text-success' : 'fa-times-circle text-danger' }
+              = t("admin.articles.index.visible.is_#{article.visible.to_s}")
+            %td.text-right
+              .btn-group.btn-group-sm
+                = link_to edit_admin_article_path(article), title: t('.edit_link'), id: dom_id(article, :edit), class: 'btn btn-default' do
+                  %em.far.fa-edit
+
+                - if article.visible?
+                  = link_to admin_article_path(article), title: t('.destroy_link'), id: dom_id(article, :destroy), class: 'btn btn-default active_article', data: { confirm: t('.destroy_link_confirm') }, method: :delete do
+                    %em.far.fa-eye
+                - else
+                  = link_to admin_article_path(article, article: { visible: true }), title: t('.restore_link'), id: dom_id(article, :destroy), class: 'btn btn-danger active_article', method: :patch do
+                    %em.far.fa-eye-slash
+
+  != pagy_bootstrap_nav_js @pagy

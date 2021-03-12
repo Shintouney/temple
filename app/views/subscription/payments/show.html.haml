@@ -1,0 +1,35 @@
+.page-header
+  .row
+    .col-sm-12
+      %h1
+        = t('.title')
+#subscription_payment_finished.row
+  .col-sm-12.col-md-8.col-md-offset-2
+    .panel.panel-brown
+      .panel-heading
+        %h4.m-top-sm
+          Vous êtes Membre du Temple.
+      .panel-body
+        %p
+          Votre espace personnel vous permet de
+          = link_to 'réserver les cours', account_lessons_path
+          auxquels vous souhaitez participer.
+          %br
+          Le Directeur vous accueillera lors de votre prochaine venue au Temple.
+        %p
+          En tant que Membre, vous pouvez contribuer au développement du Temple en parrainant de nouveaux Membres. Pour créer un partenariat avec votre entreprise, nous vous invitons à vous rapprocher de la Direction du Temple.
+        %br
+          Vous pouvez informer vos contacts que vous êtes désormais Membre du Temple
+        .text-center
+          = social_share_button_tag(t(".share_message"), :url => "http://temple-nobleart.fr/concept")
+          .social-share-button
+            = link_to '', new_account_invitation_path, class: 'social-share-button-email', id: 'new_invitation', data: { toggle: 'modal', target: '#invitationModal' }
+        %br/
+        .text-center
+          = link_to t('.edit_profile'), edit_account_profile_path, class: 'btn btn-brown'
+          = t('.or')
+          = link_to t('.account_link'), account_root_path, class: 'btn btn-brown'
+
+  #invitationModal{ class: 'modal fade', data: { backdrop: 'static' } }
+    .modal-dialog
+      .modal-content

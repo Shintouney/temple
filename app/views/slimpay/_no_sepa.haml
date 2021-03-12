@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      %em.far.fa-credit-card
+      = t('.mandate_html')
+  .panel-body
+    .lead= t('.no_sepa')
+    = link_to t('.save_sepa'), sepa_path(user_id: user.id), class: 'btn btn-primary btn-large btn-block', method: 'post'

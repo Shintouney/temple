@@ -1,0 +1,153 @@
+fr:
+  admin_mailer:
+    monthly_subscription_payment_retry_failed:
+      subject: Temple | Noble Art - Echec de nouvelle tentative de paiement mensuel
+      greetings: "Cher Admin,"
+      monthly_subscription_payment_retry_failed: "La nouvelle tentative de paiement mensuel a echoué pour le Membre '%{user_name}'"
+    error:
+      subject: "Temple | Noble Art - ERREUR"
+      intro: "Une erreur %{error_name} a été levée"
+      details: "Voici le détails de l'erreur déclenchée :"
+    invoice_charge_error:
+      subject: "Temple | Noble Art - ERREUR durant le débit des factures du jour"
+      error_during_invoice_charge: "Une erreur est survenue lors du débit des factures du aujourd'hui (%{invoice_ids})."
+      check_sentry_and_pending_due_invoice: "Pensez à vérifier les erreurs sur GetSentry, vérifier la validité des facture due peut être une autre piste."
+    sepa_payment_rejected:
+      payment_id: ID du payment côté Temple
+      sepa_payment_rejected: "Un paiement SEPA a été rejeté ou contesté"
+      slimpay_id: ID du paiment côté Slimpay
+      slimpay_status: Status du payment Slimpay
+    suspicious_invoices:
+      subject: "Temple | Noble Art - Suspicion d'erreur sur les créations de factures !"
+      suspicious_invoices: "Il semble que nous ayons détecté la création de facture en doublon sur la même période."
+      list_if_users_to_check: "Voici la liste des Membres dont il faut vérifier les factures (Vérifier les doublons sur les dates d'émission) :"
+    invalid_invoices:
+      subject: "Temple | Noble Art - Facture Invalides détectés."
+      invalid_invoices: "Des factures sembles invalides."
+    invoices_with_double_payments:
+      subject: "Temple | Noble Art - Facture prélevées plusieurs fois détectées."
+      invoices_with_double_payments: "Des factures avec plusieurs paiements acceptés ont été détectées"
+    payment_mode:
+      subject: 'Temple | Noble Art - Membres sans mode de paiement detectés.'
+      text: "Des Membres avec un mode de payment invalide (none) a été détecté."
+    pending_subscription:
+      subject: "Temple | Noble Art - Inscriptions 'pending' invalides détectées"
+      text: "Des inscriptions sont en statut 'pending' alors que leur client associé à un moyen de paiement."
+    restart_subscription_fail:
+      restart_subscription_fail: "Une erreur est sur venu lors du redémarrage de l'abonnement de ce Membre :"
+      subject: "Temple | Noble Art - Problème sur le redémarrage d'un abonnment"
+    suspended_subscription:
+      subject: "Temple | Noble Art - Problème avec la suspension d'un abonnement"
+      suspended_subscription_issue: "Il y a eu un problème avec un abonnement à suspendre, voici les infos sur le Membre concerné :"
+    lesson_request_notification:
+      lesson_request_notification_title: "Voici les détails de la demande de cours particulier :"
+      subject: "Temple | Noble Art - Demande de cours particulier"
+    sponsoring_request_notification:
+      sponsoring_request_notification_title: "Voici les détails de la demande de parrainage :"
+      subject: "Temple | Noble Art - Demande de parrainage"
+    unsubscribe_request_notification:
+      unsubscribe_request_notification_title: "Voici les détails de la demande de résiliation :"
+      subject: "Temple | Noble Art - Demande de résiliation"
+  user_mailer:
+    invite_friend:
+      invite_from: "%{user_name} vous invite à rejoindre le Temple, l'esprit du Noble Art."
+      join: Rejoindre le Temple
+      join_link: "http://temple-nobleart.fr/concept"
+      subject: "Vous avez été invité à rejoindre le Temple"
+    lesson_booking_confirmation:
+      cancel: "Le nombre de participants est limité pour garantir une expérience pugilistique de qualité. Si vous savez que vous ne pourrez pas y participer, nous vous invitons à vous désinscrire dès à présent depuis votre espace personnel pour permettre à un autre Membre d'en profiter."
+      lesson_booking_confirmation_html: "Rappel de votre réservation à un cours au Temple | %{location} le %{date}<br/> de %{start_at} à %{end_at}"
+      lesson_booking_confirmation: "Rappel de votre réservation à un cours au Temple | %{location} le %{date} de %{start_at} à %{end_at}"
+      reminder: "Nous vous rappelons que vous êtes inscrit à un cours de boxe au Temple."
+      subject: "Temple | Noble Art - Rappel de votre réservation à un cours au Temple | %{location} le %{date} de %{start_at} à %{end_at}"
+      thanks: "Nous vous remercions pour votre compréhension et espérons avoir le plaisir de vous accueillir très prochainement au Temple."
+      welcome: "Cher(e) Membre,"
+    lesson_canceled:
+      greetings: "Cher(e) Membre,"
+      subject: "Temple | Noble Art - Cours Annulé"
+      body: "Votre cours de %{activity} du %{start_at} - %{end_at} avec %{coach_name} a été annulé."
+      footer: "Vous pouvez réserver un nouveau cours en vous connectant à votre espace Temple."
+    reset_password_email:
+      greetings: "Cher(e) Membre,"
+      reset_text: "Vous avez oublié votre mot de passe, merci de cliquer sur le lien suivant afin de le réinitialiser : "
+      reset_link: 'Récupération de votre mot de passe'
+      subject: Temple | Noble Art - Oubli de mot de passe
+    send_lesson_notification:
+      book_lesson: Accédez à l’interface de réservation de ce cours en cliquant ici.
+      book_lesson_text: "Accédez à l’interface de réservation de ce cours : %{url}"
+      greetings: "Cher(e) Membre,"
+      mail_text: "Une place vient de se libérer dans le cours de %{activity} (%{room}) du %{date} à %{start_at}."
+      subject: "Temple | Noble Art - Notification disponibilité %{date}"
+    welcome:
+      new_welcome: "Nous vous souhaitons la bienvenue au Temple | Noble Art."
+      new_advise_html: "L'Equipe du Club sera ravie de vous accueillir lors de votre prochaine visite et pourra notamment vous conseiller sur la sélection du <b>meilleur équipement</b>. Nous vous proposons <b>durant votre premier mois d'abonnement une réduction de 10% sur les produits Temple disponibles dans la boutique.</b>"
+      new_advise: "L'Equipe du Club sera ravie de vous accueillir lors de votre prochaine visite et pourra notamment vous conseiller sur la sélection du meilleur équipement. Nous vous proposons durant votre premier mois d'abonnement une réduction de 10% sur les produits Temple disponibles dans la boutique."
+      new_next_event_html: "Pour ​connaître les <b>prochains événements</b> du Temple et ​partager avec la <b>communauté des​ ​​​Membres</b>, nous vous invitons à rejoindre le <b>groupe privé du Temple sur Facebook</b> en cliquant <a href='https://www.facebook.com/groups/555301127846416/?ref=bookmarks'>ici</a>. Vous pouvez aussi <b>suivre la</b> <a href='https://www.linkedin.com/company/5219147/'>page LinkedIn du Temple</a>, ainsi que notre <a href='https://www.instagram.com/templenobleart'>compte Instagram templenobleart</a>."
+      new_next_event: "Pour ​connaître les prochains événements du Temple et ​partager avec la communauté des​ ​​​Membres, nous vous invitons à rejoindre le groupe privé du Temple sur Facebook (https://www.facebook.com/groups/555301127846416/?ref=bookmarks). Vous pouvez aussi suivre la page LinkedIn du Temple (https://www.linkedin.com/company/5219147/), ainsi que notre compte Instagram templenobleart (https://www.instagram.com/templenobleart)."
+      new_tuto_html: "Si vous souhaitez dès maintenant découvrir les gestes techniques et les premiers rituels de la boxe, vous pouvez consulter les <a href='http://temple-nobleart.com/tutoriels/'><b>tutoriels</b> de Jérémy Den​​is</a>, Professeur du Temple."
+      new_tuto: "Si vous souhaitez dès maintenant découvrir les gestes techniques et les premiers rituels de la boxe, vous pouvez consulter les tutoriels de Jérémy Den​​is, Professeur du Temple http://temple-nobleart.com/tutoriels/."
+      new_next_step_html: "<b>Prochaine étape</b> : pour réserver votre prochain cours sur le planning, nous vous invitons à renseigner les coordonnées de votre RIB sur votre Espace Membre."
+      new_next_step: "Prochaine étape : pour réserver votre prochain cours sur le planning, nous vous invitons à renseigner les coordonnées de votre RIB sur votre Espace Membre."
+      new_reminder: "Nous vous rappelons enfin que vous devez être en mesure de présenter une attestation établie par un médecin de votre aptitude à pratiquer une activité sportive, notamment la boxe."
+      new_reminder_2: "Votre abonnement ne pourra être résilié que sur demande écrite de votre part par mail adressé à contact@temple-nobleart.fr. Pour rappel, si vous avez souscrit un abonnement à engagement annuel, vous avez la possibilité de résilier votre abonnement avant le terme de votre premier mois d'engagement ou à tout moment après votre douzième mois d'abonnement."
+      new_greetings: "L’équipe du Temple se tient bien sûr à votre disposition pour tout renseignement."
+
+      cancellation: "Nous tenons à vous rappeler que vous avez la possibilité de résilier votre abonnement avant le terme de votre premier mois d'engagement et que vous devez être en mesure de présenter une attestation établie par un médecin de votre aptitude à pratiquer une activité sportive, notamment la boxe."
+      facebook: 'Nous vous invitons à rejoindre la communauté des Membres du Temple | Noble Art en rejoignant le groupe Facebook privé du Temple.'
+      greetings: 'Toute l’équipe du Temple se tient à votre disposition et se réjouit de vous accueillir lors de votre prochaine venue.'
+      link_member_area: ESPACE MEMBRE
+      offer_html: "L'Equipe du Temple a le plaisir de vous faire bénéficier d'un cours particulier d'une heure avec un de nos Professeurs. Pour l'organiser, il vous suffit d'envoyer un mail à contact@temple-nobleart.fr ou d'appeler le 01 49 27 03 11. Tout l'équipement nécessaire à la pratique de la boxe est disponible en vente au sein de la boutique du Temple. Aussi, vous retrouverez <a href=%{url}>ici</a> tous les tutoriels de Jérémy Denis, Professeur du Temple, pour apprendre les gestes techniques et les premiers rituels de la boxe, comme mettre ses bandes et faire de la corde à sauter"
+      offer: "L'Equipe du Temple a le plaisir de vous faire bénéficier d'un cours particulier d'une heure avec un de nos Professeurs. Pour l'organiser, il vous suffit d'envoyer un mail à contact@temple-nobleart.fr ou d'appeler le 01 49 27 03 11. Tout l'équipement nécessaire à la pratique de la boxe est disponible en vente au sein de la boutique du Temple. Aussi, vous retrouverez ici (%{url}) tous les tutoriels de Jérémy Denis, Professeur du Temple, pour apprendre les gestes techniques et les premiers rituels de la boxe, comme mettre ses bandes et faire de la corde à sauter"
+      rib: "Afin d'avoir accès au planning des cours du Temple, nous vous invitons à renseigner les coordonnées de votre RIB sur votre Espace Membre."
+      sincerely: 'Bien à vous,'
+      subject: 'Temple – Noble Art'
+      welcome: 'Cher(e) Membre,'
+      welcome_temple: 'Nous vous souhaitons la bienvenue au Temple.'
+    send_ical_invite:
+      lesson_booking_confirmation: "Invitation pour votre prochain cours au Temple | %{location}."
+      subject: "Temple | Noble Art - Évènement pour votre cours du %{date} au Temple | %{location}"
+    subscription_suspended:
+      available_for_question: "Nous restons à votre disposition pour répondre à toute éventuelle question,"
+      suspension_confirmation: "Nous vous confirmons la suspension de votre abonnement au Temple à partir d'aujourd'hui, et ce jusqu'à la date du %{date}."
+      subject: "Temple | Noble Art - Confirmation de la suspension de votre abonnement"
+      welcome: "Cher(e) Membre,"
+    subscription_restart:
+      subject: "Temple | Noble Art - Reprise de votre abonnement"
+      subscription_restart: "Nous vous rappelons que votre abonnement au Temple sera de nouveau actif à partir de demain. Nous nous réjouissons de votre retour parmi nous et restons à votre disposition pour l'organiser avec vous."
+      welcome: "Cher(e) Membre,"
+      wish_good_restart: "Nous vous souhaitons une excellente reprise pugilistique,"
+  credit_card_mailer:
+    expiration_approaching:
+      greetings: "Cher(e) Membre,"
+      subject: Temple | Noble Art - Votre carte arrive à expiration
+      registered_credit_card_expires_soon_html: "Votre carte <b>%{card_number}</b> arrivera à expiration le <b>%{date_string}<b/>"
+      registered_credit_card_expires_soon: "Votre carte %{card_number} arrivera à expiration le %{date_string}"
+      registered_credit_card_expiration: "Nous vous encourageons à nous communiquer les coordonnées d’une nouvelle carte dès que possible."
+      update_bank_credentials: "Pour le paiement de votre abonnement au Temple | Noble Art, nous vous prions de bien vouloir renseigner vos coordonnées bancaires sur votre Espace Membre dans la rubrique Moyens de paiement."
+      edit_credit_card_text: "Vous pouvez modifier ses informations à l'accueil du temple, en contactant le 01 49 27 03 11 ou par mail contact@temple-nobleart.fr"
+      regards: 'Bien à vous,'
+      temple_team: "L’équipe du Temple"
+      thanks: "Nous vous remercions."
+  payment_mailer:
+    monthly_subscription_payment_failed:
+      greetings: "Cher(e) Membre,"
+      subject: Temple | Noble Art - Le paiement mensuel a échoué
+      payment_failed_with_this_credit_card_html: "Vos dépenses au Temple sont soldées grâce à la carte <b>%{card_number}</b>.<br/>Notre dernière tentative de prélèvement a échoué; nous tenterons d’y procéder à nouveau dans dans 15 jours."
+      payment_failed_with_this_credit_card: "Vos dépenses au Temple sont soldées grâce à la carte %{card_number}. Notre dernière tentative de prélèvement a échoué; nous tenterons d’y procéder à nouveau dans dans 15 jours."
+      edit_credit_card: "Vous pouvez modifier ces informations à l'accueil du Temple, en contactant le 01 49 27 03 11 ou par mail contact@temple-nobleart.fr"
+      card_will_be_suspended: "Si la nouvelle tentative échoue, votre carte d'accès au Temple sera desactivée. Elle ne sera réactivée que lors du prochain prélèvement executé avec succès."
+      card_activation_conditions: "Votre carte d'accès au Temple ne sera réactivée que lors du prochain prélèvement executé avec succès."
+      update_bank_credentials: "Pour le paiement de votre abonnement au Temple | Noble Art, nous vous prions de bien vouloir renseigner vos coordonnées bancaires sur votre Espace Membre dans la rubrique Moyens de paiement."
+      temple_team: "L’équipe du Temple"
+      thanks: "Nous vous remercions."
+    monthly_subscription_payment_retry_failed:
+      subject: Temple | Noble Art - Echec de nouvelle tentative de paiement mensuel
+      greetings: "Cher(e) Membre,"
+      payment_failed_with_this_credit_card_html: "Vos dépenses au Temple sont soldées grâce à la carte <b>%{card_number}</b>.<br/>Lors de nos deux dernières tentatives ce prélèvement a échoué."
+      payment_failed_with_this_credit_card: "Vos dépenses au Temple sont soldées grâce à la carte %{card_number}. Lors de nos deux dernières tentatives, ce prélèvement a échoué."
+      edit_credit_card: "Vous pouvez modifier ses informations à l'accueil du Temple, en contactant le 01 49 27 03 11 ou par mail contact@temple-nobleart.fr"
+      card_suspended: "Votre carte d'accès au Temple a été desactivée. Elle sera réactivée lorsque le prochain prélèvement sera executé avec succès."
+      card_activation_conditions: "Votre carte d'accès au Temple ne sera réactivée que lors du prochain prélèvement exécuté avec succès."
+      regards: 'Cordialement,'
+      temple_team: "L’équipe du Temple"
+      update_bank_credentials: "Pour le paiement de votre abonnement au Temple | Noble Art, nous vous prions de bien vouloir renseigner vos coordonnées bancaires sur votre Espace Membre dans la rubrique Moyens de paiement."

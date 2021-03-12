@@ -1,0 +1,5 @@
+.padding-md#admin_announces_calendar
+  = render "layouts/account/announces", announces: [@announce]
+  %h4.headline.m-top-none= t('.title')
+  = simple_form_for @announce, url: admin_announce_path(@announce), id: 'announce_form' do |form|
+    = render partial: 'form', locals: { form: form }

@@ -1,0 +1,27 @@
+- @subscription_plans.to_a.in_groups_of(3, false) do |subscription_plans|
+  .row.extra_size
+    .prk_inner_block.wpb_row.vc_row-fluid.prk_section.centered.columns
+      .centered.columns.tables_father
+        - subscription_plans.each do |subscription_plan|
+          .wpb_column.column_container{ class: @subscription_plans.count < 3 ? 'vc_span6' : 'vc_span4'}
+            .wpb_wrapper
+              .prk_price_table{ class: subscription_plan.favorite ? 'featured' : ''}
+                .prk_price_header.zero_color
+                  %h3.header_font= subscription_plan.name
+                .prk_prices_specs.prk_wbtn
+                  .prk_price.header_font.zero_color
+                    = subscription_plan.displayed_price_ati
+                  .underp
+                    - if subscription_plan.discount_price_applied?
+                      %p.cross-text
+                        = subscription_plan.price_ati
+                    = t('subscription_plans.index.per_month')
+                  %ul
+                    %li
+                      = subscription_plan.description
+                  .prk_price_button.theme_button_inverted
+                    - if subscription_plan.require_code?
+                      = link_to t('subscription_plans.index.buy'), subscription_plan_url(subscription_plan), id: dom_id(subscription_plan, :buy), class: 'fade_anchor'
+                    - else
+                      = form_tag buy_subscription_plan_url(subscription_plan) do
+                        = submit_tag t('subscription_plans.index.buy'), id: dom_id(subscription_plan, :buy), class: 'fade_anchor'

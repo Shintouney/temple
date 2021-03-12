@@ -1,0 +1,59 @@
+.row
+  .col-sm-8
+    .panel.panel-default
+      .panel-heading
+        %em.fa.fa-coffee
+        = t('.the_products')
+      .panel-tab
+        %ul.tab-bar
+          - ArticleCategoryDecorator.collection_for_grouped_select.each_with_index do |article_category, index|
+            %li{ class: index.zero? ? 'active' : ''}
+              = link_to article_category.name, "##{article_category.name.parameterize }", data: { toggle: 'tab', 'article-category-id' => article_category.id }
+      .panel-body#articles-catalog
+        .tab-content
+          - ArticleCategoryDecorator.collection_for_grouped_select.each_with_index do |article_category, index|
+            .tab-pane{ id: article_category.name.parameterize, class: index.zero? ? 'active' : '' }
+              .row
+                - article_category.articles.each do |article|
+                  .col-xs-6.col-sm-4.col-md-3
+                    .well.well-sm.text-center.order-article{ data: { article: { id: article.id, price: article.object.price_ati, name: article.name } } }
+                      = article.image_thumbnail
+                      %br
+                      = article.name
+                      %br
+                      = article.price_ati
+
+  .col-sm-4
+    .panel.panel-default#basket
+      .panel-heading
+        .row
+          .col-sm-6
+            %em.fa.fa-shopping-cart
+            = t('.the_cart')
+          .col-sm-6.text-right
+            %strong
+              = t('.total')
+              %span#basket_total
+                0
+              €
+      -if @user.has_payment_means?
+        = simple_form_for @order, url: [:admin, @user, @order] do |form|
+          %ul.list-group.form-horizontal
+          .panel-body
+            .well.text-center
+              %em.fa.fa-shopping-cart.fa-3x
+              %br
+              = t('.no_article')
+            = form.input :location, collection: ["moliere", "maillot", "amelot"], selected: current_user.location, label: false, include_blank: false, required: true
+            .alert.alert-info.m-bottom-none.padding-xs
+              = form.input :direct_payment, as: :boolean, disabled: !@user.active? || @user.credit_cards.blank?, wrapper_html: { class: 'm-bottom-none'}, input_html: { checked: !@user.active? }
+
+          .panel-footer.text-center
+            = form.submit id: 'order_submit', class: 'btn btn-success'
+            - if User::TEMPLE_GHOSTS.include?(@user.email)
+              .text-primary
+                %span.text-warning= icon('fas', 'exclamation-triangle')
+                = t('.user_does_not_have_any_valid_credit_card')
+      -else
+        .panel-body
+          .text-danger.lead.text-center= t('.no_payment_means')

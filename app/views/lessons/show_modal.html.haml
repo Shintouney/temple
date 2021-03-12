@@ -1,0 +1,179 @@
+.modal-header
+  %button{ type: 'button', class: 'close', data: { dismiss: 'modal' } }
+    &times;
+  %h3.modal-title
+    = t('.lesson_details')
+
+.modal-body
+  - unless @lesson.present?
+    .row
+      .col-sm-12.text-center
+        = link_to t('.removed_lesson'), account_lessons_path, class: 'btn btn-info'
+  - else
+    %h4.m-top-none.text-center
+      %em.fas.fa-map-marker-alt
+      = t('.location', location: I18n.t("location.#{@lesson.location}"))
+    .row
+      .col-sm-6
+        %p
+          %b= t('.activity')
+          = @lesson.activity
+        %p
+          %b= t('.room')
+          = @lesson.room_text
+        %p
+          %em.far.fa-clock.fa-lg
+          = l(@lesson.start_at, format: '%H:%M')
+          = ' - '
+          = l(@lesson.end_at, format: '%H:%M')
+      .col-sm-6
+        - if @lesson.max_spots.present?
+          %p
+            %b= t('.remaining_places')
+            = @lesson.available_spots
+        %p
+          %b
+            = t('coach_name_label', scope: 'lessons.decorator')
+          = @lesson.coach_name
+        %p
+          - if current_user.lessons.exists?(@lesson.id)
+            - if @lesson.upcoming?
+              %p.label.label-success.label-normal
+                = t('.lesson_booked')
+            - else
+              %p.label.label-warning.label-normal
+                = t('.lesson_booked_finished')
+          - else
+            - if @lesson.bookable_for?(current_user)
+              %p.label.label-success.label-normal
+                = t('.lesson_booking_available')
+            - elsif !@lesson.upcoming?
+              %p.label.label-warning.label-normal
+                = t('.lesson_booked_finished')
+            - else
+              %p.label.label-warning.label-normal
+                = @lesson.booking_errors_for(current_user)
+    %hr
+      .visible-xs-block
+        %h4{ data: { target: '#roomDescription', toggle: 'collapse' }, aria: { expanded: 'false', controls: 'roomDescription'}}
+          Description
+          %em.fa.fa-chevron-right.pull-right
+        %div#roomDescription.collapse
+          %p
+            %b
+              = t('rooms.rooms_descriptions.sports_content')
+          %ul.list-inside.text-justify.item-description
+            =t("rooms.rooms_descriptions.#{@lesson.room.starts_with?("ring_") ? "ring" : @lesson.room}_sports_content_html");
+          %p
+            %b
+              = t('rooms.rooms_descriptions.goal')
+          %ul.list-inside.text-justify.item-description
+            =t("rooms.rooms_descriptions.#{@lesson.room.starts_with?("ring_") ? "ring" : @lesson.room}_goal_html");
+          %p
+            %b
+              = t('rooms.rooms_descriptions.equipment')
+          %ul.list-inside.text-justify.item-description
+            =t("rooms.rooms_descriptions.#{@lesson.room.starts_with?("ring_") ? "ring" : @lesson.room}_equipment_html");
+
+      .hidden-xs
+        %h4
+          Description
+        .row
+          .col-sm-6
+            %p
+              %b
+                = t('rooms.rooms_descriptions.sports_content')
+            %ul.list-inside.text-justify.item-description
+              =t("rooms.rooms_descriptions.#{@lesson.room.starts_with?("ring_") ? "ring" : @lesson.room}_sports_content_html");
+
+          .col-sm-6
+            %p
+              %b
+                = t('rooms.rooms_descriptions.goal')
+            %ul.list-inside.text-justify.item-description
+              =t("rooms.rooms_descriptions.#{@lesson.room.starts_with?("ring_") ? "ring" : @lesson.room}_goal_html");
+        %p
+          %b
+            = t('rooms.rooms_descriptions.equipment_html')
+        %ul.list-inside.text-justify.item-description
+          =t("rooms.rooms_descriptions.#{@lesson.room.starts_with?("ring_") ? "ring" : @lesson.room}_equipment_html");
+
+    %hr
+    - if @lesson.lesson_bookings.any?
+      %p
+        %b
+          = t('.participants')
+      .row
+        - @lesson.lesson_bookings.each do |lesson_booking|
+          .lesson-participant.col-xs-3.col-sm-2.text-center
+            .lesson-participant-image{ class: current_user.id == lesson_booking.user.id ? 'lesson-participant-image-current' : '' }
+              = lesson_booking.user.profile_image_thumbnail
+              .lesson-participant-sociallinks
+                - if lesson_booking.user.facebook_url.present?
+                  = link_to lesson_booking.user.facebook_url, target: '_blank' do
+                    %em.fab.fa-facebook-square.fa-lg
+                - if lesson_booking.user.linkedin_url.present?
+                  = link_to lesson_booking.user.linkedin_url, target: '_blank' do
+                    %em.fab.fa-linkedin.fa-lg
+            .lesson-participant-username
+              - if current_user.id == lesson_booking.user.id
+                = t('.you')
+              - elsif current_user.role == "admin"
+                = lesson_booking.user.full_name
+              - else
+                = lesson_booking.user.firstname
+
+    - else
+      %p.text-center
+        %b
+          = t('.no_participants_yet')
+
+- if @lesson.present?
+  .modal-footer
+    - if current_user.lessons.exists?(@lesson.id)
+
+      - if @lesson.upcoming?
+        = simple_form_for @lesson.object.lesson_bookings.new, url: account_lesson_lesson_booking_path(@lesson), remote: true, method: :delete, html: { class: 'remote_lesson_booking_form' } do |form|
+          = form.button :button, t('.back'), id: 'lesson_booking_cancel', class: 'btn-default', data: { dismiss: 'modal' }, type: 'button'
+          = form.submit t('.submit_destroy'), id: 'lesson_booking_destroy_submit', class: 'btn btn-danger', data: { disable_with: t('.canceling') }
+      - else
+        = button_tag t('.back'), id: 'lesson_booking_cancel', class: 'btn btn-default', data: { dismiss: 'modal' }, type: 'button'
+
+    - elsif !@lesson.bookable_for?(current_user) && @lesson.upcoming?
+
+      - if current_user.has_notification_for?('Lesson', @lesson.id)
+        = simple_form_for :notification, url: account_notification_path(@lesson), remote: true, method: :delete, html: {class: 'remote_lesson_booking_form' } do |form|
+          = hidden_field_tag :type, 'Lesson'
+          = form.button :button, t('.cancel'), id: 'notification_cancel', class: 'btn-default', data: { dismiss: 'modal' }, type: 'button'
+          = form.button :button, id: 'destroy_notification_submit', class: 'btn btn-default', type: 'submit' do
+            = t('.destroy_request_notification')
+            %em.fa.fa-info-circle{ title: t('.notification_already_available') , data: { toggle: 'tooltip', container: 'body' } }
+      - elsif current_user.card_access_authorized? && current_user.subscriptions.last.locations.include?(@lesson.location)
+        = simple_form_for Notification.new, url: account_notifications_path(), remote: true, html: { class: 'remote_lesson_booking_form' } do |form|
+          = form.hidden_field :sourceable_id, value: @lesson.id
+          = form.hidden_field :sourceable_type, value: 'Lesson'
+          = form.button :button, t('.cancel'), id: 'notification_cancel', class: 'btn-default', data: { dismiss: 'modal' }, type: 'button'
+          = form.button :button, id: 'notification_submit', class: 'btn btn-warning', type: 'submit' do
+            = t('.request_notification')
+            %em.fa.fa-info-circle{ title: t('.notification_already_available'), data: { toggle: 'tooltip', container: 'body' } }
+
+    - elsif @lesson.upcoming?
+      = simple_form_for LessonBooking.new, url: account_lesson_lesson_booking_path(@lesson), remote: true, html: { class: 'remote_lesson_booking_form' } do |form|
+        .row
+          .col-sm-7.text-left
+            %label
+              = check_box_tag :lesson_booking_mail_confirmation, true, current_user.receive_booking_confirmation? ? true : false
+              = t('.receive_booking_confirmation')
+            %label
+              = check_box_tag :send_lesson_event, true, current_user.receive_mail_ical? ? true : false
+              = t('.send_lesson_event')
+
+          .col-sm-5
+            = form.button :button, t('.cancel'), id: 'lesson_booking_cancel', class: 'btn-default', data: { dismiss: 'modal' }, type: 'button'
+            - if current_user.has_upcoming_lessons?
+              = form.button :button, id: 'lesson_booking_submit', class: 'btn btn-success', type: 'submit', data: { 'toggle' => 'confirmation', 'singleton' => 'true', 'position' => 'left', 'btn-ok-label' => t('.btn_yes'), 'btn-ok-icon' => 'glyphicon glyphicon-ok', 'btn-ok-class' => 'btn-xs btn-success', 'btn-cancel-label' => t('.btn_no'), 'btn-cancel-icon' => 'glyphicon glyphicon-ban-circle', 'btn-cancel-class' => 'btn-xs btn-danger', 'title' => t('.submit_new_lesson_and_cancel_other'), disable_with: t('.submiting') } do
+                = t('.submit')
+            - else
+              = form.button :button, id: 'lesson_booking_submit', class: 'btn btn-success', type: 'submit', data: { disable_with: t('.submiting') } do
+                = t('.submit')
+

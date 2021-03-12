@@ -1,0 +1,7 @@
+= @text
+\
+\
+- @users.each do |user|
+  = "User n°#{user.id} #{admin_user_url(user)} : #{ @users_hash[user.id] }"
+  \
+

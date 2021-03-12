@@ -1,0 +1,39 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title')
+    %span.label.label-success
+      = @groups.length
+
+    .btn-group.pull-right
+      = link_to new_admin_group_path, id: 'new_group', class: 'btn btn-success btn-sm' do
+        %em.fa.fa-plus
+        = t('.new_link')
+
+  .panel.panel-default
+    %table.table.table-striped.table-hover.dt-responsive.no-wrap{ data: {datatable: 'true'}}
+      %thead
+        %tr
+          %th{ data: { priority:1 }}
+            = Group.human_attribute_name(:created_at)
+          %th{ data: { priority:1 }}
+            = Group.human_attribute_name(:name)
+          %th{ data: { priority:3 }}
+            = t('.number_of_user')
+          %th.text-right{ data: { priority:2, orderable: 'false' }}
+            = t('.actions')
+      %tbody
+        - @groups.each do |group|
+          %tr
+            %td
+              = l(group.created_at)
+            %td
+              = group.name
+            %td
+              = group.users.count
+            %td.text-right
+              .btn-group.btn-group-sm
+                = link_to edit_admin_group_path(group), title: t('.edit_link'), id: dom_id(group, :edit), class: 'btn btn-default' do
+                  %em.far.fa-edit
+
+                = link_to admin_group_path(group), title: t('.destroy_link'), id: dom_id(group, :destroy), class: 'btn btn-danger', data: { confirm: t('.destroy_link_confirm') }, method: :delete do
+                  %em.far.fa-trash-alt

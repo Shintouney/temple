@@ -1,0 +1,22 @@
+fr:
+  errors:
+    not_found:
+      page_title: La page que vous recherchez n'existe pas (404)
+      h1: Erreur 404
+      not_found: La page que vous recherchez n'existe pas.
+      return: "Retour à l'accueil"
+    internal_server_error:
+      page_title: Une erreur s'est produite (500)
+      h1: Erreur 500
+      text: "Une erreur s'est produite"
+      return: "Retour à l'accueil"
+    unprocessable_entity:
+      page_title: Entité non traitable (422)
+      text: "Une erreur de traitement s'est produite."
+      h1: Erreur 422
+      unprocessable_entity: "Vérifiez vos droits d'accès."
+    maintenance:
+      page_title: "Le site du Temple est actuellement en maintenance"
+      h1: Site en cours de maintenance
+      work_in_progress: "Nos équipes travaillent actuellement à l'amélioration du site du Temple."
+      comeback_later: "Essayez de revenir un peu plus tard."

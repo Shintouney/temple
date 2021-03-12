@@ -1,0 +1,46 @@
+= simple_form_for @subscription_plan.object, url: [:admin, @subscription_plan] do |form|
+  .row
+    .col-sm-6
+      .panel.panel-default
+        .panel-heading
+          %em.fas.fa-ticket-alt.fa-lg
+          = t('.subscription_plan')
+        .panel-body
+          = form.input :name, required: true, autofocus: true
+          = form.input :locations, collection: [['Moliere', 'moliere'], ['Maillot', 'maillot'], ['Amelot', 'amelot']], selected: form.object.locations, input_html: { multiple: true, :include_blank => false }, required: true, disabled: @subscription_plan.edit_restricted?
+          = form.input :description, disabled: @subscription_plan.edit_restricted?
+          = form.input :price_ati, required: true, disabled: @subscription_plan.edit_restricted?
+          = form.input :price_te, required: true, disabled: @subscription_plan.edit_restricted?
+          = form.input :taxes_rate, required: true, disabled: @subscription_plan.edit_restricted?
+          = form.input :commitment_period, disabled: @subscription_plan.edit_restricted?
+          = form.input :expire_at, disabled: @subscription_plan.edit_restricted?, as: :datepicker, input_html: {data: { provide: 'birthdaypicker' }}
+    .col-sm-6
+      .panel.panel-default
+        .panel-heading
+          %em.fa.fa-gift.fa-lg
+          = t('.discount')
+        .panel-body
+          = form.input :discount_period
+          = form.input :discounted_price_te, disabled: @subscription_plan.edit_restricted?
+          = form.input :discounted_price_ati, disabled: @subscription_plan.edit_restricted?
+          = form.input :sponsorship_price_te, disabled: @subscription_plan.edit_restricted?
+          = form.input :sponsorship_price_ati, disabled: @subscription_plan.edit_restricted?
+      .panel.panel-default
+        .panel-heading
+          %em.fa.fa-cogs.fa-lg
+          = t('.criterion_of_eligibility')
+        .panel-body
+          = form.input :code, disabled: @subscription_plan.edit_restricted?
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-sm-6
+          = form.input :displayable, wrapper: :checkbox do
+            = form.input_field :displayable, boolean_style: :inline
+        .col-sm-6
+          = form.input :favorite, wrapper: :checkbox do
+            = form.input_field :favorite, boolean_style: :inline
+
+  = form.submit id: 'subscription_plan_submit', class: 'btn btn-success'
+
+  = link_to t('.cancel_to_index'), admin_subscription_plans_path, class: 'btn btn-default'

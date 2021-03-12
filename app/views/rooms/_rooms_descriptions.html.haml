@@ -1,0 +1,131 @@
+.row.visible-lg-block
+  .col-sm-4
+    .legend.legend-popover.legend-ring{ title: t('.ring'), data: { url: '#ring'}}
+      = t('.ring')
+    .legend.legend-popover.legend-ring-no-opposition{ title: t('.ring_no_opposition'), data: { url: '#ring_no_opposition'}}
+      = t('.ring_no_opposition')
+    .legend.legend-popover.legend-ring-no-opposition-advanced{ title: t('.ring_no_opposition_advanced'), data: { url: '#ring_no_opposition_advanced'}}
+      = t('.ring_no_opposition_advanced')
+  .col-sm-4
+    .legend.legend-popover.legend-ring-feet-and-fist{ title: t('.ring_feet_and_fist'), data: { url: '#ring_feet_and_fist'}}
+      = t('.ring_feet_and_fist')
+    .legend.legend-popover.legend-arsenal{ title: t('.arsenal'), data: { url: '#arsenal'}}
+      = t('.arsenal')
+    .legend.legend-popover.legend-bag{ title: t('.bags_room'), data: { url: '#training'}}
+      = t('.bags_room')
+  .col-sm-4
+    - unless params[:controller].include? "admin" 
+      .legend.legend-booked-lesson
+        = t('.booked_lesson')
+    .legend.legend-full-lesson
+      = t('.lesson_full')
+
+
+#legendAccordion.panel-group.m-bottom-none.text-left.hidden-lg{ role: 'tablist', aria: { multiselectable: false }}
+  .panel.panel-default
+    .panel-heading{ role: 'tab'}
+      %a{ href: '#collapseLegend', role: 'button', aria: { controls: 'collapseLegend', expanded: 'false' }, data: { parent: "#legendAccordion", toggle: "collapse" } }
+        %em.fa.fa-info-circle.fa-fw.fa-lg
+        = t('.caption')
+    #collapseLegend.panel-collapse.collapse{ aria: { labelledby: 'collapseLegend'}, role: 'tabpanel'}
+      .panel-body
+        .legend.legend-popover.legend-ring{ title: t('.ring'), data: { url: '#ring'}}
+          = t('.ring')
+        .legend.legend-popover.legend-ring-no-opposition{ title: t('.ring_no_opposition'), data: { url: '#ring_no_opposition'}}
+          = t('.ring_no_opposition')
+        .legend.legend-popover.legend-ring-no-opposition-advanced{ title: t('.ring_no_opposition_advanced'), data: { url: '#ring_no_opposition_advanced'}}
+          = t('.ring_no_opposition_advanced')
+        .legend.legend-popover.legend-ring-feet-and-fist{ title: t('.ring_feet_and_fist'), data: { url: '#ring_feet_and_fist'}}
+          = t('.ring_feet_and_fist')
+        .legend.legend-popover.legend-bag{ title: t('.bags_room'), data: { url: '#training'}}
+          = t('.bags_room')
+        .legend.legend-popover.legend-arsenal{ title: t('.arsenal'), data: { url: '#arsenal'}}
+          = t('.arsenal')
+        .legend.legend-booked-lesson
+          = t('.booked_lesson')
+        .legend.legend-full-lesson
+          = t('.lesson_full')
+
+#ring.webui-popover-content
+  %h5
+    = t('.sports_content')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_sports_content_html')
+  %h5
+    = t('.goal')
+  %p.text_justify.m_bottom_md.item-description
+    = t('.ring_goal')
+  %h5
+    = t('.equipment_html')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_equipment_html')
+
+#ring_no_opposition.webui-popover-content
+  %h5
+    = t('.sports_content')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_sports_content_html')
+  %h5
+    = t('.goal')
+  %p.text_justify.m_bottom_md.item-description
+    = t('.ring_goal')
+  %h5
+    = t('.equipment_html')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_equipment_html')
+
+#ring_no_opposition_advanced.webui-popover-content
+  %h5
+    = t('.sports_content')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_sports_content_html')
+  %h5
+    = t('.goal')
+  %p.text_justify.m_bottom_md.item-description
+    = t('.ring_goal')
+  %h5
+    = t('.equipment_html')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_equipment_html')
+
+#ring_feet_and_fist.webui-popover-content
+  %h5
+    = t('.sports_content')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_sports_content_html')
+  %h5
+    = t('.goal')
+  %p.text_justify.m_bottom_md.item-description
+    = t('.ring_goal')
+  %h5
+    = t('.equipment_html')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.ring_equipment_html')
+
+#training.webui-popover-content
+  %h5
+    = t('.sports_content')
+  %p.text_justify.m_bottom_md.item-description
+    = t('.training_sports_content')
+  %h5
+    = t('.goal')
+  %p.text_justify.m_bottom_md.item-description
+    = t('.training_goal')
+  %h5
+    = t('.equipment_html')
+  %p.text_justify.item-description
+    = t('.training_equipment')
+
+#arsenal.webui-popover-content
+  %h5
+    = t('.sports_content')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.arsenal_sports_content_html')
+  %h5
+    = t('.goal')
+  %p.text_justify.m_bottom_md.item-description
+    = t('.arsenal_goal')
+  %h5
+    = t('.equipment_html')
+  %ul.text_justify.m_bottom_md.item-description
+    = t('.arsenal_equipment_html')

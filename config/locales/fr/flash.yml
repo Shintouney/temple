@@ -1,0 +1,195 @@
+fr:
+  flash:
+    access_denied: Accès refusé
+    access_unavailable: Accès impossible
+    account:
+      notifications:
+        create:
+          notice: 'Votre alerte pour ce cours a été créée.'
+        destroy:
+          notice: 'Votre alerte pour ce cours a été supprimée.'
+      profiles:
+        update:
+          alert: "Les informations du formulaire n'ont pu être mises à jour"
+          notice: "Merci d'avoir pris le temps de répondre à nos questions"
+      credit_cards:
+        update:
+          alert: Les informations de la carte de crédit n'ont pu être mises à jour. Vérifiez les données du formulaire.
+          notice: Les informations de la carte de crédit ont été mises à jour
+      lessons:
+        index:
+          alert: "Vous n'avez pas accès au planning. Veuillez contacter l'administrateur du site."
+      lesson_bookings:
+        create:
+          notice: 'Votre cours a été reservé.'
+        destroy:
+          notice: 'Votre réservation a été annulée.'
+      lesson_requests:
+        create:
+          notice: 'Votre demande de cours particuliers a bien été envoyée.'
+      sponsoring_requests:
+        create:
+          notice: 'Votre demande de parrainage a bien été envoyée.'
+      users:
+        update:
+          alert: Vos informations personnelles n'ont pu être mises à jour. Vérifiez les données du formulaire.
+          notice: Vos informations personnelles ont été mises à jour
+    admin:
+      admin_users:
+        create:
+          notice: L'administrateur a été créé
+        destroy:
+          notice: L'administrateur a été supprimé
+        update:
+          notice: L'administrateur a été mis à jour
+      article_categories:
+        create:
+          notice: La catégorie a été créée
+        destroy:
+          notice: La catégorie a été supprimée
+        update:
+          alert: La catégorie n'a pu être mise à jour
+          notice: La catégorie a été mise à jour
+      articles:
+        create:
+          notice: L'article a été créé
+        destroy:
+          notice: L'article a été supprimé
+        update:
+          alert: L'article n'a pu être mis à jour
+          notice: L'article a été mis à jour
+      cards:
+        force_authorization:
+          notice: La carte est de nouveau autorisée
+        update:
+          alert: La carte n'a pu être assignée (format invalide)
+          card_already_assigned_alert: Cette carte est déjà assignée au Membre %{user_name} et doit être désassignée de ce Membre avant de pouvoir être réassignée. %{edit_link}.
+          card_already_assigned_edit_link: Cliquez ici pour accéder à l'édition de la carte
+          card_blank_alert: Entrez un numéro de carte
+          notice: La carte a été assignée
+        destroy:
+          notice: La carte a été desassignée
+      credit_cards:
+        update:
+          alert: Les informations de la carte de crédit n'ont pu être mises à jour
+          notice: Les informations de la carte de crédit ont été mises à jour
+      exports:
+        create:
+          notice: Votre export est en cours de traitement
+          alert: Un export de ce type est deja en cours de traitement
+        visits:
+          alert: Le format de la date est invalide.
+      groups:
+        create:
+          notice: Le groupe a été créé
+          alert: Le groupe n'a pas été créé
+        destroy:
+          notice: Le groupe a été supprimé
+        update:
+          alert: Le groupe n'a pu être mis à jour
+          notice: Le groupe a été mis à jour
+      invoices:
+        update:
+          notice: Le statut de la facture a été mis à jour
+      orders:
+        create:
+          notice: La commande a été validée
+          alert_empty: La commande doit comprendre 1 article ou plus
+          alert_payment_failed: Le paiement n'a pu être effectué
+          alert_deferred_invoice_missing: Le paiement n'a pu être effectué en raison d'une facture différé manquante.
+        destroy:
+          alert: Cette commande ne peut pas être annulée
+          notice: La commande a été annulée
+      user_images:
+        create:
+          notice: L'image a été créée
+          alert: L'image n'a pu être créée
+        destroy:
+          notice: L'image a été supprimée
+        make_profile_image:
+          notice: L'image a été définie comme image de profil
+      users:
+        create:
+          notice: Le compte Membre a été créé
+        destroy:
+          notice: Le compte Membre a été supprimé
+        update:
+          alert: Le compte Membre n'a pu être mis à jour
+          notice: Le compte Membre a été mis à jour
+        update_origin_location:
+          notice: L'origine de l'inscription a bien été définie
+      subscriptions:
+        destroy:
+          notice: L'abonnement a été résilié.
+        restart:
+          notice: "L'abonnement a sera réactivé dans moins d'une heure"
+        update:
+          alert: L'abonnement n'a pu être changé
+          notice: L'abonnement a été changé
+      subscription_plans:
+        create:
+          notice: La formule d'abonnement a été créée
+        edit:
+          edit_limited: "Cette formule a des abonnés, seule sa visibilité peut être éditée."
+        destroy:
+          notice: La formule d'abonnement a été supprimée
+          alert: La formule d'abonnement n'a pu être supprimée car des Membres y sont déjà abonnés.
+        disable:
+          notice: La formule d'abonnement a été supprimée
+          alert: La formule d'abonnement n'a pu être supprimée car des Membres y sont déjà abonnés.
+        update:
+          alert: La formule d'abonnement n'a pu être mise à jour
+          notice: La formule d'abonnement a été mise à jour
+      suspended_subscription_schedules:
+        create:
+          alert: Une erreur est survenue lors de la création de la suspension (Une date doit être présente)
+          notice: La suspension a bien été créée
+        destroy:
+          alert: Une erreur est survenue lors de la suppression de la suspension de l'abonnment
+          notice: La suspension a bien été supprimée
+      staff_users:
+        create:
+          notice: Le Membre du staff a été créé
+        destroy:
+          notice: Le Membre du staff a été supprimé
+        update:
+          notice: Le Membre du staff a été mis à jour
+      visits:
+        create:
+          alert: Le Membre n'a pu être ajouté.
+          notice: Le Membre a été ajouté.
+    sessions:
+      create:
+        alert: Mot de passe ou compte Membre invalide
+      destroy:
+        notice: Vous êtes maintenant déconnecté
+    slimpay:
+      destroy:
+        notice: Le mandat a bien été supprimé.
+      sepa:
+        alert: "Le mandat n'a pas pu être créé."
+    subscription:
+      payments:
+        create:
+          alert_existing_account: Un compte Membre existe déjà avec cette adresse e-mail
+          alert_invalid_credit_card: Les informations de votre carte bleue sont erronées
+          alert_invalid_user: Le formulaire d'informations Membre contient une ou plusieurs erreurs
+          alert_payment_failed: Votre paiement n'a pu être validé
+          alert_sponsor_email_invalid: L'adresse e-mail de votre parrain ne correspond à aucun Membre connu
+          alert_terms_not_accepted: Vous devez accepter les CGV et le Règlement du Temple
+          alert_unknown_error: Une erreur empêche le paiement
+    subscription_plans:
+      buy:
+        alert: La formule d'abonnement n'a pu être sélectionnée
+    unsubscribe_request:
+      create:
+        notice: "Votre demande de résiliation a bien été prise en compte et sera traitée dans un délai de 7 jours ouvrés."
+    passwords:
+      create:
+        alert: Votre demande de réinitialisation de mot de passe n'a pu aboutir. Veuillez vérifier l'adresse e-mail renseignée.
+        notice: Votre demande a été prise en compte. Vous allez recevoir un email avec les instructions pour réinitialiser votre mot de passe.
+      edit:
+        alert: Ce lien de réinitialisation du mot de passe est invalide.
+      update:
+        alert: Le mot de passe n'a pu être modifié. Veuillez vérifier les champs renseignés.
+        notice: Votre mot de passe a été modifié.

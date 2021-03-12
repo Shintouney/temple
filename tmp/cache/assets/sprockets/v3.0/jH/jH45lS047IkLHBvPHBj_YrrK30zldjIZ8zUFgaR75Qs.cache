@@ -1,0 +1,95 @@
+I"æ(function() {
+  var ready;
+
+  ready = function() {
+    var adminLessonsCalendar, initLessonDatePickers, synchronizeLessonDateTimeInputs;
+    adminLessonsCalendar = $("#admin_lessons_calendar");
+    adminLessonsCalendar.fullCalendar($.extend({}, $.fn.fullCalendar.defaults, {
+      eventClick: function(calEvent, jsEvent, view) {
+        var $modal;
+        WebuiPopovers.hideAll();
+        $modal = $('#lessonModal');
+        return $modal.find('.modal-content').load('/admin/lessons/' + calEvent.id + '/edit', function() {
+          $modal.modal('show');
+          initLessonDatePickers();
+          return synchronizeLessonDateTimeInputs();
+        });
+      },
+      events: adminLessonsCalendar.data('events-url')
+    }));
+    synchronizeLessonDateTimeInputs = function() {
+      var form_disabled, lesson_date, lesson_end_at_time, lesson_start_at_time;
+      lesson_date = $('#lesson_start_at_date_datepicker').datepicker("getDate");
+      lesson_start_at_time = $('#lesson_start_at_time_timepicker').val();
+      lesson_end_at_time = $('#lesson_end_at_time_timepicker').val();
+      form_disabled = $('#lesson_form').data('disabled');
+      $("input[data-provide=timepicker]").prop("disabled", form_disabled || !lesson_date);
+      if (lesson_date) {
+        if (lesson_start_at_time) {
+          lesson_start_at_time = moment(lesson_date).add(moment.duration(lesson_start_at_time)).format("YYYY-MM-DD HH:mm:00");
+        }
+        if (lesson_end_at_time) {
+          lesson_end_at_time = moment(lesson_date).add(moment.duration(lesson_end_at_time)).format('YYYY-MM-DD HH:mm:00');
+        }
+      } else {
+        lesson_start_at_time = lesson_end_at_time = '';
+      }
+      $('#lesson_start_at').val(lesson_start_at_time);
+      return $('#lesson_end_at').val(lesson_end_at_time);
+    };
+    initLessonDatePickers = function() {
+      if ($('#lesson_form').length > 0) {
+        $('input[data-provide=datepicker]').datepicker({
+          minDate: '0',
+          maxDate: '+1y',
+          onSelect: function(dateText) {
+            return synchronizeLessonDateTimeInputs();
+          },
+          onClose: function(dateText) {
+            return synchronizeLessonDateTimeInputs();
+          }
+        }).on('input', function(e) {
+          return synchronizeLessonDateTimeInputs();
+        });
+        return $('input[data-provide=timepicker]').timepicker({
+          onSelect: function(selectedTime) {
+            return synchronizeLessonDateTimeInputs();
+          },
+          onClose: function(selectedTime) {
+            return synchronizeLessonDateTimeInputs();
+          }
+        }).on('input', function(e) {
+          return synchronizeLessonDateTimeInputs();
+        });
+      } else {
+        return $('input[data-provide=timepicker]').timepicker();
+      }
+    };
+    $(document).on('hidden.bs.modal', '#admin_lessons_calendar_container .modal', function(e) {
+      var modalData;
+      modalData = $(this).data('bs.modal');
+      if (modalData && modalData.options.remote) {
+        $(this).removeData("bs.modal");
+        return $('.modal-content', this).empty();
+      }
+    });
+    $(document).on('loaded.bs.modal', '#admin_lessons_calendar_container .modal', function(e) {
+      initLessonDatePickers();
+      return synchronizeLessonDateTimeInputs();
+    });
+    return $(document).on('ajax:success', '#admin_lessons_calendar_container .modal form.remote_lesson_form', function(e, data) {
+      if (data.success) {
+        $("#admin_lessons_calendar_container").find('.calendar').fullCalendar('refetchEvents');
+        return $("#lessonModal").modal('hide');
+      } else {
+        $("#lessonModal .modal-content").html(data.html_content);
+        initLessonDatePickers();
+        return synchronizeLessonDateTimeInputs();
+      }
+    });
+  };
+
+  $(document).ready(ready);
+
+}).call(this);
+:ET

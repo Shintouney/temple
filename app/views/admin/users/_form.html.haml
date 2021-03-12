@@ -1,0 +1,34 @@
+= simple_form_for @user, url: admin_user_path(@user) do |form|
+
+  = form.input :gender, required: true
+  = form.input :lastname, required: true
+  = form.input :firstname, required: true
+
+  = form.input :street1, required: true
+  = form.input :street2
+  = form.input :postal_code, required: true
+  = form.input :city, required: true
+  = form.input :country_code, selected: form.object.country_code.downcase, priority: ["fr", "gb", "be", "es", "de"], iso_codes: true, required: true, input_html: {class: "form-control"}
+
+  = form.input :birthdate, required: true, as: :datepicker, input_html: { data: { provide: 'birthdaypicker' } }
+  = form.input :phone, required: true
+  = form.input :email, required: true
+
+  = form.input :facebook_url
+  = form.input :linkedin_url
+
+  .well.well-sm
+    = form.input :billing_name
+    = form.input :billing_address
+
+  .row
+    .col-sm-6
+      = form.input :receive_booking_confirmation, wrapper: :checkbox do
+        = form.input_field :receive_booking_confirmation, boolean_style: :inline
+
+      = form.input :receive_mail_ical, wrapper: :checkbox do
+        = form.input_field :receive_mail_ical, boolean_style: :inline
+
+  .row
+    .col-sm-6
+      = form.submit id: 'user_submit', class: 'btn btn-success'

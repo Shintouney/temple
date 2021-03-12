@@ -1,0 +1,51 @@
+.padding-md
+  .row
+    .col-sm-6
+      %h4
+        = t('.title')
+      %p
+        - temple_locations = [ {p:"moliere",text:"Molière"}, {p:"maillot",text:"Maillot"}, {p:"amelot",text:"Amelot"} ]
+        - temple_locations.each do |temple_location|
+          = link_to @location == temple_location[:p] ? "#" : admin_root_path(location: temple_location[:p]), class: "btn btn-primary btn-xs #{'btn-active' if @location == temple_location[:p]} little-margin-right" do
+            %em.far.fa-eye
+            %strong= temple_location[:text]
+    .col-sm-6.text-right
+      %h4
+        = t('.users_present')
+        %span.label.label-info#visits-count
+          = @visits.size
+  %hr
+  #new_visit.row
+    .col-sm-3
+      = t('.sort')
+      .btn-group
+        %button.btn.btn-default.sort.active{ type: 'button',data: {sort:'name:asc'}}
+          %em.fas.fa-sort-alpha-down
+        %button.btn.btn-default.sort{ type: 'button',data: {sort:'name:desc'}}
+          %em.fas.fa-sort-alpha-up
+        %button.btn.btn-default.sort{ type: 'button', data: {sort:'arrived:desc'}}
+          = t('.arrival')
+    .col-sm-6
+      = simple_form_for @visit, url: admin_visits_path(@visit), remote: true, html: { id: 'new_visit_form' } do |form|
+        .form-horizontal
+          .form-group
+            %label.col-sm-6.control-label
+              = t('.add_user_manually')
+            .input-group
+              = form.input_field :user_name, placeholder: t('.user_name_to_add'), value: '', class: 'form-control input-sm', 'data-autocompleteurl' => search_user_by_name_admin_visits_path, label: false, id: 'users_with_autocomplete'
+              = form.input :user_id, as: :hidden
+              = form.input :location, input_html: { value: @location }, as: :hidden
+              %span.input-group-btn
+                = form.button :submit, t('.add_user_button'), class: 'btn btn-default btn-sm', id: 'add_user_submit'
+
+  .row
+    .col-sm-9
+      #visits{data: {collection_url: admin_visits_path(location: @location), location: @location }}
+        = render partial: 'visit', collection: @visits
+    .col-sm-3
+      %ul.list-group#card_scans_shortlog{data: {collection_url: shortlog_admin_card_scans_path(location: @location) }}
+        %li.list-group-item
+          %h5.list-group-item-heading
+            %em.far.fa-building
+            = t('.card_scans_logs')
+        = render partial: 'card_scan', collection: @card_scans

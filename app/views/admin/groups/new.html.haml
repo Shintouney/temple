@@ -1,0 +1,6 @@
+.padding-md
+  = simple_form_for @group, url: [:admin, @group] do |form|
+    %h4.headline.m-top-none= t('.title')
+    = render 'form', form: form
+    %h4.headline.m-top-none= t('.search')
+    = render 'users_form', form: form

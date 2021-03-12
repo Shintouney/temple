@@ -1,0 +1,67 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title')
+    %span.label.label-success
+      = @subscription_plans.length
+    = link_to new_admin_subscription_plan_path, id: 'new_subscription_plan', class: 'btn btn-success btn-xs pull-right' do
+      %em.fa.fa-plus
+      = t('.new_link')
+
+  .panel.panel-default
+    %table.table.table-striped.table-hover{ data: {sortable: 'true', 'sortable-url' => update_positions_admin_subscription_plans_path}}
+      %thead
+        %tr
+          %th
+            &nbsp;
+          %th
+            = SubscriptionPlan.human_attribute_name(:name)
+          %th
+            = SubscriptionPlan.human_attribute_name(:price_ati)
+          %th
+            = t('.discount')
+          %th
+            = t('.sponsorship')
+          %th
+            = t('.visible')
+          %th
+            = t('.highlighted')
+          %th
+            = t('.locations')
+          %th.text-right
+            = t('.actions')
+      %tbody
+        - @subscription_plans.each do |subscription_plan|
+          %tr{ id: "positions_#{subscription_plan.id}"}
+            %td
+              %em.fas.fa-arrows-alt
+            %td
+              = subscription_plan.name
+            %td
+              = subscription_plan.price_ati
+            %td
+              %em.fa.fa-lg{ class: subscription_plan.discounted_price_ati ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'}
+              %strong
+                = subscription_plan.discounted_price_ati
+            %td
+              %em.fa.fa-lg{ class: subscription_plan.sponsorship_price_ati ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'}
+              %strong
+                = subscription_plan.sponsorship_price_ati
+            %td
+              %em.fa.fa-lg{ class: subscription_plan.displayable ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'}
+              %span.sr-only= subscription_plan.displayable
+            %td
+              %em.fa.fa-lg{ class: subscription_plan.favorite ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'}
+              %span.sr-only= subscription_plan.favorite
+            %td
+              - subscription_plan.locations.each do |location|
+                %span.tag= location.capitalize
+            %td.text-right
+              .btn-group.btn-group-sm
+                = link_to edit_admin_subscription_plan_path(subscription_plan), title: t('.edit_link'), id: dom_id(subscription_plan, :edit), class: 'btn btn-default' do
+                  %em.far.fa-edit
+                - if subscription_plan.edit_restricted?
+                  = link_to disable_admin_subscription_plan_path(subscription_plan), method: :delete, id: dom_id(subscription_plan, :disable), title: t('.destroy_link'), data: { confirm: t('.destroy_link_confirm') }, class: 'btn btn-danger' do
+                    %em.far.fa-trash-alt
+                - else
+                  = link_to admin_subscription_plan_path(subscription_plan), method: :delete, id: dom_id(subscription_plan, :destroy), title: t('.destroy_link'), data: { confirm: t('.destroy_link_confirm') }, class: 'btn btn-danger' do
+                    %em.far.fa-trash-alt

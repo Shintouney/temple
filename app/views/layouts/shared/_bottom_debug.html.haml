@@ -1,0 +1,5 @@
+- if current_user.present?
+  %div{ id: "debug", style: "background: black; display: flex; color: lime; align-items: center; align-content: center; justify-content: center; text-align: center; padding: 7px; position: fixed; bottom: 0; width: 100%; left: 0; right: 0; font-size: 11px; z-index: 99; opacity: 0.8;" }
+    = "user_id: ##{current_user.id} | "
+    = "lessons_ids: #{current_user.lessons.present? ? current_user.lessons.pluck(:id).join("/") : "[]"} | "
+    = "lesson_bookings_ids: #{current_user.lesson_bookings.present? ? current_user.lesson_bookings.pluck(:id).join("/") : "[]"}"

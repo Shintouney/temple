@@ -1,0 +1,72 @@
+sidekiq:
+  verbose: true
+  strict: false
+api:
+  resamania:
+    auth_token: 'mrozieres'
+    user_url: 'https://api.intprod01.resamania.fr/rest/novagile/user'
+    digest_auth:
+      username: letemple
+      password: novagile
+  token: 'test'
+payment:
+  credit_card_salt: '82u<h&:8k@'
+  gateways:
+    paybox:
+      login:    '199988899'
+      password: '1999888I'
+mailer:
+  ics_path: "tmp/"
+  admin:
+    from: "Test mailer <developers@tsc.digital>"
+    to:
+      - cyril.durant@temple-nobleart.fr
+      - olivier.bacquet@temple-nobleart.fr
+  default:
+    from: "Test mailer <developers@tsc.digital>"
+    'Content-Transfer-Encoding': '7bit'
+    charset: 'utf-8'
+user:
+  paybox_reference_prefix: 'test'
+  cash:
+    email: visiteur.cash@novagile.com
+    firstname: Visiteur
+    lastname: CASH
+  cb:
+    email: visiteur.cb@novagile.com
+    firstname: Visiteur
+    lastname: CB
+  cheque:
+    email: visiteur.cheque@novagile.com
+    firstname: Visiteur
+    lastname: CHEQUE
+  ghost_one:
+    email: aucomptoirdesfleurs@orange.fr
+    firstname: Elenio
+    lastname: Gabbarelli
+    phone: 01 40 15 03 19
+  ghost_two:
+    email: developers@tsc.digital
+    firstname: Nova
+    lastname: Gile
+    phone: 07 83 43 45 75
+  compensation:
+    email: visiteur.compensation@novagile.com
+    firstname: Visiteur
+    lastname: COMPENSATION
+slimpay:
+  client_id: "pugilinvest01"
+  client_secret: "aysxdcfvgb"
+  creditor_reference: "pugilinvest"
+  sandbox: true
+  notify_url: "http://0.0.0.0:4343/ipn"
+  return_url: "http://0.0.0.0:4343/mandate_signature_return"
+  username: 'jb@novagile.com'
+  password: 'XwRqYQ'
+  sftp:
+    host: slimpay.net
+    login: fzcbeqexav01
+    port: 6321
+    keys:
+      - "<%= Pathname.new(ENV['HOME']).join('.ssh', 'id_rsa_slimpay') %>"
+    remote_directory: '/out'

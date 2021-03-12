@@ -1,0 +1,19 @@
+csv.headers do |csv|
+  user_columns = %i(email firstname lastname card_reference)
+  visits_columns = %i(started_at ended_at created_at location)
+
+  csv.columns *user_columns+visits_columns
+  csv.mappings Hash[user_columns.map { |column_name| [column_name, User.human_attribute_name(column_name)] } +
+                      visits_columns.map { |column_name| [column_name, Visit.human_attribute_name(column_name)] }
+                      ]
+end
+
+csv.rows @visits do |csv, visits|
+  if visits.user.present?
+    csv.cell :email, visits.user.email
+    csv.cell :firstname, visits.user.firstname
+    csv.cell :lastname, visits.user.lastname
+    csv.cell :card_reference, visits.user.card_reference
+  end
+  csv.cells :started_at, :ended_at, :created_at, :location
+end

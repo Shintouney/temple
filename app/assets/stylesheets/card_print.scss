@@ -1,0 +1,54 @@
+@page { margin: 0 }
+
+* { margin: 0; padding: 0; }
+
+html, body { 
+  height: 100%;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  width: 85.5mm;
+  height: 54mm;
+}
+  
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-size: 14px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1;
+  background: #fff !important;
+  color: #000; 
+}
+
+#card-layout {
+  display:table;
+  width: 85.5mm;
+  height: 54mm;
+  box-sizing: border-box;
+  padding: 0 0 0 28.5mm;
+  position: relative;
+  page-break-after: always;
+  overflow: hidden;
+  #card-informations{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    img {
+      width: 33mm;
+      height: 33mm;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
+    #user-name{
+      margin: 3mm 0 0 0;
+      padding: 0;
+      font-weight: bold;
+      color: #000;
+    }
+  }
+}

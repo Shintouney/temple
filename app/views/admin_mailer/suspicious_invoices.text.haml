@@ -1,0 +1,7 @@
+= t('.suspicious_invoices')
+\
+= t('.list_if_users_to_check')
+\
+- @users.each do |user|
+  = admin_user_invoices_url(user)
+  \

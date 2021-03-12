@@ -1,0 +1,104 @@
+= render 'admin/users/menu', user: @user
+
+.padding-md
+  .row
+    = render 'admin/users/infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-invoices.tab-pane.active
+          .panel.panel-default.table-responsive
+            .panel-heading
+              %h5
+                = t('.title')
+                %span.label.label-danger.pull-right
+                  = @user.invoices.length
+            %table.table.table-striped.table-hover#user_invoices_table{ data: { datatable: 'true', order: '[[ 1, "desc" ]]'}}
+              %thead
+                %tr
+                  %th
+                    = Invoice.human_attribute_name(:reference)
+                  %th
+                    = Invoice.human_attribute_name(:end_at)
+                  %th
+                    = Order.model_name.human.pluralize
+                  %th
+                    = Invoice.human_attribute_name(:total_price_ati)
+                  %th
+                    = Invoice.human_attribute_name(:state)
+                  %th
+                    = Payment.human_attribute_name(:paybox_transaction)
+                  %th.text-right.notinvoiceable
+                    = t('.actions')
+              %tbody
+                - @user_invoices.each do |invoice|
+                  %tr
+                    %td
+                      = invoice.reference
+                    %td{ data: { order: invoice.object.end_at.to_time.to_i } }
+                      = invoice.end_at
+                    %td
+                      %ul.list-unstyled
+                        - invoice.orders.order(:created_at).decorate.each do |order|
+                          %li
+                            = link_to order.reference, admin_user_order_path(@user, order), id: dom_id(order, :show)
+                    %td
+                      = invoice.total_price_ati
+                    %td
+                      %span.label{class: invoice.state_label_class}
+                        = invoice.state
+                      - if !invoice.refunded? && !invoice.canceled?
+                        - if invoice.payments.any? && invoice.payments.last.comment.present?
+                          &nbsp;
+                          %em.fa.fa-info-circle{ title: invoice.manual_force_paid? ? t('.manual_force_paid') : invoice.payments.last.comment, data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } }
+
+                      - if invoice.canceled? && invoice.canceled_at.present?
+                        &nbsp;
+                        %em.fa.fa-info-circle{ title: l(invoice.canceled_at, format: "%d/%m/%y"), data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } }
+                      - if invoice.refunded? && invoice.refunded_at.present?
+                        &nbsp;
+                        %em.fa.fa-info-circle{ title: l(invoice.refunded_at, format: "%d/%m/%y"), data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } }
+
+                    %td
+                      = invoice.paybox_transaction_number
+                    %td.text-right{style: 'min-width:200px;'}
+                      .btn-group.btn-group-sm
+                        = link_to admin_user_invoice_path(@user, invoice, format: :pdf), id: dom_id(invoice, :show), title: t('.invoice_show_pdf'), class: 'btn btn-default', target: '_blank' do
+                          = t('.download_invoice')
+                          %em.fa.fa-print
+                        -if invoice.payments.present? || invoice.pending_payment? || invoice.pending_payment_retry? || invoice.paid? || invoice.refunded?
+
+                          %button.btn.btn-default.dropdown-toggle{type: 'button', aria: {haspopup: 'true', expanded: false}, data: {toggle: 'dropdown'}}
+                            %span.caret
+
+                          %ul.dropdown-menu.dropdown-menu-right
+                            - if invoice.payments.present?
+                              %li
+                                = link_to payments_admin_user_invoice_path(@user, invoice), id: dom_id(invoice, :payments) do
+                                  %em.fa.fa-fw.fa-eye
+                                  = t('.see_payments')
+
+                            - if invoice.pending_payment? || invoice.pending_payment_retry?
+                              %li
+                                = link_to admin_user_invoice_path(@user, invoice, update: 'accept_payment'), method: 'PATCH', id: dom_id(invoice, :accept_payment), data: { confirm: t('.accept_payment_link_confirm') } do
+                                  %em.fa.fa-fw.fa-remove
+                                  = t('.accept_pending_payment_invoice')
+                              %li
+                                = link_to admin_user_invoice_path(@user, invoice, update: 'cancel'), method: 'PATCH', id: dom_id(invoice, :cancel), data: { confirm: t('.cancel_link_confirm') } do
+                                  %em.fa.fa-fw.fa-remove
+                                  = t('.cancel_pending_payment_invoice')
+
+                            - if invoice.paid?
+                              %li
+                                = link_to admin_user_invoice_path(@user, invoice, update: 'refund'), method: 'PATCH', id: dom_id(invoice, :refund),data: { confirm: t('.refund_link_confirm') } do
+                                  %em.fa.fa-fw.fa-remove
+                                  = t('.refund_pending_payment_invoice')
+
+                            - if invoice.refunded?
+                              %li
+                                = link_to credit_note_admin_user_invoice_path(@user, invoice, format: :pdf), id: dom_id(invoice, :credit_note), title: t('.invoice_credit_note_pdf'), target: '_blank' do
+                                  %em.fa.fa-fw.fa-print
+                                  = t('.credit_note')
+
+
+            != pagy_bootstrap_nav(@pagy)

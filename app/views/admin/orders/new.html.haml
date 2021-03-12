@@ -1,0 +1,14 @@
+.padding-md
+  %h4.headline
+    = t('.title')
+    = @user.full_name
+    = link_to t('.cancel_to_user_show'), admin_user_path(@user), class: 'btn btn-default btn-sm pull-right'
+  = render 'form'
+  -# - if @user.can_order?
+  -#   = render 'form'
+  -# - else
+  -#   %div.alert.alert-danger
+  -#     = t('.no_credit_card')
+  -#   = link_to edit_admin_user_credit_card_path(@user), id: 'edit_credit_card', class: 'btn btn-primary btn-sm' do
+  -#     %em.fa.fa-edit
+  -#     = t('.add_card')

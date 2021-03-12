@@ -1,0 +1,6 @@
+%h4.headline.m-top-none
+  = t('.title')
+.panel.panel-default
+  .panel-body
+    = simple_form_for :credit_card, method: :put, url: account_credit_card_url do |form|
+      = render partial: 'form', locals: {form: form}

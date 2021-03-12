@@ -1,0 +1,38 @@
+= render 'admin/users/menu', user: @user
+
+.padding-md
+  .row
+    = render 'admin/users/infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-pictures.tab-pane.active
+          .panel.panel-default
+            .panel-heading
+              %h5
+                = t('.title')
+                %span.label.label-danger.pull-right
+                  = @user.user_images.length
+            .panel-body
+              %ul.list-inline#user_images
+                - @user.user_images.each do |user_image|
+                  %li
+                    .thumbnail.text-center
+                      = image_tag(user_image.image.url(:thumbnail))
+                      .caption
+                        %p.btn-group.btn-group-sm
+                          - if user_image.user_as_profile_user_image.present?
+                            %a.btn.btn-info.disabled{href: '#'}
+                              %em.fa.fa-star
+                          - else
+                            = link_to make_profile_image_admin_user_user_image_path(@user, user_image), method: :put, id: dom_id(user_image, :make_profile_image), title: t('.make_profile_image_link'), class: 'btn btn-info' do
+                              %em.far.fa-star
+                          = link_to admin_user_user_image_path(@user, user_image), method: :delete, id: dom_id(user_image, :destroy), title: t('.user_image_destroy_link'), data: { confirm: t('.user_image_destroy_link_confirm') }, class: 'btn btn-danger' do
+                            %em.far.fa-trash-alt
+            .panel-footer
+              = simple_form_for [:admin, @user, @user.user_images.build], wrapper: :bootstrap3_horizontal, html: { class: 'form-horizontal' } do |form|
+                .row
+                  .col-sm-9
+                    = form.input :image, required: true, label_html: { class: 'col-sm-5' }
+                  .col-sm-3
+                    = form.submit id: 'user_image_submit', class: 'btn btn-success'

@@ -1,0 +1,22 @@
+default: &default
+  prepared_statements: <%= !Sidekiq.server? ? 300 : false %>
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: postgres
+  database: temple_dev
+  checkout_timeout: <%= ENV.fetch("CHECKOUT_TIMEOUT") { 10 } %>
+  min_messages: warning
+  pool: <%= (ENV.fetch("RAILS_MAX_THREADS") { 5 }).to_i * (ENV.fetch("WEB_CONCURRENCY") { 1 }).to_i %>
+  timeout: 5000
+  template: template0
+test:
+  <<: *default
+  database: temple_test
+development:
+  <<: *default
+staging:
+  <<: *default
+production:
+  <<: *default

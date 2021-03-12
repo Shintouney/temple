@@ -1,0 +1,84 @@
+/* =============================================================================
+   LEGENDS
+   ========================================================================== */
+#collapseLegend {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  background: white;
+  border: 1px solid #f1f5fc;
+}
+
+.legend{
+  font-size:12px;
+  margin-right: 10px;
+  margin-top: 5px;
+  white-space: nowrap;
+  &:before{
+    content:'';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-bottom: -3px ;
+    @include border-radius(2px);
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .legend-container{
+    text-align: left;
+    float: none;
+  }
+  .legend{
+    &:before{
+      margin-top: 10px;
+    }
+  }
+}
+
+ul.item-description {
+  li {
+    list-style-position: outside;
+    margin-left: 1em;
+  }
+}
+
+.legend-ring:before{
+  background: #E7BB78;
+  border: 1px solid darken(#E7BB78,10%);
+}
+
+.legend-ring-no-opposition:before{
+  background: #fff;
+  border: 1px solid darken(#cfa161,10%);
+}
+
+.legend-ring-no-opposition-advanced:before{
+  background: #4E3919;
+  border: 1px solid darken(#4E3919,10%);
+}
+
+.legend-ring-feet-and-fist:before{
+  background: #9B7741;
+  border: 1px solid darken(#9B7741,5%);
+}
+
+.legend-bag:before{
+  background: #262626;
+  border: 1px solid darken(#262626,10%);
+}
+
+.legend-full-lesson:before{
+  background: #D6CDCE;
+  border: 1px solid darken(#D6CDCE,10%);
+}
+
+.legend-arsenal:before{
+  background: white;
+  border: 1px solid #5c5c5c;
+}
+
+.legend-booked-lesson:before{
+  background: #a2d673;
+  border: 1px solid darken(#a2d673,10%);
+}

@@ -1,0 +1,16 @@
+.col-xs-6.col-sm-3.col-md-2.user_visit{data: {visit_id: visit.id, name: visit.user.full_name, arrived: visit.started_at }}
+  .panel.dashboard-panel-user{class: visit.panel_class, id: visit.panel_id}
+    .panel-heading
+      = visit.user.full_name
+    .panel-body.text-center.padding-xs
+      = visit.user.profile_image_thumbnail
+      %p.dahsboard-user-duration
+        = t('admin.visits.visit.arrived_since')
+        = time_ago_in_words(visit.started_at)
+      .btn-group.btn-group-sm
+        = link_to admin_user_path(visit.user), class: 'btn btn-default user_profile' do
+          %em.fa.fa-user
+        = link_to new_admin_user_order_path(visit.user), class: 'btn btn-default new_user_order' do
+          %em.fa.fa-shopping-cart
+        = link_to finish_admin_visit_path(visit), method: :post, data: { remote: true, confirm: t('admin.visits.visit.finish_link_confirm') }, class: 'btn btn-default finish_visit' do
+          %em.fa.fa-times.text-danger

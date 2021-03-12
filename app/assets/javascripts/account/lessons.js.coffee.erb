@@ -1,0 +1,71 @@
+//= depend_on_asset "enquirejs/enquire.js"
+//= depend_on_asset "media.match.min.js"
+
+ready = ->
+  calendarOptions=''
+  accountLessonsCalendar = $("#account_lessons_calendar")
+
+  afterModernizrMediaQueriesLoaded = ->
+    enquire.register "screen and (max-width:767px)",
+      match: ->
+        $.fn.fullCalendar.defaults.defaultView = 'agendaDay'
+    enquire.register "screen and (min-width:768px)",
+      match: ->
+        $.fn.fullCalendar.defaults.defaultView = 'agendaFiveDay'
+
+    accountLessonsCalendar.fullCalendar($.extend({}, $.fn.fullCalendar.defaults, {
+      header:
+        left: 'prev today'
+        center: 'title'
+        right: 'next'
+      events: accountLessonsCalendar.data('events-url')
+      eventRender: (event, element) ->
+        element.data('url', '/lessons/' + event.id + '.json')
+        element.attr('id', 'lesson_' + event.id)
+      eventClick: (calEvent, jsEvent, view) ->
+        $('#lessonModal .modal-content').load '/lessons/' + calEvent.id, ->
+          $('#lessonModal').modal 'show'
+          WebuiPopovers.hideAll()
+          $('[data-toggle=confirmation]').confirmation
+            rootSelector: '[data-toggle=confirmation]'
+      windowResize: () ->
+        viewMode = ''
+        enquire.register "screen and (max-width:767px)",
+          match: ->
+            viewMode = 'agendaDay'
+        enquire.register "screen and (min-width:768px) ",
+          match: ->
+            viewMode = 'agendaFiveDay'
+
+        $(this).fullCalendar('changeView', viewMode)
+    }))
+    
+  if Modernizr.matchmedia
+    $.ajax
+      url: "<%= asset_path('enquirejs/enquire.js') %>"
+      cache: true
+      async: false
+      dataType: 'script'
+      success: (response) ->
+        afterModernizrMediaQueriesLoaded()
+  else
+    $.ajax
+      url: "<%= asset_path('media.match.min.js') %>"
+      cache: true
+      async: false
+      dataType: 'script'
+      success: (response) ->
+        $.ajax
+          url: "<%= asset_path('enquirejs/enquire.js') %>"
+          cache: true
+          async: false
+          dataType: 'script'
+          success: (response) ->
+            afterModernizrMediaQueriesLoaded()
+
+  if window.location.hash
+    hash = window.location.hash.substring(1)
+    $('#lessonModal .modal-content').load('/lessons/'+hash)
+    $('#lessonModal').modal('show')
+
+$(document).ready(ready)

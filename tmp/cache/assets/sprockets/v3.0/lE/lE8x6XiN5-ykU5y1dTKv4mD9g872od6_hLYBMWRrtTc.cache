@@ -1,0 +1,29 @@
+I"ê(function() {
+  var ready;
+
+  ready = function() {
+    var adminLessonDraftsCalendar;
+    adminLessonDraftsCalendar = $("#admin_lesson_drafts_calendar");
+    return adminLessonDraftsCalendar.fullCalendar($.extend({}, $.fn.fullCalendar.defaults, {
+      columnFormat: 'dddd',
+      header: false,
+      eventRender: function(event, element) {
+        element.data('url', '/admin/lesson_drafts/' + event.id);
+        return element.attr('id', 'lesson_draft_' + event.id);
+      },
+      eventClick: function(calEvent, jsEvent, view) {
+        var $modal;
+        WebuiPopovers.hideAll();
+        $modal = $('#lessonModal');
+        return $modal.find('.modal-content').load('/admin/lesson_drafts/' + calEvent.id + '/edit', function() {
+          return $modal.modal('show');
+        });
+      },
+      events: adminLessonDraftsCalendar.data('events-url')
+    }));
+  };
+
+  $(document).ready(ready);
+
+}).call(this);
+:ET

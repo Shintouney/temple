@@ -1,0 +1,4 @@
+.padding-md
+  %h4.headline.m-top-none= t('.title')
+  = simple_form_for @user, url: admin_staff_user_path(@user) do |form|
+    = render partial: 'form', object: form

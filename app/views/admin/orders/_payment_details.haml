@@ -1,0 +1,8 @@
+%span.label{class: order.invoice.present? ? order.invoice.state_label_class : ''}
+  = order.state
+-if order&.invoice&.payments&.any? && order.invoice&.payments.last.comment.present?
+  &nbsp;
+  %em.fa.fa-info-circle{ title: order.invoice.payments.last.comment, data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } }
+-if order&.invoice&.payments&.any? && order&.invoice&.payments&.map(&:is_slimpay_payment?).reduce(:&).eql?(true)
+  &nbsp;
+  %em.fa.fa-info-circle{ title: t('.sepa'), data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } }

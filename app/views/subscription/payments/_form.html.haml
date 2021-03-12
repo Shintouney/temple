@@ -1,0 +1,100 @@
+= simple_form_for @user, url: subscription_payment_path do |form|
+  .row
+    .col-sm-6
+      .panel.panel-brown{ data: {mh: 'first-group'}}
+        .panel-heading
+          %h4
+            %em.fa.fa-user
+            = t('.new_user')
+        .panel-body
+          = form.input :email,required: true, autofocus: true
+          = form.input :password, required: true, input_html: { autocomplete: 'off' }
+          = form.input :password_confirmation, required: true, input_html: { autocomplete: 'off' }
+    .col-sm-6
+      .panel.panel-brown{ data: {mh: 'first-group'}}
+        .panel-heading
+          %h4
+            %em.fas.fa-ticket-alt
+            = t('.your_subscription')
+        .panel-body.text-center{ style: 'height:80%; display: flex;'}
+          %div{ style: 'margin: auto'}
+            %h2
+              = @subscription_plan.name
+            %p.lead.m-bottom-none
+              = @subscription_plan.displayed_price_ati
+            - if @subscription_plan.discount_price_applied?
+              %p.cross-text
+                = @subscription_plan.price_ati
+              = t('.first_month')
+            - else
+              %small
+                = t('.per_month')
+  .row
+    .col-sm-6
+      .panel.panel-brown
+        .panel-heading
+          %h4
+            %em.fa.fa-user
+            = t('.details_users')
+        .panel-body
+          = form.input :gender, required: true
+          = form.input :lastname, required: true
+          = form.input :firstname, required: true
+          = form.input :street1, required: true
+          = form.input :street2
+          = form.input :postal_code, required: true
+          = form.input :city, required: true
+          = form.input :country_code, selected: "fr", priority: ["fr", "gb", "be", "es", "de"], iso_codes: true, required: true, input_html: {class: "form-control"}
+          = form.input :phone, required: true
+          = form.input :birthdate, required: true, as: :datepicker, input_html: {data: { provide: 'birthdaypicker' }}
+    .col-sm-6
+      .panel.panel-brown
+        .panel-heading
+          %h4
+            %em.fa.fa-user
+            = t('.sponsoring')
+        .panel-body
+          %p
+            = t('.sponsor_text')
+          = form.input :sponsor, label: t('.sponsor_email'), input_html: { name: 'sponsor_email', value: params[:sponsor_email] }
+
+      .panel.panel-brown
+        .panel-heading
+          %h4
+            %em.far.fa-credit-card
+            = t('.credit_card_info')
+        .panel-body
+          = form.fields_for 'credit_card', @credit_card do |credit_card|
+            .text-center.payment-way
+              - credit_card_brand_options.each do |card_name, card_type|
+                %label.radio-inline
+                  = image_tag "payment/#{card_type}.png", title: card_name, alt: card_name, class: 'payment-way-icon'
+                  %span.sr-only= card_name
+                  %br
+                  = credit_card.radio_button :brand, card_type
+            .row
+              .col-sm-6
+                = credit_card.input :last_name, required: true, as: :string, label: t('last_name', scope: 'activerecord.attributes.active_merchant.billing.credit_card'), input_html: { autocomplete: 'off' }
+              .col-sm-6
+                = credit_card.input :first_name, required: true, as: :string, label: t('first_name', scope: 'activerecord.attributes.active_merchant.billing.credit_card'), input_html: { autocomplete: 'off' }
+            .row
+              .col-sm-12
+                = credit_card.input :number, required: true, as: :string, label: t('number', scope: 'activerecord.attributes.active_merchant.billing.credit_card'), input_html: { autocomplete: 'off' }
+            .row
+              .col-sm-4
+                = credit_card.input :month, required: true, as: :select, collection: 1..12, include_blank: true, label: t('month', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+              .col-sm-4
+                = credit_card.input :year, required: true, as: :select, collection: Date.today.year.upto((Date.today + 5.years).year), label: t('year', scope: 'activerecord.attributes.active_merchant.billing.credit_card')
+              .col-sm-4
+                = credit_card.input :verification_value, required: true, as: :string, label: t('verification_value', scope: 'activerecord.attributes.active_merchant.billing.credit_card'), input_html: { autocomplete: 'off' }
+
+
+  .panel.panel-brown
+    .panel-body
+      .row
+        .col-sm-4.col-sm-offset-2.text-center
+          %label.checkbox-inline.m-top-sm.m-bottom-sm
+            = check_box_tag :terms_accepted
+            = t('.tc_agree', href_cgv: link_to( t('.tc_agree_cgv'), '#cgv-modal', data: { toggle: 'modal'}), href_rule: link_to( t('.tc_agree_rules'), '#rules-modal', data: { toggle: 'modal'})).html_safe
+        .col-sm-4
+          = form.button :submit, id: 'user_submit', value: t('.submit_new_user'), class: 'btn btn-brown btn-block', data: { disable_with: t('.submission') }

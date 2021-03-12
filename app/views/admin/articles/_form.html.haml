@@ -1,0 +1,13 @@
+.panel.panel-default
+  .panel-body
+    = simple_form_for @article, url: [:admin, @article] do |form|
+      = form.association :article_category, required: true, as: :select, label_method: :name, include_blank: true, autofocus: true
+      = form.input :name, required: true
+      = form.input :description
+      = form.input :price_ati, required: true
+      = form.input :price_te, required: true
+      = form.input :taxes_rate, required: true
+      = form.input :image
+
+      = form.submit id: 'article_submit', class: 'btn btn-success'
+      = link_to t('.cancel_to_index'), admin_articles_path, class: 'btn btn-default'

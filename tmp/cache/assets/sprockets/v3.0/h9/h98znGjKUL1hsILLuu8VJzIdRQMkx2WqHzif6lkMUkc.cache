@@ -1,0 +1,19 @@
+I"s(function() {
+  var ready;
+
+  ready = function() {
+    return $("input[data-provide=birthdaypicker]").each(function() {
+      return $(this).datepicker({
+        altField: $(this).next(),
+        altFormat: "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: 'c-100:c+1'
+      });
+    });
+  };
+
+  $(document).ready(ready);
+
+}).call(this);
+:ET

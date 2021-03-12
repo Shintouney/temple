@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.intprod01.resamania.fr/rest/novagile/user
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      X-Auth:
+      - mrozieres
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: Authorization Required
+    headers:
+      Date:
+      - Fri, 25 Apr 2014 08:33:45 GMT
+      Www-Authenticate:
+      - Digest realm="intprod01", nonce="s8zw0tn3BAA=4722a9698cd9ce0b156aed7943706b1d24c73fb9",
+        algorithm=MD5, qop="auth"
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '401'
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: |
+        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+        <html><head>
+        <title>401 Authorization Required</title>
+        </head><body>
+        <h1>Authorization Required</h1>
+        <p>This server could not verify that you
+        are authorized to access the document
+        requested.  Either you supplied the wrong
+        credentials (e.g., bad password), or your
+        browser doesn't understand how to supply
+        the credentials required.</p>
+        </body></html>
+    http_version:
+  recorded_at: Fri, 25 Apr 2014 08:33:45 GMT
+- request:
+    method: post
+    uri: https://api.intprod01.resamania.fr/rest/novagile/user
+    body:
+      encoding: UTF-8
+      string: '{"id":2,"mail":"f008c1b04ca1-2@example.com","authorized":true,"card_reference":"DFE44D34F662D199","admin":false,"location":[1,2]}'
+    headers:
+      X-Auth:
+      - mrozieres
+      Content-Type:
+      - application/json
+      Authorization:
+      - Digest username="letemple"
+      - cnonce="8e6e908b92aeddc516d220e62cab759e"
+      - nc=00000001
+      - nonce="s8zw0tn3BAA=4722a9698cd9ce0b156aed7943706b1d24c73fb9"
+      - qop="auth"
+      - realm="intprod01"
+      - response="6419415cb469acabb755946980c64924"
+      - uri="/rest/novagile/user"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Fri, 25 Apr 2014 08:33:46 GMT
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200807181439)/JBossWeb-2.0'
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/plain
+      Set-Cookie:
+      - JSESSIONID=854AA85C36143328247A92524A79533D; Path=/
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Fri, 25 Apr 2014 08:33:46 GMT
+recorded_with: VCR 2.8.0

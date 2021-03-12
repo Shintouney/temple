@@ -1,0 +1,70 @@
+%ul.tab-bar.grey-tab.user-tab-bar
+  %li{ class: active_link_to_class(admin_user_path(user), active: ['admin/users', 'show']) }
+    = link_to admin_user_path(user) do
+      %span.block.text-center
+        %em.fa.fa-home.fa-2x
+      %span
+        = t('.show_user')
+
+  %li{ class: "#{active_link_to_class(admin_user_orders_path(user))} #{ user.has_payment_means? ? '' : 'hidden' }" }
+    = link_to admin_user_orders_path(user), id: 'user_orders_link' do
+      %span.block.text-center
+        %em.fa.fa-bars.fa-2x
+      %span
+        = t('.orders')
+
+  %li{ class: "#{active_link_to_class(admin_user_invoices_path(user))} #{ user.has_payment_means? ? '' : 'hidden' }" }
+    = link_to admin_user_invoices_path(user), id: 'user_invoices_link' do
+      %span.block.text-center
+        %em.fas.fa-euro-sign.fa-2x
+      %span
+        = t('.invoices')
+
+  %li{ class: active_link_to_class(admin_user_user_images_path(user)) }
+    = link_to admin_user_user_images_path(user), id: 'user_user_images_link' do
+      %span.block.text-center
+        %em.far.fa-image.fa-2x
+      %span
+        = t('.user_images')
+
+  %li{ class: active_link_to_class(edit_admin_user_path(user), active: ['admin/users', ['edit', 'update']]) }
+    = link_to edit_admin_user_path(user), id: 'user_edit_link' do
+      %span.block.text-center
+        %em.far.fa-edit.fa-2x
+      %span
+        = t('.edit_user')
+
+  %li{ class: "#{active_link_to_class(edit_admin_user_card_path(user))} #{ user.has_payment_means? ? '' : 'hidden' }" }
+    = link_to edit_admin_user_card_path(user), id: 'user_edit_card_link' do
+      %span.block.text-center
+        %em.fa.fa-barcode.fa-2x
+      %span
+        = t('.edit_user_card')
+
+  %li{ class: active_link_to_class(edit_admin_user_credit_card_path(user)) }
+    = link_to edit_admin_user_credit_card_path(user), id: 'user_edit_credit_card_link' do
+      %span.block.text-center
+        %em.far.fa-credit-card.fa-2x
+      %span
+        = t('.payment_means')
+
+  %li{ class: "#{active_link_to_class(edit_admin_user_subscription_path(user))} #{ user.has_payment_means? ? '' : 'hidden' }" }
+    = link_to edit_admin_user_subscription_path(user), id: 'user_edit_subscription_link' do
+      %span.block.text-center
+        %em.fas.fa-ticket-alt.fa-2x
+      %span
+        = t('.edit_user_subscription')
+
+  %li.link.pull-right
+    = link_to active_admin_users_path do
+      %span.block.text-center
+        %em.fa.fa-reply.fa-2x
+      %span
+        = t('.cancel_to_index')
+
+  %li.link.pull-right{ class: user.has_payment_means? ? '' : 'hidden' }
+    = link_to new_admin_user_order_path(@user), id: 'new_order' do
+      %span.block.text-center
+        %em.fa.fa-plus.fa-2x
+      %span
+        = t('.new_order_link')

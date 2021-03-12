@@ -1,0 +1,107 @@
+- content_for :user_infos do
+  %ul.list-group
+    %li.list-group-item.clearfix
+      %em.fa.fa-university.fa-lg
+      - if @user.subscriptions.last.present?
+        - if @user.subscriptions.last.origin_location.present?
+          %span.m-left-xs
+            = t('.registered_member')
+          %span.label.label-sm.label-info.pull-right
+            = I18n.t("location.#{@user.subscriptions.last.origin_location}")
+        - else
+          %span.m-left-xs
+            = t('.register_the_member')
+          %span.pull-right
+            - ["maillot", "moliere", "amelot"].each do |temple_name|
+              = link_to I18n.t("location.#{temple_name}"), update_origin_location_admin_users_path(origin_location: temple_name, id: @user.id), class: "btn btn-xs btn-info btn-#{temple_name} little-margin-right"
+    - if user.subscriptions.last.try(:start_at).present?
+      %li.list-group-item.clearfix
+        %em.fas.fa-ticket-alt.fa-lg
+        %span.m-left-xs
+          = t('.subscription_start_at')
+        %span.badge.badge-default
+          = time_tag user.subscriptions.last.try(:created_at).try(:to_date), format: :default
+      %li.list-group-item.clearfix
+        %em.fas.fa-ticket-alt.fa-lg
+        %span.m-left-xs
+          = t('.subscription_commitment_period')
+        %span.badge.badge-default
+          = user.subscriptions.last.decorate.try(:commitment_period)
+
+    - if user.next_lesson_booking.present?
+      %li.list-group-item.list-group-item-success.clearfix
+        %em.fas.fa-calendar-alt.fa-lg
+        %span.m-left-xs
+          = t('.lesson')
+
+        .pull-right
+          %p
+            = user.next_lesson_booking.lesson_room
+          %p
+            = user.next_lesson_booking.lesson_activity
+          %p
+            = user.next_lesson_booking.lesson_coach
+          %p.m-bottom-none
+            = user.next_lesson_booking.lesson_start_at
+    %li.list-group-item
+      %em.far.fa-image.fa-lg
+      %span.m-left-xs
+        = t('.user_images')
+      %span.badge.badge-default
+        = user.user_images.count
+    %li.list-group-item
+      %em.fa.fa-bars.fa-lg
+      %span.m-left-xs
+        = t('.orders')
+      %span.badge.badge-default
+        = user.orders.count
+    %li.list-group-item
+      %em.far.fa-building.fa-lg
+      %span.m-left-xs
+        = t('.visits')
+      %span.badge.badge-default
+        = user.visits.count
+    - if user.sponsor.present?
+      %li.list-group-item
+        %em.fa.fa-male.fa-lg
+        %span.m-left-xs
+          = t('.sponsor')
+        %span.pull-right
+          = link_to user.sponsor.full_name, admin_user_path(user.sponsor.id)
+    - if user.last_login_at
+      %li.list-group-item.text-center
+        %p.label.label-default
+          = t('.last_activity_at')
+          = l user.last_activity_at
+
+.col-sm-12.col-md-3
+  .panel.panel-default.hidden-sm
+    .panel-body.text-center
+      %p
+        = user.profile_image_thumbnail
+      %p
+        %strong
+          = user.full_name
+        %br
+        %span.text-muted
+          = user.email
+      = mail_to user.email, t('.contact'), class: 'btn btn-success btn-xs m-bottom-sm'
+    = content_for :user_infos
+
+  .row.visible-sm
+    .col-sm-6
+      .panel.panel-default
+        .panel-body.panel-body-user.text-center
+          %p
+            = user.profile_image_thumbnail
+          %p
+            %strong
+              = user.full_name
+            %br
+            %span.text-muted
+              = user.email
+          = mail_to user.email, t('.contact'), class: 'btn btn-success btn-xs m-bottom-sm'
+    .col-sm-6
+      = content_for :user_infos
+
+.clearfix.visible-sm

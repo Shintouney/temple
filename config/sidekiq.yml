@@ -1,0 +1,16 @@
+:queues:
+  - [default,3]
+  - [mailers, 2]
+  - [sentry, 1]
+
+common: &default
+  :concurrency: <%= ((((ENV.fetch("RAILS_MAX_THREADS") { 5 }).to_i * (ENV.fetch("WEB_CONCURRENCY") { 1 }).to_i) || 5) * 0.8).to_i %>
+
+development:
+  <<: *default
+test:
+  <<: *default
+staging:
+  <<: *default
+production:
+  <<: *default

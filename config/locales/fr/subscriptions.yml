@@ -1,0 +1,31 @@
+fr:
+  subscription:
+    payments:
+      form:
+        credit_card_info: Vos informations de carte de crédit
+        details_users: Vos coordonnées
+        first_month: le premier mois
+        new_user: Votre compte Membre
+        per_month: par mois
+        sponsoring: Votre parrain
+        sponsor_email: Email du parrain
+        sponsor_text: 'Si un Membre du Temple vous a parrainé, nous vous invitons à renseigner son adresse email '
+        submit_new_user: Valider
+        submission: "Validation du formulaire..."
+        tc_agree: "J’accepte les %{href_cgv} et le %{href_rule} du Temple "
+        tc_agree_cgv: CGV
+        tc_agree_rules: Règlement
+        your_subscription: Votre abonnement
+      new:
+        title: Devenir Membre
+        modal_cgv_title: 'Conditions générales de vente'
+        modal_rules_title: Règlement
+        site_name: Temple - Noble Art
+        close: Fermer
+      show:
+        account_link: Cliquez ici pour accéder à votre espace Membres
+        title: Votre paiement a été confirmé
+        site_name: Temple - Noble Art
+        share_message: "Découvrez le Temple : Le club de boxe qui renoue avec l’esprit du Noble Art "
+        edit_profile: "Aidez nous à mieux vous connaitre avec ce formulaire"
+        or: Ou

@@ -1,0 +1,33 @@
+- if mandate.present? && mandate.showable?
+  .panel.panel-default
+    .panel-heading
+      .row
+        .col-xs-8
+          %h3.panel-title
+            %em.far.fa-credit-card
+            = t('.mandate_html')
+        .col-xs-4
+          - if current_user.admin? && mandate.ready?
+            = link_to destroy_mandate_path(@mandate), class: 'btn btn-xs btn-danger', data: { confirm: t('.confirm_delete') }, method: :delete do
+              = t('.delete')
+    .panel-body
+      - if mandate.ready?
+        .lead= t('.sepa_ready')
+        - if mandate.slimpay_created_at.present?
+          %p
+            = t('.mandate_created_at')
+            %strong= time_tag mandate.slimpay_created_at
+        %p
+          = t('.mandate_reference')
+          %strong= mandate.slimpay_rum
+      -elsif mandate.waiting?
+        .lead= t('.sepa_waiting')
+        %p
+          = t('.mandate_created_at')
+          %strong= time_tag mandate.created_at
+        = link_to t('.sign_mandate'), mandate.slimpay_approval_url, class: 'btn btn-primary btn-large'
+        ou
+        = link_to t('.cancel_and_new_sepa'), destroy_pending_path(user.id), :method => :post
+
+- else
+  = render partial: 'slimpay/no_sepa', locals: { user: user }

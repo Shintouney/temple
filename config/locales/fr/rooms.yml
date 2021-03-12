@@ -1,0 +1,38 @@
+fr:
+  rooms:
+    rooms_descriptions:
+      ring: Ring Débutant (avec opposition)
+      ring_feet_and_fist: Ring Pieds-Poings (avec opposition)
+      ring_no_opposition: Ring (sans opposition)
+      ring_no_opposition_advanced: Ring Confirmés (avec opposition)
+      arsenal: Arsenal (sans opposition)
+      bags_room: Sacs (sans opposition)
+      lesson_full: Cours complets
+      booked_lesson: Mon cours
+      caption: Légende
+      sports_content: Contenu sportif
+      goal: Objectif
+      equipment_html: Équipement<br>(en vente dans la boutique du Club)
+      ring_sports_content_html: |
+        <li>Pattes d’Ours & Paos sont des cours tout niveau, axés sur la technique, sans incertitude avec des exercices chorégraphiés en binôme.</li>
+        <li>Mon 1er mois sur le ring est un cours réservé aux débutants pour découvrir en toute sécurité les principes de la boxe anglaise.</li>
+        <li>Boxe Anglaise Technique est un cours tout niveau qui favorise la progression technique des participants. Les coups sont sans intensité.</li>
+        <li>Light Sparring est un cours d’un niveau intermédiaire avec des assauts. Les coups sont sans intensité.</li>
+        <li>Sparring Confirmés est un cours réservé aux confirmés. L’intensité est fonction des participants.</li>
+        <li>Boxe Française & Thaïlandaise sont des cours tout niveau avec des assauts. L’intensité est fonction des participants.</li>
+      ring_goal_html: Le ring permet de mettre en oeuvre les techniques apprises, dans le respect de son partenaire.
+      ring_equipment_html: |
+        <li>Le port du protège-dents est obligatoire et le port du casque est fortement recommandé.</li>
+        <li>Pour les cours de pieds poings, les participants doivent porter une coquille et des protège tibias.</li>
+        <li>Pour les cours de sparring-confirmés, les participants doivent avoir des gants de 16oz, porter un casque et une coquille.</li>
+        <li>Pour le confort de tous, les participants doivent avoir des gants, des bandes (mises avant le début du cours) et une paire de chaussures propres.</li>
+      arsenal_sports_content_html: |
+        <li>Pattes d’Ours & Paos sont des cours tout niveau, axés sur la technique, sans incertitude avec des exercices chorégraphiés en binôme.</li>
+        <li>Circuit Training Boxe est un cours de préparation physique tout niveau.</li>
+      arsenal_goal_html: L’Arsenal permet de progresser techniquement (Pattes d’Ours & Paos) et de renforcer sa condition physique.
+      arsenal_equipment_html: |
+        <li>Le protège dents est obligatoire pour les cours Pattes d’Ours et Paos.</li>
+        <li>Pour le confort de tous, les participants doivent avoir des gants, des bandes (mises avant le début du cours) et une paire de chaussures propres.</li>
+      training_sports_content_html: Les cours sur sacs sont tout niveau. Ce sont des entraînements physiques et techniques sans contact entre les participants.
+      training_goal_html: Les sacs permettent de progresser techniquement en toute sécurité et de renforcer sa condition physique.
+      training_equipment_html: Pour le confort de tous, les participants doivent avoir des gants, des bandes (mises avant le début du cours) et une paire de chaussures propres.

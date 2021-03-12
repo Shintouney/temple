@@ -1,0 +1,4 @@
+.padding-md#admin_announces_calendar
+  %h4.headline.m-top-none= t('.title')
+  = simple_form_for @announce, url: admin_announces_path, id: 'announce_form' do |form|
+    = render partial: 'form', locals: { form: form }

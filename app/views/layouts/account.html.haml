@@ -1,0 +1,23 @@
+!!!5
+%html.no-js{ lang: 'fr'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{content: 'IE=edge,chrome=1', 'http-equiv' => 'X-UA-Compatible'}
+    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
+    = render "layouts/shared/favicons"
+    = csrf_meta_tags
+    = stylesheet_link_tag 'account', media: :all
+    = javascript_include_tag :modernizr
+    = javascript_include_tag 'account'
+    = render "layouts/shared/analytics"
+    %title= page_title
+  %body{ data: { i18n: { calendarFiveDays: t('.calendar_five_days')}, env: Rails.env.to_s}}
+    #wrapper
+      = render "layouts/account/top_nav"
+      = render "layouts/account/sidebar"
+      = render "layouts/shared/top_flash"
+      #main-container
+        .padding-md
+          = render "layouts/account/announces", announces: @announces
+          = yield
+    -# = render "layouts/shared/bottom_debug"

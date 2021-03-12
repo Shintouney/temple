@@ -1,0 +1,83 @@
+.padding-md
+  .row
+    .col-sm-4
+      %h4.m-bottom-none
+        = t('.title')
+        = @order.reference
+      %p
+        %strong
+          = t('.created_at')
+          = @order.created_at
+      %p
+        %span.label{class: @order.invoice.state_label_class}
+          = @order.state
+    .col-sm-4
+      %h4.m-bottom-none
+        = @user.full_name
+      %p
+        = @user.street1
+        %br
+        - unless @user.street2
+          = @user.street2
+          %br
+        = @user.postal_code
+        = @user.city
+        %br
+        Tel :
+        = @user.phone
+        %br
+        = @user.email
+    .col-sm-4.text-right
+      .btn-group.btn-group-sm
+        - if @order.invoice.open?
+          = link_to admin_user_order_path(@user, @order), method: :delete, id: dom_id(@order, :destroy), title: t('admin.orders.index.order_destroy'), class: 'btn btn-danger btn-sm', data: { confirm: t('admin.orders.index.order_destroy_confirm') } do
+            %em.far.fa-trash-alt
+        = link_to t('.cancel_to_user_orders'), admin_user_orders_path(@order.user), class: 'btn btn-default'
+  %hr
+  .panel.panel-default.table-responsive
+    %table.table.table-striped.table-hover#order_order_items
+      %thead
+        %tr
+          %th
+            = OrderItem.human_attribute_name(:product_name)
+          %th.text-right
+            = OrderItem.human_attribute_name(:product_price_ati)
+          %th.text-right
+            = OrderItem.human_attribute_name(:product_price_te)
+          %th.text-right
+            = OrderItem.human_attribute_name(:product_taxes_rate)
+      %tbody
+        - @order.order_items.each do |order_item|
+          %tr
+            %td
+              = order_item.product_name
+            %td.text-right
+              = order_item.product_price_ati
+            %td.text-right
+              = order_item.product_price_te
+            %td.text-right
+              = order_item.product_taxes_rate
+  .row
+    .col-sm-5.col-sm-offset-7
+      %ul.list-group.list-group-bold.text-right
+        %li.list-group-item
+          .row
+            .col-xs-4
+              = t('.total_price_te')
+            .col-xs-8.table-right-padding
+              = @order.computed_total_price_te
+        - @order.total_taxes_amounts.each do |taxes_rate, tax_amount|
+          %li.list-group-item
+            .row
+              .col-xs-4
+                = t('.taxes_rate')
+                = taxes_rate
+                \ :
+              .col-xs-8.table-right-padding
+                = tax_amount
+        %li.list-group-item.list-group-item-info
+          .row
+            .col-xs-4
+              = t('.total_price_ati')
+            .col-xs-8.table-right-padding
+              = @order.computed_total_price_ati

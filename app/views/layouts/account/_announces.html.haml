@@ -1,0 +1,28 @@
+- if announces.any?
+  .row
+    .col-sm-12
+      .panel.panel-brown
+        .list-group
+          - announces.each do |announce|
+
+            - if announce.target_link.present?
+              = link_to announce.link, target: announce.target, class: 'list-group-item' do
+                -if announce.file?
+                  .media
+                    .pull-left
+                      = image_tag announce.file, alt: '', class: 'media-object img-thumbnail'
+                    .media-body.text-center
+                      = raw announce.content
+                -else
+                  .text-center
+                    = raw announce.content
+            - else
+              -if announce.file?
+                .media
+                  .pull-left
+                    = image_tag announce.file, alt: '', class: 'media-object img-thumbnail'
+                  .media-body.text-center
+                    = raw announce.content
+              -else
+                .list-group-item.text-center
+                  = raw announce.content

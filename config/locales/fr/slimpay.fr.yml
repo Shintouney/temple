@@ -1,0 +1,25 @@
+fr:
+  slimpay:
+    mandate:
+      cancel_and_new_sepa: " Annuler et signer un nouveau mandat"
+      confirm_delete: "Êtes-vous sur de vouloir supprimer ce mandat ? Il ne sera PAS revoqué chez Slimpay."
+      delete: "Supprimer"
+      mandate_html: "Mandat <abbr title='Single Euro Payment Area' data-toggle='tooltip' data-container='body'>SEPA</abbr>"
+      mandate_created_at: "Mandat crée le :"
+      mandate_reference: "Référence Slimpay :"
+      save_sepa: 'Complétez vos informations bancaires'
+      sepa_ready: Le mandat SEPA est prêt à être utilisé.
+      sepa_waiting: Mandat SEPA en attente de signature electronique.
+      sign_mandate: 'Signer mon mandat SEPA'
+    mandate_signature_return:
+      active_users: Membres actifs
+      inactive_users: Membres inactifs
+      mandate_canceled_html: "<p>Dans le cas contraire, il/elle sera dans la liste des membres inactifs.</p>"
+      mandate_signed_html: "<p>Si Le mandat du client a bien été signé vous retrouverez son profil dans la liste des membres actifs.<p>"
+      cannot_refresh_mandate: Le mandat est présent mais n'a pu être rafraîchi. (%{reason})
+      planning: Planning
+      title: Confirmation de Mandat signé
+    no_sepa:
+      mandate_html: "Mandat <abbr title='Single Euro Payment Area' data-toggle='tooltip' data-container='body'>SEPA</abbr>"
+      no_sepa: "Pour accéder au planning, nous vous demandons de bien vouloir compléter vos informations bancaires."
+      save_sepa: 'Complétez vos informations bancaires'

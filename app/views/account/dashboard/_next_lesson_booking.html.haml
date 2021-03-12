@@ -1,0 +1,21 @@
+#next_lesson_booking_panel.panel-stat3.bg-brown{ next_lesson_booking ? {data: {remote: (lesson_path(next_lesson_booking.lesson)), toggle: 'modal', target: '#lessonModal',mh: 'panels'}} : {}}
+  %h3.m-top-none
+    = t('.next_lesson_booking')
+  - if next_lesson_booking.present?
+    %h5
+      = next_lesson_booking.lesson_activity
+      = ' - '
+      = next_lesson_booking.lesson_room
+    %p
+      %em.fas.fa-map-marker-alt
+      = t('.location', location: I18n.t("location.#{next_lesson_booking.lesson_location}"))
+      %br
+      %em.far.fa-clock
+      = next_lesson_booking.lesson_start_at
+  - else
+    %h5
+      = t('.no_next_lesson_booking')
+    %p
+      &nbsp;
+  .stat-icon
+    %em.fa.fa-bell.fa-3x

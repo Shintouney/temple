@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-body
+    = form.input :name, required: true
+    = form.hidden_field :user_ids, value: @users.present? ? @users.map(&:id) : []
+    = form.submit id: 'group_submit', class: 'btn btn-success'
+    = link_to t('.cancel_to_index'), admin_groups_path, class: 'btn btn-default'
+    - if @group.id.present?
+      = link_to t('.export'), export_admin_group_path(@group, format: :csv), class: 'btn btn-default', target: '_blank'

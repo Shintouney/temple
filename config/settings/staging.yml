@@ -1,0 +1,74 @@
+sidekiq:
+  verbose: false
+  strict: false
+  username: "tscnemo"
+  password: "93vAGrwRkC*U"
+api:
+  resamania:
+    auth_token: 'mrozieres'
+    user_url: 'https://api.intprod01.resamania.fr/rest/novagile/user'
+    digest_auth:
+      username: letemple
+      password: novagile
+  token: 'HllTYJxzdDLZBk5riNK9bpE9sogoKmLr'
+payment:
+  credit_card_salt: '41u<h&:8k@'
+  gateways:
+    paybox:
+      login:    '627480701'
+      password: 'rnPH7Eps0L'
+mailer:
+  ics_path: "/srv/temple_staging/shared/tmp/"
+  admin:
+    from: "TEST Temple - Noble Art <contact@temple-nobleart.fr>"
+    to:
+      - cyril.durant@temple-nobleart.fr
+      - olivier.bacquet@temple-nobleart.fr
+  default:
+    from: "TEST Temple - Noble Art <contact@temple-nobleart.fr>"
+    'Content-Transfer-Encoding': '7bit'
+    charset: 'utf-8'
+user:
+  paybox_reference_prefix: 'staging'
+  cash:
+    email: visiteur.cash@novagile.com
+    firstname: Visiteur
+    lastname: CASH
+  cb:
+    email: visiteur.cb@novagile.com
+    firstname: Visiteur
+    lastname: CB
+  cheque:
+    email: visiteur.cheque@novagile.com
+    firstname: Visiteur
+    lastname: CHEQUE
+  ghost_one:
+    email: aucomptoirdesfleurs@orange.fr
+    firstname: Elenio
+    lastname: Gabbarelli
+    phone: 01 40 15 03 19
+  ghost_two:
+    email: developers@tsc.digital
+    firstname: Nova
+    lastname: Gile
+    phone: 07 83 43 45 75
+  compensation:
+    email: visiteur.compensation@novagile.com
+    firstname: Visiteur
+    lastname: COMPENSATION
+slimpay:
+  client_id: "pugilinvest01"
+  client_secret: "hl5rsHserMDbn3H4ZnxJiVPHTB3gbIEEB4ny2hqr"
+  creditor_reference: "pugilinvest"
+  sandbox: true
+  notify_url: "https://staging-membres.temple-nobleart.fr/ipn"
+  return_url: "https://staging-membres.temple-nobleart.fr/mandate_signature_return"
+  username: 'jb@novagile.com'
+  password: 'XwRqYQ'
+  sftp:
+    host: sftp.preprod.slimpay.com
+    login: fzcbeqexav01
+    port: 6321
+    keys:
+      - "<%= Pathname.new(ENV['HOME']).join('.ssh', 'id_rsa_slimpay') %>"
+    remote_directory: '/out'

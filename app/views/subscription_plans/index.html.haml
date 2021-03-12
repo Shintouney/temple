@@ -1,0 +1,38 @@
+.row
+  .col-sm-12
+    .page-header
+      %h1.h2= t('.title')
+
+- @subscription_plans.to_a.in_groups_of(4, false) do |subscription_plans|
+  .row.row-merge
+    - subscription_plans.in_groups_of(2, false) do |subscription_plans|
+      - subscription_plans.each do |subscription_plan|
+        .col-sm-6
+          .pricing-widget{ class: subscription_plan.favorite ? 'active' : ''}
+            - if subscription_plan.discount_price_applied?
+              .ribbon-wrapper
+                .ribbon-inner.bg-success
+                  = t('.discount')
+            .pricing-head{data: {mh: 'pricing-head'}}
+              = subscription_plan.name
+            .pricing-body
+              .pricing-cost{data: {mh: 'pricing-cost'}}
+                %strong.block
+                  = subscription_plan.displayed_price_ati
+                %small
+                  - if subscription_plan.discount_price_applied?
+                    %p.cross-text
+                      = subscription_plan.price_ati
+                    = t('.first_month')
+                  - else
+                    = t('.per_month')
+              %ul.pricing-list.text-center
+                %li{data: { mh: 'panel-line'}}
+                  = subscription_plan.description
+                %li
+                  - if subscription_plan.require_code?
+                    = link_to t('.buy'), subscription_plan_path(subscription_plan), id: dom_id(subscription_plan, :buy), class: 'btn btn-brown btn-pricing-widget'
+                  - else
+                    = form_tag buy_subscription_plan_path(subscription_plan) do
+                      = submit_tag t('.buy'), id: dom_id(subscription_plan, :buy), class: 'btn btn-brown btn-pricing-widget'
+      .clearfix.visible-sm

@@ -1,0 +1,7 @@
+%h1{align: "left", style: "font-size: 22px; color: #cfa161; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; margin: 15px 0; padding: 0;"}
+= t('.invalid_invoices')
+
+%ul
+  - @invoices.each do |invoice|
+    %li= link_to "Facture n°#{invoice.id}", admin_user_invoice_url(invoice.user, invoice)
+

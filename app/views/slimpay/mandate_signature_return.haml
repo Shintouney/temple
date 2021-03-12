@@ -1,0 +1,25 @@
+.padding-md
+  %h4.headline.m-top-none
+    .text-center= t('.title')
+
+  - if current_user && current_user.role.admin?
+    .row
+      .col-sm-12-.col-md-6.col-md-offset-3
+        .panel.panel-default
+          .panel-body
+            = t('.mandate_signed_html')
+            = t('.mandate_canceled_html')
+          .panel-footer
+            .text-center
+              = link_to active_admin_users_path, class: 'btn btn-success btn-sm' do
+                %i.fa.fa-users
+                = t('.active_users')
+              = link_to inactive_admin_users_path, class: 'btn btn-danger btn-sm' do
+                %i.fa.fa-users
+                = t('.inactive_users')
+  -else
+    .text-center
+      .lead Nous vous remercions, Vous pouvez désormais accéder à votre planning
+      = link_to account_lessons_path, class: 'btn btn-default' do
+        %em.far.fa-calendar
+        = t('.planning')

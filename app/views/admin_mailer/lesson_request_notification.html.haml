@@ -1,0 +1,8 @@
+%h1{align: "left", style: "font-size: 22px; color: #cfa161; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; margin: 15px 0; padding: 0;"}
+= t('.lesson_request_notification_title')
+
+%ul
+  %li= @lesson_request.first_coach_name
+  %li= @lesson_request.second_coach_name
+  %li= @lesson_request.comment
+  %li= @lesson_request.user.email

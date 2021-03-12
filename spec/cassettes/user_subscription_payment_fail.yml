@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=4242424242424242&DATEVAL=0416&CVV=123&REFABONNE=TEMPLE%231&MONTANT=0000036400&DEVISE=978&VERSION=00104&TYPE=00056&DATEQ=03022014120430&NUMQUESTION=1225894846&SITE=foo&RANG=99&CLE=bar&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 03 Feb 2014 11:04:29 GMT
+      Server:
+      - HttpServer
+      Content-Length:
+      - '210'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        TlVNVFJBTlM9MDAwMDAwMDAwMCZOVU1BUFBFTD0wMDAwMDAwMDAwJk5VTVFV
+        RVNUSU9OPTEyMjU4OTQ4NDYmU0lURT0xOTk5ODg4JlJBTkc9OTkmQVVUT1JJ
+        U0FUSU9OPSZDT0RFUkVQT05TRT0wMDAxNiZDT01NRU5UQUlSRT1QQVlCT1gg
+        OiBBYm9ubukgZOlq4CBleGlzdGFudCZSRUZBQk9OTkU9VEVNUExFIzEmUE9S
+        VEVVUj00MjQyNDI0MjQyNDI0MjQyJlBBWVM9ICAg
+    http_version:
+  recorded_at: Mon, 03 Feb 2014 11:04:32 GMT
+recorded_with: VCR 2.8.0

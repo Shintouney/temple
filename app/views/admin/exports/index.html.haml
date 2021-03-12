@@ -1,0 +1,85 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title')
+
+  .row
+    - if current_user.admin?
+      .col-sm-6
+        .panel.panel-default
+          .panel-heading.clearfix
+            %strong{style: "display: inline-block; padding-top: 7px;"}= t('.accounting')
+            #accounting.form-inline.pull-right
+              .form-group
+                = text_field_tag :date_start, nil, class: 'birthdaypicker form-control input-sm', placeholder: t('.choose_a_date_start'), value: @date_filter_start
+              .form-group
+                = text_field_tag :date_end, nil, class: 'birthdaypicker form-control input-sm', placeholder: t('.choose_a_date_end'), value: @date_filter_end
+              %button.btn.btn-default.btn-sm.clear_datepicker{ type: 'button'}
+                %em.fa.fa-eraser
+          .list-group
+            = link_to order_items_admin_exports_path(export: { state: :none }, format: :csv), id: 'articles_export', class: 'list-group-item', title: t('.articles_csv_export_link_title') do
+              %em.fa.fa-shopping-cart.fa-fw
+              = t('.articles_csv_export_link')
+
+            = render partial: 'export', locals: { export_type: :payment, subtype: :debit, title: t('.payments_csv_export_link'), icon: "fas fa-credit-card fa-fw" }
+            = render partial: 'export', locals: { export_type: :invoice, subtype: :finished, title: t('.invoices_csv_export_link'), icon: "fas fa-file-invoice-dollar fa-fw" }
+            = render partial: 'export', locals: { export_type: :invoice, subtype: :unfinished, title: t('.open_invoices_csv_export_link'), icon: "fas fa-file-invoice-dollar fa-fw" }
+            = render partial: 'export', locals: { export_type: :invoice, subtype: :special, title: t('.refunded_or_canceled_invoices_csv_export_link'), icon: "fas fa-file-invoice-dollar fa-fw" }
+            = render partial: 'export', locals: { export_type: :lesson_booking, subtype: :default, title: t('.lesson_bookings_csv_export_link'), icon: "far fa-calendar-minus fa-fw" }
+            = render partial: 'export', locals: { export_type: :user, subtype: :active, title: t('.active_users_csv_export_link'), icon: "fas fa-user fa-fw" }
+            = render partial: 'export', locals: { export_type: :user, subtype: :inactive, title: t('.inactive_users_csv_export_link'), icon: "fas fa-user-lock fa-fw" }
+            = render partial: 'export', locals: { export_type: :user, subtype: :reporting, title: t('.reporting_users_csv_export_link'), icon: "fas fa-users fa-fw" }
+
+    .col-sm-6
+      .panel.panel-default
+        .panel-heading.clearfix
+          %strong{style: "display: inline-block; padding-top: 7px;"}= t('.visits')
+          #visiting.form-inline.pull-right
+            .form-group
+              = text_field_tag :visits_date_start, nil, class: 'birthdaypicker form-control input-sm', placeholder: t('.choose_a_date_start'), value: @date_filter_visits_start
+            .form-group
+              = text_field_tag :visits_date_end, nil, class: 'birthdaypicker form-control input-sm', placeholder: t('.choose_a_date_end'), value: @date_filter_visits_end
+            %button.btn.btn-sm.btn-default.clear_datepicker{type: 'button'}
+              %em.fa.fa-eraser
+        .list-group
+          = link_to visits_admin_exports_path(state: :none, format: :csv), id: 'visits_export', class: 'list-group-item', title: t('.visits_csv_export_link_title') do
+            %em.fa.fa-building.fa-fw
+            = t('.visits_csv_export_link')
+
+      - if current_user.admin?
+        .panel.panel-default
+          .panel-heading
+            %strong= t('.users')
+            .pull-right
+              .label.label-primary
+                = @cbusers
+                = t('.cb')
+              &nbsp;
+              .label.label-success
+                = @sepausers
+                = t('.mandat')
+
+          .list-group
+            -#
+              = link_to active_admin_users_path(format: :csv), id: 'active_users_export', class: 'list-group-item', title: t('.active_users_csv_export_link_title') do
+                %em.fa.fa-users.fa-fw
+                = t('.active_users_csv_export_link')
+              = link_to inactive_admin_users_path(format: :csv), id: 'inactive_users_export', class: 'list-group-item', title: t('.inactive_users_csv_export_link_title') do
+                %em.fa.fa-user-times.fa-fw
+                = t('.inactive_users_csv_export_link')
+              = link_to print_admin_user_card_path(@user, format: 'pdf'), id: 'print_user_card', class: 'btn btn-info' do
+
+            = link_to subscriptions_admin_exports_path(state: :none, format: :csv), id: 'subscriptions_export', class: 'list-group-item', title: t('.subscriptions_csv_export_link_title') do
+              %em.fas.fa-ticket-alt.fa-fw
+              = t('.subscriptions_csv_export_link')
+            = link_to red_list_admin_exports_path(state: :none, format: :csv), id: 'red_list_export', class: 'list-group-item', title: t('.red_list') do
+              %em.fa.fa-users.fa-fw
+              = t('.red_list')
+            = link_to admin_unsubscribe_requests_path(format: :csv), id: 'unsubscribe_request_export', class: 'list-group-item', title: t('.unsubscribe_request_export_link_title') do
+              %em.fa.fa-users.fa-fw
+              = t('.unsubscribe_request_export_link')
+            = link_to admin_sponsoring_requests_path(format: :csv), id: 'sponsoring_request_export', class: 'list-group-item', title: t('.sponsoring_request_export_link_title') do
+              %em.fa.fa-users.fa-fw
+              = t('.sponsoring_request_export_link')
+            = link_to admin_lesson_requests_path(format: :csv), id: 'lesson_request_export', class: 'list-group-item', title: t('.lesson_request_export_link_title') do
+              %em.fa.fa-users.fa-fw
+              = t('.lesson_request_export_link')

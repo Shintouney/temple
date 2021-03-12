@@ -1,0 +1,38 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title', period_start: l(@period_start.to_date), period_end: l(@period_end.to_date))
+
+  .panel.panel-default
+    %table#visits_logs.table.table-striped.table-hover{data: {datatable: 'true', order: '[[ 1, "desc" ]]'}}
+      %thead
+        %tr
+          %th
+            = User.model_name.human
+          %th
+            = Visit.human_attribute_name(:started_at)
+          %th
+            = Visit.human_attribute_name(:ended_at)
+          %th{data: {orderable: 'false'}}
+            = t('.duration')
+          %th
+            = Visit.human_attribute_name(:location)
+
+      %tbody
+        - @records.each do |visit|
+          %tr
+            %td
+              = link_to visit.user.full_name, admin_user_path(visit.user)
+            %td{data: {order: visit.started_at.to_i}}
+              = l visit.started_at, format: :full
+            - if visit.in_progress?
+              %td{data: {order: 0}}
+              %td
+            - else
+              %td{data: {order: visit.ended_at.to_i}}
+                = l visit.ended_at, format: :full
+              %td
+                = distance_of_time_in_words visit.started_at, visit.ended_at, include_seconds: true
+            %td
+              = visit.location == 'moliere' ? "Molière" : visit.location == 'maillot' ? "Maillot" : "Amelot"
+
+  != pagy_bootstrap_nav_js @pagy

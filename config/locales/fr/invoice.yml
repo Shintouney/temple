@@ -1,0 +1,4 @@
+fr:
+  invoice:
+    decorator:
+      subscription_period: "%{product_name} (du %{start_date} au %{end_date})"

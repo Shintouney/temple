@@ -1,0 +1,26 @@
+= render 'admin/users/menu', user: @user
+
+.padding-md
+  .row
+    = render 'admin/users/infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-edit.tab-pane.active
+          .panel.panel-default
+            .panel-body
+              = User.human_attribute_name(:card_access)
+              \:
+              = @user.card_access_text
+          .panel.panel-default
+            .panel-body
+              = simple_form_for @user, url: admin_user_card_path(@user) do |form|
+                = form.input :card_reference, autofocus: true
+                = form.submit id: 'user_card_submit', class: 'btn btn-success'
+                = link_to admin_user_card_path(@user), method: :delete, disabled: @user.card_reference.blank?, id: 'delete_user_card', class: 'btn btn-danger', data: { confirm: t('.destroy_link_confirm') } do
+                  = t('.destroy_link')
+                - if @user.card_access.forbidden?
+                  = link_to force_authorization_admin_user_card_path, method: :post, id: 'force_authorization_user_card', class: 'btn btn-warning' do
+                    = t('.force_authorization_link')
+                = link_to print_admin_user_card_path(@user, format: 'pdf'), id: 'print_user_card', class: 'btn btn-info', target: '_blank' do
+                  %em.fa.fa-print

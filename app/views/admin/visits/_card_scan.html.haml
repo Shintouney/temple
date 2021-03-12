@@ -1,0 +1,6 @@
+%li.list-group-item.card_scan_shortlog_item{class: ('list-group-item-danger' unless card_scan.accepted?), data: {card_scan_id: card_scan.id}}
+  %span.badge
+    = card_scan.scanned_at_human_time
+  = card_scan.user.full_name
+  %br/
+  = card_scan.scan_point_text

@@ -1,0 +1,57 @@
+= render 'admin/users/menu', user: @user
+
+.padding-md
+  .row
+    = render 'admin/users/infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-invoices.tab-pane.active
+          .panel.panel-default.table-responsive
+            .panel-heading
+              %h5
+                = t('.title')
+
+                = link_to t('.back_to_invoices'), admin_user_invoices_path(@user), class: 'btn btn-danger pull-right btn-xs'
+            %table.table.table-striped.table-hover#payments_user_invoice_table{ data: { datatable: 'true'}}
+              %thead
+                %tr
+                  %th
+                    = Payment.human_attribute_name(:created_at)
+                  %th
+                    = Order.model_name.human.pluralize
+                  %th
+                    = Payment.human_attribute_name(:price)
+                  %th
+                    = Payment.human_attribute_name(:slimpay_status)
+                  %th
+                    = Payment.human_attribute_name(:slimpay_direct_debit_id)
+                  %th
+                    = Payment.human_attribute_name(:paybox_transaction)
+                  %th
+                    = Payment.human_attribute_name(:comment)
+                  %th
+                    = Payment.human_attribute_name(:state)
+
+              %tbody
+                - @invoice.payments.each do |payment|
+                  %tr
+                    %td
+                      = I18n.l(payment.created_at)
+                    %td
+                      %ul.list-unstyled
+                        - @invoice.orders.order(:created_at).decorate.each do |order|
+                          %li
+                            = link_to order.reference, admin_user_order_path(@user, order), id: dom_id(order, :show)
+                    %td
+                      = payment.price
+                    %td
+                      = payment.slimpay_status
+                    %td
+                      = payment.slimpay_direct_debit_id
+                    %td
+                      = payment.paybox_transaction
+                    %td
+                      = payment.comment
+                    %td
+                      = payment.state

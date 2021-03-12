@@ -1,0 +1,36 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title')
+    %span.label.label-success
+      = @article_categories.length
+    = link_to new_admin_article_category_path, id: 'new_article_category', class: 'btn btn-success btn-xs pull-right' do
+      %em.fa.fa-plus
+      = t('.new_link')
+
+  .panel.panel-default
+    %table.table.table-striped.table-hover{ data: {datatable: 'true'}}
+      %thead
+        %tr
+          %th
+            = ArticleCategory.human_attribute_name(:name)
+          %th
+            = Article.model_name.human.pluralize
+          %th.text-right{data: {orderable: 'false'}}
+            = t('.actions')
+      %tbody
+        - @article_categories.each do |article_category|
+          %tr
+            %td
+              = article_category.name
+            %td
+              - if article_category.articles.any?
+                %ul
+                  - article_category.articles.each do |article|
+                    %li
+                      = article.name
+            %td.text-right
+              .btn-group.btn-group-sm
+                = link_to edit_admin_article_category_path(article_category), title: t('.edit_link'), id: dom_id(article_category, :edit), class: 'btn btn-default' do
+                  %em.far.fa-edit
+                = link_to admin_article_category_path(article_category), method: :delete, id: dom_id(article_category, :destroy), title: t('.destroy_link'), data: { confirm: t('.destroy_link_confirm') }, class: 'btn btn-danger' do
+                  %em.far.fa-trash-alt

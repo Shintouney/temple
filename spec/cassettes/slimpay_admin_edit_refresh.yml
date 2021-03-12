@@ -1,0 +1,124 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pugilinvest01:aysxdcfvgb@api-sandbox.slimpay.net/oauth/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 01 Sep 2015 13:18:04 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Etag:
+      - '"000ff0db86c5286f1e2c2799279501278"'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '129'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "access_token" : "e3cfaed9-55c7-4269-b01e-bccca9c7c41f",
+          "token_type" : "bearer",
+          "expires_in" : 730,
+          "scope" : "api"
+        }
+    http_version: 
+  recorded_at: Tue, 01 Sep 2015 13:17:56 GMT
+- request:
+    method: get
+    uri: https://api-sandbox.slimpay.net/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer e3cfaed9-55c7-4269-b01e-bccca9c7c41f
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 01 Sep 2015 13:18:04 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Etag:
+      - '"09e18e3402a15657faa3b5b8c75b8cfa8"'
+      Content-Type:
+      - application/hal+json;profile="https://api.slimpay.net/alps/v1"
+      Content-Length:
+      - '1779'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"_links":{"self":{"href":"https://api-sandbox.slimpay.net/"},"https://api.slimpay.net/alps#post-token":{"href":"https://api-sandbox.slimpay.net/oauth/token"},"https://api.slimpay.net/alps#create-orders":{"href":"https://api-sandbox.slimpay.net/orders"},"https://api.slimpay.net/alps#get-creditors":{"href":"https://api-sandbox.slimpay.net/creditors{?reference}","templated":true},"https://api.slimpay.net/alps#get-orders":{"href":"https://api-sandbox.slimpay.net/orders{?creditorReference,reference}","templated":true},"https://api.slimpay.net/alps#get-mandates":{"href":"https://api-sandbox.slimpay.net/mandates{?creditorReference,rum}","templated":true},"https://api.slimpay.net/alps#create-documents":{"href":"https://api-sandbox.slimpay.net/documents"},"https://api.slimpay.net/alps#get-documents":{"href":"https://api-sandbox.slimpay.net/documents{?creditorReference,entityReference,reference}","templated":true},"https://api.slimpay.net/alps#create-direct-debits":{"href":"https://api-sandbox.slimpay.net/direct-debits"},"https://api.slimpay.net/alps#get-direct-debits":{"href":"https://api-sandbox.slimpay.net/direct-debits{?id}","templated":true},"https://api.slimpay.net/alps#create-recurrent-direct-debits":{"href":"https://api-sandbox.slimpay.net/recurrent-direct-debits"},"https://api.slimpay.net/alps#get-recurrent-direct-debits":{"href":"https://api-sandbox.slimpay.net/recurrent-direct-debits{?id}","templated":true},"https://api.slimpay.net/alps#get-card-transactions":{"href":"https://api-sandbox.slimpay.net/card-transactions{?id}","templated":true},"https://api.slimpay.net/alps#get-card-transaction-issues":{"href":"https://api-sandbox.slimpay.net/card-transaction-issues{?id}","templated":true},"profile":{"href":"https://api-sandbox.slimpay.net/alps/v1"}}}'
+    http_version: 
+  recorded_at: Tue, 01 Sep 2015 13:17:57 GMT
+- request:
+    method: get
+    uri: https://api-sandbox.slimpay.net/creditors/pugilinvest/mandates/123456azerty
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer e3cfaed9-55c7-4269-b01e-bccca9c7c41f
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Tue, 01 Sep 2015 13:18:04 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Content-Type:
+      - application/hal+json; profile="https://api.slimpay.net/alps/v1"
+      Content-Length:
+      - '100'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "code" : 902,
+          "message" : "The resource has not been found : mandate 123456azerty not found"
+        }
+    http_version: 
+  recorded_at: Tue, 01 Sep 2015 13:17:57 GMT
+recorded_with: VCR 2.9.2

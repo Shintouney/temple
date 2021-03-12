@@ -1,0 +1,42 @@
+# Change to match your CPU core count
+workers ENV.fetch("WEB_CONCURRENCY") { 1 }
+
+# Min and Max threads per worker
+threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+threads threads_count, threads_count
+
+# Default to production
+rails_env = "<%= fetch(:stage) %>"
+environment rails_env
+
+# Set up socket location for production
+bind "unix:///srv/<%= fetch(:application) %>/shared/pids/puma.sock"
+
+# Logging
+stdout_redirect "/srv/<%= fetch(:application) %>/shared/log/puma.log", "/srv/<%= fetch(:application) %>/shared/log/puma.error.log", true
+
+# Set master PID and state locations
+pidfile "/srv/<%= fetch(:application) %>/shared/pids/puma.pid"
+state_path "/srv/<%= fetch(:application) %>/shared/pids/puma.state"
+
+# Timeout request
+worker_timeout 90
+
+# Background running
+preload_app!
+daemonize true
+
+before_fork do
+  unless defined?(ActiveRecord::Base).nil?
+    ActiveRecord::Base.connection_pool.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+  end
+end
+
+on_worker_boot do |worker_index|
+  File.open("/srv/<%= fetch(:application) %>/shared/pids/puma_worker_#{worker_index}.pid", "w") { |f| f.puts Process.pid }
+  unless defined?(ActiveRecord::Base).nil?
+    config = ActiveRecord::Base.configurations[Rails.env] || Rails.application.config.database_configuration[Rails.env]
+    ActiveRecord::Base.establish_connection(config)
+  end
+  $redis._client.reconnect if !$redis.nil? && !$redis._client.try(:connected?)
+end

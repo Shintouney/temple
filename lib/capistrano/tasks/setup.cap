@@ -1,0 +1,89 @@
+require 'yaml'
+require 'erb'
+
+namespace :deploy do
+  desc "Setup deployment dependencies"
+  task :setup do
+    fetch(:setup_tasks, []).each do |task_name|  
+      invoke "deploy:setup:#{task_name}"
+    end
+
+    invoke 'deploy:check'
+  end
+
+  namespace :setup do
+    desc "Install application-independent required gems"
+    task :gems do
+      on roles(:app, :web), in: :sequence do
+        system_gems = fetch(:system_gems, 'bundler').split(' ')
+        system_gems.each do |gem_name|
+          begin
+            capture(:gem, "list -i #{gem_name}")
+          rescue SSHKit::Command::Failed
+            execute :gem, 'install', gem_name
+          end
+        end
+      end
+    end
+
+    desc "Setup logrotate configuration"
+    task :log_rotate do
+      logrotate_dir = fetch(:logrotate_dir, "#{shared_path}/log")
+
+      on roles(:app, :web), in: :sequence do
+        execute :mkdir, '-p', logrotate_dir
+        unless test("[ -L #{logrotate_dir}/log ]")
+          within logrotate_dir do
+            execute :ln, '-s', "../../app/#{fetch(:application)}/shared/log", "log"
+          end
+        end
+      end
+    end
+
+    desc "Setup puma configuration file"
+    task :puma do
+      on roles(:app), in: :sequence do
+        puma_config_template_path = 'puma.rb.erb'
+
+        template = File.read(File.join(File.dirname(__FILE__), '..', 'templates', puma_config_template_path))
+        result = ERB.new(template).result(binding)
+
+        puma_config_file_path = "#{shared_path}/config/puma.rb"
+
+        execute :mkdir, '-p', "#{shared_path}/config/"
+
+        upload! StringIO.new(result), puma_config_file_path
+        execute :chmod, '0644', puma_config_file_path
+      end
+    end
+
+    task :database do
+      on roles(:app), in: :sequence do
+        base_conf = capture("cat ~/.pgpass").split(':')
+
+        database_config = {
+          fetch(:rails_env).to_s => {
+            'adapter' => "postgresql",
+            'encoding' => "utf8",
+            'database' => base_conf[2],
+            'username' =>  base_conf[3],
+            'password' =>  base_conf[4],
+            'host' =>  base_conf[0],
+            'port' => base_conf[1],
+            'prepared_statements' => '<%= !Sidekiq.server? ? 300 : false %>',
+            'min_messages' => 'warning',
+            'timeout' => 5000,
+            'checkout_timeout' => '<%= ENV.fetch("CHECKOUT_TIMEOUT") { 5 } %>',
+            'pool' => '<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>'
+          }
+        }
+        database_config_yaml = YAML.dump(database_config)
+        database_config_path = "#{shared_path}/config/database.yml"
+
+        execute :mkdir, '-p', "#{shared_path}/config/"
+
+        upload! StringIO.new(database_config_yaml), database_config_path
+      end
+    end
+  end
+end

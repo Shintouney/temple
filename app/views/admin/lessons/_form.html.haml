@@ -1,0 +1,25 @@
+#lesson_form{data: {disabled: input_disabled.to_s}}
+  .row
+    .col-sm-12
+      = form.input :location, disabled: input_disabled
+  .row
+    .col-sm-6
+      = form.input :room, disabled: input_disabled
+    .col-sm-6
+      = form.input :max_spots, disabled: input_disabled
+  .row
+    .col-sm-12
+      = form.input :coach_name, disabled: input_disabled
+  .row
+    .col-sm-12
+      = form.input :activity, disabled: input_disabled
+  = form.input :end_at, as: :hidden, input_html: { value: (I18n.l(form.object.end_at, format: '%Y-%m-%d %H:%M') if form.object.end_at) }
+  = form.input :start_at, as: :hidden, input_html: { value: (I18n.l(form.object.start_at, format: '%Y-%m-%d %H:%M') if form.object.start_at) }
+  .row
+    .col-sm-12
+      = form.input :datepicker_start_at, as: :string, input_html: { value: (I18n.l(form.object.start_at.to_date) if form.object.start_at), name: 'lesson_start_at_date', id: 'lesson_start_at_date_datepicker', data: {provide: 'datepicker'} }, label: t('.start_at_date'), required: true, disabled: input_disabled
+  .row
+    .col-sm-6
+      = form.input :timepicker_start_at, as: :string, input_html: { value: (I18n.l(form.object.start_at, format: '%H:%M') if form.object.start_at), name: 'lesson_start_at_time', id: 'lesson_start_at_time_timepicker', data: {provide: 'timepicker'} }, label: t('.start_at_time'), required: true, disabled: input_disabled, readonly: true
+    .col-sm-6
+      = form.input :timepicker_end_at, as: :string, input_html: { value: (I18n.l(form.object.end_at, format: '%H:%M') if form.object.end_at), name: 'lesson_end_at_time', id: 'lesson_end_at_time_timepicker', data: {provide: 'timepicker'} }, label: t('.end_at_time'), required: true, disabled: input_disabled, readonly: true

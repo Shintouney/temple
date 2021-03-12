@@ -1,0 +1,70 @@
+fr:
+  layouts:
+    account:
+      calendar_five_days: 5 Jours
+      title: Temple - Votre compte
+      sidebar:
+        cgv: CGV
+        contact: Contact
+        credit_card: Carte de crédit
+        dashboard: Tableau de bord
+        invoices: Factures
+        payments_means: Moyens de paiement
+        lessons: Planning
+        rules: Règlement intérieur
+        user: Votre profil
+        actu_club: Actualités Club
+        enterprise: Entreprises
+        log_out: Déconnexion
+        sponsoring_request: Parrainage
+        lesson_request: Cours particuliers
+      top_nav:
+        account_name: Temple
+        log_out: Déconnexion
+    admin:
+      calendar_five_days: 5 Jours
+      title: Temple - Administration
+      sidebar:
+        new_user: Créer un Membre
+        active_users: Membres actifs
+        admin_users: Administrateurs
+        announces: "Annonces"
+        articles: Articles
+        card_scans: Scans entrée/sortie
+        categories_list: Liste des categories
+        communication: Communication
+        dashboard: Tableau de bord
+        exports: Exports
+        groups: Groupes de Membre
+        inactive_users: Membres inactifs
+        items_list: Liste des articles
+        lesson_templates: Modèle du planning
+        lesson_drafts: Planning de brouillon
+        lessons: Planning
+        red_list_users: Liste rouge
+        schedules: Calendrier
+        subscription_plans: Abonnements
+        staff_users: Membres du staff
+        temporarily_suspended_users: Membres suspendus
+        user_logs: Logs des visites
+        users: Membres
+        visits: Visites
+      top_nav:
+        admin_name: Temple
+        log_out: Déconnexion
+    application:
+      address_line_1: 'Temple | Noble Art'
+      address_line_2: '11 rue Molière - 75001 Paris'
+      press: Presse
+      previous: Précédent
+      cgv: CGV
+      title: Temple | Noble Art
+    login:
+      title: Temple - Accès membres
+    mail:
+      address_web: "Temple | Noble Art : www.temple-nobleart.fr - contact@temple-nobleart.fr"
+      cordially: "Bien à vous,"
+      phone_moliere: "Club Temple | Molière : 11, rue Molière - 75001 Paris - 01 49 27 03 11"
+      phone_maillot: "Club Temple | Maillot : 66, Gouvion Saint-Cyr - 75017 Paris - 09 66 95 17 64"
+      phone_amelot: "Club Temple | Amelot : 138, rue Amelot - 75011 Paris - 01 49 27 03 11"
+      the_team: "Temple | Noble Art"

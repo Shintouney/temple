@@ -1,0 +1,24 @@
+fr:
+  helpers:
+    submit:
+      create: Créer
+      update: Mettre à jour
+      order:
+        create: Valider la commande
+  simple_form:
+    labels:
+      user:
+        billing_name: "Nom de facturation"
+        billing_address: "Adresse de facturation"
+    hints:
+      subscription_plan:
+        commitment_period: Laissez le champ vide ou à 0 pour ne pas avoir de période d'engagement
+        discount_period: Laissez le champ vide ou à 0 pour ne pas avoir de période de promotion
+        expire_at: Laissez le champ vide pour ne pas avoir de date de fin
+        price_te: "Le prix TTC n'a qu'une valeur indicative. Lors d'une commande, le prix TTC effectif sera calculé à partir du prix HT et de la TVA."
+      article:
+        price_te: "Le prix TTC n'a qu'une valeur indicative. Lors d'une commande, le prix TTC effectif sera calculé à partir du prix HT et de la TVA."
+      invitation_form:
+        to: "Vous pouvez indiquer une ou plusieurs adresses email, séparées par des virgules."
+      user:
+        billing_name: "Nom qui apparaitra sur les futures factures."

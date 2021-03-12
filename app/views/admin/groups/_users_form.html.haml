@@ -1,0 +1,61 @@
+.panel.panel-default
+  .panel-body
+    - if @users.present?
+      %p
+        Membres trouvés
+        %span.label.label-success
+          = @users.length
+
+    .row
+      .col-sm-4
+        .form-group.string.required
+          = form.input :filter_between_age, collection: {'18-29 ans' => [18, 29], '30-39 ans' => [30, 39], '40-49 ans' => [40, 49], '50-59 ans' => [50, 59], '>=60 ans' => [60, 200]}, selected: form.object.filter_between_age, input_html: { multiple: true, :include_blank => false }
+
+          = form.input :filter_gender, collection: {'Mr' => 'male', 'Mme' => 'female'}, selected: form.object.filter_gender, input_html: { multiple: true, :include_blank => false  }
+
+          = form.input :filter_postal_code, collection: [['75001', '75001'], ['75002', '75002'], ['75003', '75003'], ['75004', '75004'], ['75005', '75005'], ['75006', '75006'], ['75007', '75007'], ['75008', '75008'], ['75009', '75009'], ['75010', '75010'], ['75011', '75011'], ['75012', '75012'], ['75013', '75013'], ['75014', '75014'], ['75015', '75015'], ['75016', '75016'], ['75017', '75017'], ['75018', '75018'], ['75019', '75019'], ['75020', '75020'], ['91', '91'], ['92', '92'], ['93', '93'], ['94', '94'], ['95', '95'], ['77', '77'], ['78', '78'], ['Autre', '0']], selected: form.object.filter_postal_code, input_html: { multiple: true, :include_blank => false  }
+
+          = form.input :filter_with_subscription, collection: SubscriptionPlan.all.map{ |s| [s.name, s.id] }, selected: form.object.filter_with_subscription, input_html: { multiple: true, :include_blank => false  }
+
+      .col-sm-4
+        .form-group.string.required
+          = form.input :filter_created_since, collection: [['0 à 1 mois', [0, 1]], ['1 à 2 mois', [1, 2]], ['2 à 3 mois', [2, 3]], ['3 à 4 mois', [3, 4]], ['4 à 5 mois', [4, 5]], ['5 à 6 mois', [5, 6]], ['6 à 7 mois', [6, 7]], ['7 à 8 mois', [7, 8]], ['8 à 9 mois', [8, 9]], ['9 à 10 mois', [9, 10]], ['10 à 11 mois', [10, 11]], ['11 à 12 mois', [11, 12]], ['Plus de 12 mois', [12, 120000]], ['moins de 3 mois', [0, 3]], ['moins de 6 mois', [0, 6]], ['moins de 12 mois', [0, 12]]], selected: form.object.filter_created_since, input_html: { multiple: true, :include_blank => false  }
+
+          = form.input :filter_usual_room, collection: [['Ring avec opposition débutants', 'ring_no_opposition'],['Ring avec opposition confirmés', 'ring_no_opposition_advanced'], ['Ring avec opposition pieds-poings', 'ring_feet_and_fist'], ['Ring sans opposition', 'ring'], ['Arsenal', 'arsenal'], ['Mezzanine', 'training']], selected: form.object.filter_usual_room, input_html: { multiple: true, :include_blank => false  }
+
+          = form.input :filter_usual_activity, collection: [['Boxe anglaise', 'Boxe anglaise'],['Boxe française', 'Boxe française'],['Boxe thaïlandaise', 'Boxe thaïlandaise'],['Pieds-poings', 'Pieds-poings'],['Circuit training boxe', 'Circuit training boxe'],['Outdoor Boxing - Tuileries', 'Outdoor Boxing - Tuileries'],['Sparring filmé – boxe anglaise', 'Sparring filmé – boxe anglaise']], selected: form.object.filter_usual_activity, input_html: { multiple: true, :include_blank => false  }
+
+          = form.input :filter_frequencies, collection: [['8 fois et plus par mois', [8, 100]],['6 à 8 fois par mois', [6, 8]],['4 à 6 fois par mois', [4, 6]],['2 à 4 fois par mois', [2, 4]],['1 à 2 fois par mois', [1, 2]],['0 fois par mois', [0, 0]]], selected: form.object.filter_frequencies, input_html: { multiple: true, :include_blank => false  }
+
+      .col-sm-4
+        .form-group.string.required
+          = form.input :filter_last_booking_dates, collection: [['0 à 7 jours', [0, 7]],['7 à 14 jours', [7, 14]],['14 à 30 jours', [14, 30]],['1 à 2 mois', [30, 60]],['2 à 3 mois', [60, 90]],['3 à 6 mois', [90, 180]],['Plus de 6 mois', [180,1000]]], selected: form.object.filter_last_booking_dates, input_html: { multiple: true, :include_blank => false  }
+
+          = form.input :filter_last_visite_dates, collection: [['0 à 7 jours', [0, 7]],['7 à 14 jours', [7, 14]],['14 à 30 jours', [14, 30]],['1 à 2 mois', [30, 60]],['2 à 3 mois', [60, 90]],['3 à 6 mois', [90, 180]],['Plus de 6 mois', [180,1000]]], selected: form.object.filter_last_visite_dates, input_html: { multiple: true, :include_blank => false  }
+
+          = form.input :filter_last_article, collection: Article.all.map{|a| [a.name, a.id] }, selected: form.object.filter_last_article, input_html: { multiple: true, :include_blank => false }
+
+    %br
+    %br
+    = form.submit t('.update'), id: 'group_user_search_submit', class: 'btn btn-success'
+
+    - if @users.present?
+      %table.table.table-striped.table-hover.dt-responsive.no-wrap{ data: {datatable: 'true'}}
+        %thead
+          %tr
+            %th{ data: { priority:1 }}
+              = User.human_attribute_name(:lastname)
+            %th{ data: { priority:1 }}
+              = User.human_attribute_name(:firstname)
+            %th{ data: { priority:1 }}
+              = User.human_attribute_name(:email)
+
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td
+                = user.lastname
+              %td
+                = user.firstname
+              %td
+                = user.email

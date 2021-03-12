@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=111122223333777777777&DATEVAL=1017&CVV=ABCDEF&REFABONNE=TEMPLE%23test%2300007%231439890114&MONTANT=0000000000&DEVISE=978&VERSION=00104&TYPE=00056&DATEQ=18082015112835&NUMQUESTION=0761399303&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 Aug 2015 09:28:36 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '140'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: NUMTRANS=0000000000&NUMAPPEL=0000000000&NUMQUESTION=0000000000&SITE=       &RANG=  &AUTORISATION=&CODEREPONSE=00014&COMMENTAIRE=Invalid+data
+    http_version: 
+  recorded_at: Tue, 18 Aug 2015 09:28:36 GMT
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=111122223333777777777&DATEVAL=1017&CVV=ABCDEF&REFABONNE=TEMPLE%23test%2300007%231439890114&MONTANT=0000016560&DEVISE=978&VERSION=00104&TYPE=00057&DATEQ=18082015112836&NUMQUESTION=2008899666&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 Aug 2015 09:28:36 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '140'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: NUMTRANS=0000000000&NUMAPPEL=0000000000&NUMQUESTION=0000000000&SITE=       &RANG=  &AUTORISATION=&CODEREPONSE=00014&COMMENTAIRE=Invalid+data
+    http_version: 
+  recorded_at: Tue, 18 Aug 2015 09:28:36 GMT
+recorded_with: VCR 2.9.2

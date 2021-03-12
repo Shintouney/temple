@@ -1,0 +1,5 @@
+= t('.invoices_with_double_payments')
+\
+- @invoices.each do |invoice|
+  = admin_user_invoice_url(invoice.user, invoice)
+  \

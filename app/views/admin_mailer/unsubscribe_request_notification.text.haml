@@ -1,0 +1,18 @@
+= t('.unsubscribe_request_notification_title')
+\
+= @unsubscribe_request.firstname
+\
+= @unsubscribe_request.lastname
+\
+= @unsubscribe_request.phone
+\
+= @unsubscribe_request.email
+\
+= I18n.l(@unsubscribe_request.desired_date)
+\
+= UnsubscribeRequest.human_attribute_name(:health_reason) if @unsubscribe_request.health_reason.present?
+\
+= UnsubscribeRequest.human_attribute_name(:moving_reason) if @unsubscribe_request.moving_reason.present?
+\
+= UnsubscribeRequest.human_attribute_name(:other_reason) if @unsubscribe_request.other_reason.present?
+

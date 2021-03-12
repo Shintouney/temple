@@ -1,0 +1,5 @@
+= t('.greetings')
+\
+= t('.mail_text', activity: @lesson.activity, room: @lesson.room_text, date: l(@lesson.start_at, format: '%d/%m/%Y'), start_at:  l(@lesson.start_at, format: '%H:%M'))
+\
+= t('.book_lesson_text', url: account_lessons_url)

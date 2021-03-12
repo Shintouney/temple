@@ -1,0 +1,7 @@
+%h1{align: "left", style: "font-size: 22px; color: #cfa161; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; margin: 15px 0; padding: 0;"}
+= t('.suspended_subscription_issue')
+
+%ul
+  = @user.id
+  = @user.email
+  = @user.current_subscription.state if @user.current_subscription

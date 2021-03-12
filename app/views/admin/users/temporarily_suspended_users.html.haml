@@ -1,0 +1,21 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title')
+    %span.label.label-success
+      = @users.length
+  .panel.panel-default
+    %table#userSuspendedTable.table.table-striped.table-hover.dt-responsive.nowrap{ data: { ajax: temporarily_suspended_users_admin_users_path, order: '[[ 3, "desc" ]]', responsive: true }}
+      %thead
+        %tr
+          %th
+            = User.human_attribute_name(:lastname)
+          %th
+            = User.human_attribute_name(:firstname)
+          %th
+            = User.human_attribute_name(:email)
+          %th
+            = t('admin.users.index.current_subscription_started_at')
+          %th
+            = t('admin.users.index.user_commitment')
+          %th.text-right{data: {orderable: 'false'}}
+            = t('admin.users.index.actions')

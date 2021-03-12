@@ -1,0 +1,501 @@
+fr:
+  admin:
+    admin_users:
+      edit:
+        title: Édition d'un administrateur
+      form:
+        cancel: Revenir à la liste des administrateurs
+      index:
+        actions: Actions
+        destroy_link: "Supprimer cet administrateur"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer cet administrateur ?"
+        edit_link: "Éditer cet administrateur"
+        new_link: "Ajouter un administrateur"
+        title: Gestion des administrateurs
+      new:
+        title: Ajout d'un administrateur
+    announces:
+      create:
+        notice: L'annonce a été créée
+      destroy:
+        notice: L'annonce a été supprimée
+      edit:
+        title: Edition de l'annonce
+      index:
+        all: Toutes les pages
+        actions: "Actions"
+        active: "Active"
+        announce_type: "Type d'annonce"
+        content: 'Contenu'
+        dashboard: Tableau de bord.
+        destroy_link: 'Supprimer'
+        destroy_link_confirm: 'Voulez vous vraiment supprimer cette alerte ?'
+        end_at: "Fin d'affichage"
+        edit_link: 'Editer'
+        file: "Fichier"
+        link_to: Liens
+        new_link: "Nouvelle annonce"
+        not_active: "Non active"
+        place: Emplacement
+        title: "Annonces"
+        start_at: "Début d'affichage"
+        state:
+          ready: 'Prête'
+          launched: 'En cours'
+          finished: 'Terminée'
+      form:
+        cancel: Annuler
+        dates_needed_info: "Attention: L'annonce apparaitra uniquement si vous définissez des dates."
+        external_link: Lien externe ?
+        place: Emplacement
+      new:
+        title: "Nouvelle annonce"
+      update:
+        notice: L'annonce a été mise à jour
+
+    articles:
+      edit:
+        title: Édition d'un article
+      form:
+        cancel_to_index: Revenir à la liste des articles
+      index:
+        actions: Actions
+        cancel_to_index: Revenir à la liste des articles
+        destroy_link: "Désactiver l'article"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir désactiver cet article ?"
+        edit_link: "Éditer cet article"
+        new_link: "Ajouter un article"
+        restore_link: "Ré-activer l'article"
+        state: 'Statut'
+        title: Gestion des articles
+        visible:
+          is_true: "Visible"
+          is_false: "Caché"
+      new:
+        title: Ajout d'un article
+    article_categories:
+      edit:
+        title: Édition d'une catégorie
+      form:
+        cancel_to_index: Revenir à la liste des catégories
+      index:
+        actions: Actions
+        destroy_link: "Supprimer la catégorie"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer cette catégorie ?"
+        edit_link: "Éditer cette catégorie"
+        new_link: "Ajouter une catégorie"
+        title: Gestion des catégories d'articles
+      new:
+        title: Ajout d'une catégorie
+    card_scans:
+      index:
+        title: "Historique des scans d'entrée/sortie du %{period_start} au %{period_end}"
+    cards:
+      edit:
+        force_authorization_link: Forcer l'autorisation de la carte
+        destroy_link: Désassigner la carte
+        destroy_link_confirm: "Êtes-vous sûr de vouloir désassigner la carte ?"
+    credit_cards:
+      edit:
+        cannot_refresh_mandate: Le mandat est présent mais n'a pu être rafraîchi. (%{reason})
+        credit_card_expiration_date: Date d'expiration
+        credit_card_owner_name: Nom
+        edit: Editer/Créer la carte de crédit
+        mandate: Mandat SEPA
+        no_credit_card: Pas de carte de credit enregistrée
+        payment_mode_change: Mode de paiement
+        title: Informations de carte de crédit
+        uri_not_found: URL Slimpay introuvable.
+    exports:
+      index:
+        accounting: COMPTABILITÉ
+        articles_csv_export_link: Articles vendus
+        articles_csv_export_link_title: Exporter la liste des articles vendus au format CSV pour Excel
+        active_users_csv_export_link: Membres actifs
+        active_users_csv_export_link_title: Exporter la liste des membres actifs au format CSV pour Excel
+        choose_a_date_start: 'Selectionnez le début'
+        choose_a_date_end: 'Selectionnez la fin'
+        lesson_bookings_csv_export_link: Réservations de cours
+        inactive_users_csv_export_link: Membres inactifs
+        inactive_users_csv_export_link_title: Exporter la liste des membres inactifs au format CSV pour Excel
+        reporting_users_csv_export_link: Reporting
+        reporting_users_csv_export_link_title: Exporter un reporting des membres au format CSV pour Excel
+        invoices_csv_export_link: Factures payées
+        invoices_csv_export_link_title: Exporter la liste des factures payées au format CSV pour Excel
+        open_invoices_csv_export_link: Factures en cours
+        open_invoices_csv_export_link_title: Exporter la liste des factures en cours au format CSV pour Excel
+        payments_csv_export_link: Débits
+        payments_csv_export_link_title: Exporter la liste des débits fait au format CSV pour Excel
+        red_list: 'Membres Liste Rouge'
+        refunded_or_canceled_invoices_csv_export_link: Factures remboursées ou annulées
+        subscriptions_csv_export_link: Abonnements
+        subscriptions_csv_export_link_title: Export des abonnements au format CSV pour Excel
+        lesson_request_export_link_title: Demandes de cours particuliers
+        lesson_request_export_link: Demandes de cours particuliers
+        sponsoring_request_export_link_title: Demandes de parrainage
+        sponsoring_request_export_link: Demandes de parrainage
+        unsubscribe_request_export_link_title: Demandes de désabonnement
+        unsubscribe_request_export_link: Demandes de désabonnement
+        title: Téléchargement d'exports
+        users: MEMBRES
+        visits_csv_export_link: Visites
+        visits_csv_export_link_title: Exporter les visits enregistrées au foramt CSV pour Excel.
+        visits: "VISITES"
+        cb: "CARTE BANCAIRE"
+        mandat: "MANDAT SEPA"
+      export:
+        new_export: 'Exporter'
+        new_export_title: "Lance un nouvel export de fichier"
+      invoices:
+        category_total_price_te: 'Prix total HT (%{category_name}) (Tva %{tax_rate})'
+        csv_filename: "Transactions %{state} - %{date}.csv"
+        due_date: Facture due au
+        open_invoices: en cours
+        paid_invoices: effectuées
+        invoice_number: Numéros de facture
+        refunded_or_canceled_invoices: remboursées ou annulées
+        issue_date: Date d'émission
+        payed_at: 'Payée le'
+        subscription_plan_total_price_te: Prix HT (Abonnement)
+        taxes_rate: "Tva %{rate}"
+        total_price_te: Prix total HT
+      payments:
+        charge_at: "Débité le"
+        csv_filename: "Export des debits - %{date}.csv"
+        issue_date: "Date d'emission de la facture"
+        total_price_te: Prix total HT
+      lesson_booking:
+        created_at: "Date de la réservation"
+        csv_filename: "Export des réservations - %{date}.csv"
+        lesson_number_of_member: "Nombre de Membre inscrits"
+        subscription_start_at: "Date du début d'abonnement"
+        subscription_end_at: "Date de fin d'engagement"
+        user_state: Actif (true or false) ?
+      order_items:
+        csv_filename: "Produits vendus - %{date}.csv"
+      red_list:
+        csv_filename: "Liste rouge - %{date}.csv"
+      visits:
+        csv_filename: "Visites - %{date}.csv"
+      subscriptions:
+        csv_filename: "Inscriptions - %{date}.csv"
+      users:
+        csv_filename: 
+          active: "Membres actifs - %{date}.csv"
+          inactive: "Membres inactifs - %{date}.csv"
+          reporting: "Reporting général des membres - %{date}.csv"
+    groups:
+      export:
+        csv_filename: "Groupe - %{name} - %{date}.csv"
+      edit:
+        title: Édition d'un groupe
+      form:
+        cancel_to_index: Revenir à la liste des groupes
+        export: Exporter les Membres de ce groupe
+      index:
+        actions: Actions
+        cancel_to_index: Revenir à la liste des groupes
+        destroy_link: "Désactiver le groupe"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer ce groupe de Membre ?"
+        edit_link: "Éditer cet groupe"
+        new_link: "Ajouter un groupe"
+        title: Gestion des groupes
+        number_of_user: "Nombre d'utilisateurs"
+      new:
+        title: Ajout d'un groupe
+      users_form:
+        update: "Mettre à jour"
+    invoices:
+      index:
+        actions: Actions
+        cancel_link_confirm: "Êtes vous sur de vouloir annuler cette facture impayée ?"
+        cancel_pending_payment_invoice: Annuler la facture impayée
+        credit_note: Télécharger l'avoir
+        download_invoice: "Télécharger la facture"
+        invoice_show_pdf: Télécharger la facture au format PDF
+        invoice_credit_note_pdf: Télécharger la facture d'avoir au format PDF
+        manual_force_paid: "Facture manuellement marquée à payée."
+        refund_link_confirm: "ATTENTION : Le remboursement doit déjà avoir été fait sur Paybox ! Êtes vous sur de vouloir marquer cette facture payée comme étant Remboursée ?"
+        refund_pending_payment_invoice: "Marquer comme étant remboursée"
+        accept_payment_link_confirm: "ATTENTION : La somme doit être déjà reçue, cette action de déclanche pas de paiement ! Êtes vous sur de vouloir marquer cette facture payée comme étant PAYEE ?"
+        accept_pending_payment_invoice: "Marquer comme étant payée"
+        see_payments: Voir les paiements
+        title: Factures
+        total_price_ati_will_be_computed: Le prix total sera calculé à la fin du mois
+      payments:
+        title: Paiements
+        back_to_invoices: Retour aux factures
+    lesson_templates:
+      edit_modal:
+        cancel: Annuler
+        destroy_link: "Supprimer le modèle"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer ce modèle ?"
+        title: Edition d'un modèle de cours
+        close: fermer
+      index:
+        add_lesson_template: Ajouter un modèle de cours
+        arsenal: Arsenal (sans opposition)
+        bags_room: Sacs (sans opposition)
+        ring: Ring Débutants (avec opposition)
+        ring_no_opposition: Ring (sans opposition)
+        ring_no_opposition_advanced: Ring Confirmés (avec opposition)
+        ring_feet_and_fist: Ring Pieds-Poings (avec opposition)
+        title: "Modèle du planning"
+      new_modal:
+        cancel: Annuler
+        submit: Valider
+        title: Ajout d'un modèle de cours
+        close: fermer
+    lesson_drafts:
+      edit_modal:
+        cancel: Annuler
+        destroy_link: "Supprimer le brouillon"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer ce brouillon ?"
+        title: Edition d'un brouillon
+        close: fermer
+      index:
+        add_lesson_draft: Ajouter un brouillon de cours
+        arsenal: Arsenal (sans opposition)
+        bags_room: Sacs (sans opposition)
+        ring: Ring Débutants (avec opposition)
+        ring_no_opposition: Ring (sans opposition)
+        ring_no_opposition_advanced: Ring Confirmés (avec opposition)
+        ring_feet_and_fist: Ring Pieds-Poings (avec opposition)
+        title: "Planning de brouillon"
+      new_modal:
+        cancel: Annuler
+        submit: Valider
+        title: Ajout d'un brouillon de cours
+        close: fermer
+    lessons:
+      edit_modal:
+        actions: Actions
+        back: Revenir
+        destroy_link: "Supprimer le cours"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer ce cours ?"
+        lesson_finished: Le cours est terminé et ne peux plus être modifié
+        no_participants_yet: Aucun participant pour le moment
+        participants: Les participants
+        show_link: "Voir le Membre"
+        the_lesson: Le cours
+        tryout: "Mois d'essai fini"
+        title: Edition d'un cours
+        close: fermer
+      form:
+        start_at_date: Date
+        start_at_time: Heure de début
+        end_at_time: Heure de fin
+      index:
+        add_lesson: Ajouter un cours
+        arsenal: Arsenal (sans opposition)
+        bags_room: Sacs (sans opposition)
+        lesson_full: Cours complets
+        ring: Ring Débutants (avec opposition)
+        ring_no_opposition: Ring (sans opposition)
+        ring_no_opposition_advanced: Ring Confirmés (avec opposition)
+        ring_feet_and_fist: Ring Pieds-Poings (avec opposition)
+        title: "Planning | Temple"
+      new_modal:
+        submit: Valider
+        title: Ajout d'un cours
+        close: fermer
+      shared:
+        cancel: Annuler
+    orders:
+      form:
+        no_article: 'Aucun article dans votre panier'
+        no_payment_means: Aucun moyen de paiement enregistré pour ce client.
+        the_cart: Le panier
+        the_products: Les produits
+        total: 'Total : '
+        user_does_not_have_any_valid_credit_card: "ATTENTION : Le Membre ne dispose pas d'une carte bleu valide !"
+      index:
+        actions: Actions
+        order_show: Détails de la commande
+        order_destroy: Annuler la commande
+        order_destroy_confirm: "Êtes-vous sûr de vouloir annuler la commande ? Cette action est définitive."
+        orders: Commandes
+      new:
+        cancel_to_user_show: Revenir à la fiche de profil de le Membre
+        no_credit_card: Aucun carte de crédit n'est renseignée pour ce Membre
+        add_card: Ajouter une carte de crédit
+        title: "Nouvelle commande pour le Membre : "
+      payment_details:
+        sepa: Paiement SEPA
+      show:
+        cancel_to_user_orders: Revenir à la liste des commandes
+        created_at: "Date :"
+        print: Imprimer
+        taxes_rate: 'TVA '
+        title: Détail de la commande
+        total_price_ati: 'Total TTC :'
+        total_price_te: 'Total HT :'
+    subscriptions:
+      edit:
+        can_not_change_subscription: "L'abonnement ne peut pas être changé durant une suspension."
+        choose_new_subscription_plan: Choisissez un nouvel abonnement
+        destroy_confirm: Êtes-vous sûr de vouloir résilier l'abonnement de le Membre ?
+        destroy_suspended_subscription_schedule_confirm: "Êtes-vous sûr de vouloir supprimer la suspension temporaire de l'abonnement de ce Membre ?"
+        destroy_suspended_subscription_confirm: "Êtes-vous sûr de vouloir résilier l'abonnement suspendu de le Membre ?"
+        from: Du
+        no_subscription_plan: Pas d'abonnement
+        destroy_suspended_subscription: Supprimer la suspension de l'abonnement
+        temporarily_suspend_subscription: Suspendre l'abonnement de façon temporaire
+        subscription_plan: Nom de l'abonnement
+        cancel_subscription: Résilier l'abonnement
+        restart_subscription_now: Redémarrer l'abonnement
+        restart_subscription_now_confirm: "Êtes-vous sûr de vouloir redemmarer l'abonnement maintenant ? Cela déclanchera une facture payable demain valant pour le mois à venir."
+        subscription_restart_date: L'abonnement sera suspendu de date à date
+        subscription_suspended_until: "L'abonnement est suspendu jusqu'au %{date}"
+        subscription_will_be_suspended: "Cet abonnement sera suspendu à partir du %{suspended_date} et reprendra automatiquement à partir du %{restart_date}"
+        subscription_will_restart: "L'abonnement reprendra automatiquement à partir du %{date}"
+        suspend_subscription: Suspendre l'abonnement
+        suspend_subscription_confirm: "Êtes-vous sûr de vouloir suspendre l'abonnement de le Membre ?"
+        suspend_subscription_details: "L'abonnment de ce Membre sera suspendu une journée avant son prochain débit mensuel. Ainsi ce Membre aura toujours accès à la salle, au planning et à la réservation de cours pour toute la période qui lui a déjà été facturée. La reprise automatique de l'abonnment aura lieu à la date spécifiée, cela aura pour principal concéquence de modififer la date de son payment mensuel qui sera maintenant égale à la date de reprise de l'abonnment."
+        suspended_scheduled_at: "L'abonnment sera suspendu à partir du %{date}"
+        to: Au
+        update_confirm: "Êtes-vous sûr de vouloir changer l'abonnement de le Membre ?"
+        update_subscription_button: "Changer l'abonnement"
+    subscription_plans:
+      edit:
+        title: Édition d'une formule d'abonnement
+      form:
+        cancel_to_index: Revenir à la liste des formules d'abonnement
+        criterion_of_eligibility: "Critère d'éligibilités"
+        discount: Promotion
+        locations_prompt: Salles
+        subscription_plan: Abonnement
+      index:
+        actions: Actions
+        cancel_to_index: Revenir à la liste des formules d'abonnement
+        destroy_link: "Supprimer la formule d'abonnement"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer cette formule d'abonnement ?"
+        discount: Promotion
+        edit_link: "Éditer cette formule d'abonnement"
+        locations: "Accès aux salles"
+        highlighted: Mis en avant
+        new_link: "Ajouter une formule d'abonnement"
+        sponsorship: "Parraînage"
+        title: Gestion des formules d'abonnement
+        visible: Visible
+      new:
+        title: Ajout d'une formule d'abonnement
+    staff_users:
+      edit:
+        title: Édition d'un Membre du staff
+      form:
+        cancel: Revenir à la liste des Membres du staff
+      index:
+        actions: Actions
+        destroy_link: "Supprimer cet Membre"
+        destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer cet Membre ?"
+        edit_link: "Éditer cet Membre"
+        new_link: "Ajouter un Membre au staff"
+        title: Gestion des Membres du staff
+      new:
+        title: Ajout d'un Membre du staff
+    user_images:
+      index:
+        make_profile_image_link: Définir comme image de profil
+        title: Images de ce Membre
+        user_image_destroy_link: Supprimer l'image
+        user_image_destroy_link_confirm: "Êtes-vous sûr de vouloir supprimer cette image ?"
+    users:
+      active:
+        csv_filename: "membres actifs - %{date}.csv"
+        title: Gestion des Membres actifs
+      edit:
+        title: Édition d'un Membre
+      index:
+        actions: Actions
+        current_subscription_started_at: "Date d'abonnement"
+        edit_link: "Éditer cet Membre"
+        show_link: "Voir la fiche Membre"
+        new_order_link: "Nouvelle commande"
+        user_commitment: "Sous engagement ?"
+      inactive:
+        csv_filename: "Membres inactifs - %{date}.csv"
+        title: Gestion des Membres inactifs
+      infos:
+        contact: Contacter
+        last_activity_at: 'Dernière activité :'
+        last_login_at: "Connexion :"
+        lesson: "Cours :"
+        register_the_member: 'Inscrire le Membre à :'
+        registered_member: 'Membre inscrit à :'
+        orders: Commandes
+        spending: Dépenses
+        sponsor: Parrain
+        subscription_commitment_period: "Date de fin d'engagement :"
+        subscription_start_at: "Abonnement :"
+        user_images: Photos
+        visits: Visites
+      menu:
+        cancel_to_index: Liste des membres
+        edit_user: Edition
+        edit_user_card: Carte Membre
+        edit_user_credit_card: Carte de crédit
+        edit_user_subscription: Abonnement
+        new_order_link: Nouvelle commande
+        invoices: Factures
+        orders: Commandes
+        payment_means: Moyens de paiement
+        show_user: Aperçu
+        user_images: Photos
+      new:
+        title: "Création d'un Membre"
+      new_form:
+        credit_card_details: Informations carte bleue
+        login_details: Compte Membre
+        sponsoring: Parrainage
+        sponsor_email: Email du parrain
+        submit_new_user: Valider
+        subscription_plan: "Formule d'abonnement"
+        tc_agreement: "J’accepte les CGVs et le Règlement du Temple"
+        user_details: Coordonnées
+      red_list:
+        end_of_commitment: Fin d'engagement
+        last_failed_payment: Dernier paiement échoué
+        last_payment: Dernier paiement réussi
+        retries_count: Nombre d'échecs
+        reason: Motif
+        amount_due: Sommes dues
+        title: Liste rouge
+      show:
+        access_to_planning: "Accès au planning : "
+        authorize: "Autorisé"
+        bad: Invalide
+        forbid_access_to_planning: Interdir l'accès au planning
+        force_access_to_planning: Forcer l'accès au planning
+        good: OK
+        mandate: Mandat
+        no_payment_means: "Aucun moyen de paiement enregistré pour ce client."
+        no_authorize: "Refusé"
+        order_items_count: "Produits :"
+        orders_overview: Dernières commandes
+        page_title: Profil d'un Membre
+        payments: Paiements
+        subscription: Abonnement
+        subscription_since: Actif depuis le
+        title: Profil de le Membre
+        sponsored_users: Membres parrainés
+      temporarily_suspended_users:
+        title: Gestion des Membres suspendus
+      reporting:
+        title: Rapport sur l'ensemble des Membres
+    visits:
+      index:
+        add_user_button: Ajouter
+        add_user_manually: "Signaler l'arrivée d'un client manuellement:"
+        arrival: "Heure d'arrivée"
+        card_scans_logs: Derniers scans de cartes
+        sort: "Tri:"
+        title: Dashboard | Temple
+        user_name_to_add: Nom du client à ajouter
+        users_present: "Clients dans la salle :"
+      logs:
+        duration: Durée
+        title: Historique des visites du %{period_start} au %{period_end}
+      visit:
+        arrived_since: Arrivé depuis
+        finish_link_confirm: 'Êtes-vous sûr de vouloir terminer la visite de cet Membre ?'

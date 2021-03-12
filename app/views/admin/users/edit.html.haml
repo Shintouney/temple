@@ -1,0 +1,12 @@
+= render 'menu', user: @user
+
+.padding-md
+  .row
+    = render 'infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-edit.tab-pane.active
+          .panel.panel-default
+            .panel-body
+              = render 'form'

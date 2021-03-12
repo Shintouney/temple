@@ -1,0 +1,26 @@
+%h3.headline
+  .fa.fa-star.fa-lg
+  = t('.title')
+%h4.headlline
+  = t('.lesson_text_part1')
+  %br
+  %br
+  = t('.lesson_text_part2')
+  %br
+  %br
+  = t('.lesson_text_part3')
+
+.panel.panel-default
+  .panel-body
+    = simple_form_for @lesson_request, url: account_lesson_request_path do |form|
+      = flash_content(flash) if flash.any?
+
+      .row
+        .col-sm-4
+          =# form.input :first_coach_name, collection: ['Bastien','Chérif','Christophe','Denis','Florent','Guillaume','Haifa','Jean-Baptiste','Jérémy','Jonathan','Kamel','Karim E.','Karim A.','Krimo','Léo','Mano','Manu','Morgan','Mourad','Omar','Quentin','Nabil','Rémy','Soufian','Stéphane','Victor','Yacin','Yannick'], required: true
+        .col-sm-4
+          =# form.input :second_coach_name, collection: ['Bastien','Chérif','Christophe','Denis','Florent','Guillaume','Haifa','Jean-Baptiste','Jérémy','Jonathan','Kamel','Karim E.','Karim A.','Krimo','Léo','Mano','Manu','Morgan','Mourad','Omar','Quentin','Nabil','Rémy','Soufian','Stéphane','Victor','Yacin','Yannick'], required: true
+      = form.input :comment, as: :text
+
+      = form.hidden_field :user_id, value: current_user.id
+      = form.submit "Envoyer", class: 'btn btn-success'

@@ -1,0 +1,16 @@
+%h1{align: "left", style: "font-size: 22px; color: #cfa161; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; margin: 15px 0; padding: 0;"}
+= t('.unsubscribe_request_notification_title')
+
+%ul
+  %li= @unsubscribe_request.firstname
+  %li= @unsubscribe_request.lastname
+  %li= @unsubscribe_request.phone
+  %li= @unsubscribe_request.email
+  %li= I18n.l(@unsubscribe_request.desired_date)
+  - if @unsubscribe_request.health_reason.present?
+    %li= UnsubscribeRequest.human_attribute_name(:health_reason)
+  - if @unsubscribe_request.moving_reason.present?
+    %li= UnsubscribeRequest.human_attribute_name(:moving_reason)
+  - if @unsubscribe_request.other_reason.present?
+    %li= UnsubscribeRequest.human_attribute_name(:other_reason)
+

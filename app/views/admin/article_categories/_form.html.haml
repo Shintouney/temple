@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-body
+    = simple_form_for @article_category, url: [:admin, @article_category] do |form|
+      = form.input :name, required: true, autofocus: true
+
+      = form.submit id: 'article_category_submit', class: 'btn btn-success'
+      = link_to t('.cancel_to_index'), admin_article_categories_path, class: 'btn btn-default'

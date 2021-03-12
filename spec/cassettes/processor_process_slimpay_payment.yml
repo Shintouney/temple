@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=1111222233334444&DATEVAL=0917&CVV=123&REFABONNE=&MONTANT=0000013487&DEVISE=978&VERSION=00104&TYPE=00056&DATEQ=03092015154432&NUMQUESTION=1154667578&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 03 Sep 2015 13:44:37 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '140'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: NUMTRANS=0000000000&NUMAPPEL=0000000000&NUMQUESTION=1154667578&SITE=1999888&RANG=99&AUTORISATION=&CODEREPONSE=00014&COMMENTAIRE=Invalid+data
+    http_version: 
+  recorded_at: Thu, 03 Sep 2015 13:44:38 GMT
+recorded_with: VCR 2.9.2

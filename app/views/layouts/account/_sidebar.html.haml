@@ -1,0 +1,89 @@
+%aside.fixed
+  .sidebar-inner.scrollable-sidebar
+    .main-menu
+      %ul
+        %li{class: active_link_to_class(account_root_path, active: :exclusive)}
+          = link_to account_root_path do
+            %span.menu-icon
+              %em.fas.fa-tachometer-alt.fa-lg
+            %span.text
+              = t('.dashboard')
+            %span.menu-hover
+        //- if current_user.has_access_to_planning? && current_user.active? && current_user.is_not_temporarily_suspended?
+        - if current_user.has_access_to_planning?
+          %li{class: active_link_to_class(account_lessons_path, active: :exclusive)}
+            = link_to account_lessons_path do
+              %span.menu-icon
+                %em.far.fa-calendar.fa-lg
+              %span.text
+                = t('.lessons')
+              %span.menu-hover
+        %li{class: active_link_to_class(new_account_lesson_request_path, active: :exclusive)}
+          = link_to new_account_lesson_request_path do
+            %span.menu-icon
+              %em.fa.fa-star.fa-lg
+            %span.text
+              = t('.lesson_request')
+            %span.menu-hover
+        %li{class: active_link_to_class(account_user_path, active: :exclusive)}
+          = link_to account_user_path do
+            %span.menu-icon
+              %em.fa.fa-user.fa-lg
+            %span.text
+              = t('.user')
+            %span.menu-hover
+        %li{class: active_link_to_class(account_invoices_path, active: :exclusive)}
+          = link_to account_invoices_path do
+            %span.menu-icon
+              %em.fas.fa-euro-sign.fa-lg
+            %span.text
+              = t('.invoices')
+            %span.menu-hover
+        %li{class: active_link_to_class(account_payment_means_path, active: :exclusive)}
+          = link_to account_payment_means_path do
+            %span.menu-icon
+              %em.far.fa-credit-card.fa-lg
+            %span.text
+              = t('.payments_means')
+            %span.menu-hover
+        %li{class: active_link_to_class(account_contact_path, active: :exclusive)}
+          = link_to account_contact_path do
+            %span.menu-icon
+              %em.far.fa-envelope.fa-lg
+            %span.text
+              = t('.contact')
+            %span.menu-hover
+        %li{class: active_link_to_class(new_account_sponsoring_request_path, active: :exclusive)}
+          = link_to new_account_sponsoring_request_path do
+            %span.menu-icon
+              %em.fa.fa-user.fa-lg
+            %span.text
+              = t('.sponsoring_request')
+            %span.menu-hover
+        %li
+          = link_to "http://temple-nobleart.com/evenements/", target: "_blank" do
+            %span.menu-icon
+              %em.fa.fa-paragraph.fa-lg
+            %span.text
+              = t('.actu_club')
+            %span.menu-hover
+        %li
+          = link_to "http://temple-nobleart.com/entreprises-le-concept/", target: "_blank" do
+            %span.menu-icon
+              %em.far.fa-building.fa-lg
+            %span.text
+              = t('.enterprise')
+            %span.menu-hover
+        %li.visible-xs-block
+          = link_to logout_path, method: "delete" do
+            %span.menu-icon
+              %em.fa.fa-power-off
+            %span.text
+              = t('.log_out')
+            %span.menu-hover
+
+    %ul.list-inline.text-center.aside-footer
+      %li
+        = link_to t('.cgv'), account_page_path('cgv')
+      %li
+        = link_to t('.rules'), account_page_path('rules')

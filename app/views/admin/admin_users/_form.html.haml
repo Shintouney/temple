@@ -1,0 +1,16 @@
+= form.input :email, required: true
+
+= form.input :lastname, required: true
+= form.input :firstname, required: true
+
+= form.input :password, required: true
+= form.input :password_confirmation, required: true
+
+= form.input :location, collection: ["moliere", "maillot", "amelot"], include_blank: false, required: true
+
+= form.input :card_reference, required: true
+
+.row
+  .col-sm-6
+    = form.submit id: 'admin_user_submit', class: 'btn btn-success'
+    = link_to t('.cancel'), admin_admin_users_path, class: 'btn btn-default'

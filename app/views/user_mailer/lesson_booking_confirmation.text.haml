@@ -1,0 +1,18 @@
+= t('.lesson_booking_confirmation', location: I18n.t("location.#{@lesson.location}"), date: I18n.l(@lesson.start_at, format: "%d/%m/%y"), start_at: I18n.l(@lesson.start_at, format: '%H:%M'), end_at: I18n.l(@lesson.end_at, format: '%H:%M'))
+\
+\
+= t('.welcome')
+\
+\
+= @lesson.activity
+\
+\
+= t('.reminder')
+\
+\
+= t('.cancel')
+\
+\
+= t('.thanks')
+\
+\

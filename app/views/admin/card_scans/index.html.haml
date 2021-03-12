@@ -1,0 +1,37 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title', period_start: l(@period_start.to_date), period_end: l(@period_end.to_date))
+
+  .panel.panel-default
+    %table#card_scans.table.table-striped.table-hover{data: {datatable: 'true', order: '[[ 2, "desc" ]]'}}
+      %thead
+        %tr
+          %th
+            = User.model_name.human
+          %th
+            = CardScan.human_attribute_name(:card_reference)
+          %th
+            = CardScan.human_attribute_name(:scanned_at)
+          %th
+            = CardScan.human_attribute_name(:scan_point)
+          %th
+            = CardScan.human_attribute_name(:accepted)
+          %th
+            = CardScan.human_attribute_name(:location)
+      %tbody
+        - @records.each do |card_scan|
+          %tr
+            %td
+              = card_scan.user.full_name
+            %td
+              = card_scan.card_reference
+            %td{data: {order: card_scan.scanned_at.to_i}}
+              = l card_scan.scanned_at, format: :full
+            %td
+              = card_scan.scan_point_text
+            %td
+              = boolean_icon(card_scan.accepted?)
+            %td
+              = card_scan.location == 'moliere' ? "Molière" : card_scan.location == 'maillot' ? "Maillot" : "Amelot"
+
+  != pagy_bootstrap_nav_js @pagy

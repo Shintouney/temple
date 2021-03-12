@@ -1,0 +1,24 @@
+
+.list-group-item{data: { export_type: export_type, subtype: subtype }}
+  = simple_form_for :export, url: admin_exports_path do |form|
+    = form.hidden_field :export_type, value: export_type
+    = form.hidden_field :subtype, value: subtype
+    = form.hidden_field :date_start
+    = form.hidden_field :date_end
+    %em{class: icon}
+    = title
+
+    %button.btn.btn-default.btn-xs.pull-right{ id: "#{ subtype }_#{export_type}s_export", title: t('.new_export_title') }
+      %em.fa.fa-download
+      = t('.new_export')
+
+  - if @current_exports && @current_exports.map(&:subtype).include?(subtype.to_s)
+    .progress{style: "margin-bottom: 3px;margin-top: 15px"} 
+      .progress-bar.progress-bar-striped.progress-bar-success.active{ id: "progress_#{subtype.to_s}", role: 'progressbar', style: 'width: 0%;', aria: { valuenow: 0, valuemin: 0, valuemax: 100 }, data: { id: export_of(subtype).try(:id) } }
+
+  %div{ id: "dl_#{subtype.to_s}_link_wrapper"}
+    - @exports.select{|export| export.subtype == subtype.to_s}.each do |export|
+      - if ::File.exists?(export.path)
+        = link_to admin_export_path(export), id: "dl_#{subtype}", class:'btn btn-block btn-primary btn-xs m-top-sm', style: "display: block" do
+          %em.far.fa-file-excel
+          != " #{export.filename} <small>(##{export.id})</small>"

@@ -1,0 +1,99 @@
+fr:
+  enumerize:
+    announce:
+      place:
+        all: Toutes les pages
+        dashboard: Tableau de bord
+    card_scan:
+      scan_point:
+        building_door_moliere: Molière - Entrée du bâtiment
+        front_door_moliere: Molière - Entrée du club
+        bar_entrance_moliere: Molière - Bar (entrée)
+        bar_exit_moliere: Molière - Bar (sortie)
+        building_door_maillot: Maillot - Entrée du bâtiment
+        front_door_maillot: Maillot - Entrée du club
+        bar_entrance_maillot: Maillot - Bar (entrée)
+        bar_exit_maillot: Maillot - Bar (sortie)
+        building_door_amelot: Amelot - Entrée du bâtiment
+        front_door_amelot: Amelot - Entrée du club
+        bar_entrance_amelot: Amelot - Bar (entrée)
+        bar_exit_amelot: Amelot - Bar (sortie)
+    user:
+      card_access:
+        authorized: Autorisé
+        forbidden: Interdit
+        forced_authorized: Autorisation forcée
+      role:
+        admin: "Administrateur"
+        staff: "Membre du staff"
+        user: "Membre"
+      gender:
+        male: M.
+        female: Mme
+    profile:
+      sports_practiced:
+        fitness: Fitness
+        tennis: Tennis
+        squash: Squash
+        golf: Golf
+        running: Course à pied
+        dance: Danse
+        collective_sports: Sports collectifs
+        combats: Sports de combat
+        other: Autre
+        none: Aucun
+      attendance_rate:
+        once_a_week: 1 fois par semaine
+        twice_per_week: 2 fois par semaine
+        more_than_twice_per_week: 3 fois par semaine ou plus
+      fitness_goals:
+        improved_cardio: Amélioration du cardio
+        build_up: Renforcement / développement musculaire
+        weight_loss: Perte de poids
+      boxing_disciplines_practiced:
+        english: Anglaise
+        french: Française
+        thai: Thaïlandaise
+        kickboxing: Pieds Poings (kickboxing)
+      boxing_level:
+        beginner: Débutant
+        medium: Intermédiaire
+        confirmed: Confirmé
+      boxing_disciplines_wished:
+        english: Anglaise
+        french: Française
+        thai: Thaïlandaise
+        kickboxing: Pieds Poings (kickboxing)
+        self_defense: Self Défense
+        dont_know: Je ne sais pas
+      attendance_periods:
+        weeks: En semaine
+        weekends: Le week-end
+      weekdays_attendance_hours:
+        before_nine_am: Le matin avant 9h
+        between_nine_and_twelve_am: Le matin entre 9h et 12h
+        between_twelve_and_two_pm: Le midi entre 12h et 14h
+        between_two_and_six_pm: L’après-midi entre 14h et 18h
+        between_six_and_nine_pm: En fin de journée entre 18h et 21h
+        after_nine_pm: En soirée, après 21h
+      weekend_attendance_hours:
+        saturday_morning: Le samedi matin
+        saturday_after_noon: Le samedi après-midi
+        sunday_morning: Le dimanche matin
+        sunday_after_noon: Le dimanche après-midi
+      transportation_means:
+        on_foot: A pied
+        public_transport: En transports en commun
+        own_vehicule: Avec votre véhicule
+    lesson: &lesson_attributes
+      room:
+        ring: Ring Débutants (avec opposition)
+        ring_no_opposition: Ring (sans opposition)
+        ring_no_opposition_advanced: Ring Confirmés (avec opposition)
+        ring_feet_and_fist: Ring Pieds-Poings (avec opposition)
+        training: Sacs (sans opposition)
+        arsenal: Arsenal (sans opposition)
+    lesson_template:
+      <<: *lesson_attributes
+    lesson_draft:
+      <<: *lesson_attributes

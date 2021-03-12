@@ -1,0 +1,7 @@
+fr:
+  unsubscribe_requests:
+    new:
+      submit: "Envoyer"
+      title: "Vous souhaitez résilier votre abonnement au Temple | Noble Art. Nous vous invitons à remplir le formulaire ci-dessous."
+    show:
+      title: "Votre demande de résiliation a bien été prise en compte et sera traitée dans un délai de 7 jours ouvrés"

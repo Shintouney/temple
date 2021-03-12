@@ -1,0 +1,18 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+    = image_tag 'logo-temple-login.jpg', class: 'fadeInUp animation-delay1 login-logo'
+    .panel.panel-brown
+      .panel-heading
+        %h3.panel-title
+          = t('.title')
+      = form_for :reset_password_request, url: password_path do |form|
+        .panel-body
+          = flash_content(flash) if flash.any?
+          .input-group
+            %span.input-group-addon
+              %em.far.fa-envelope
+            = form.label :email, class: 'sr-only'
+            = form.email_field :email, label: false, required: true, autofocus: true, placeholder: User.human_attribute_name(:email), class: 'form-control', autocomplete: 'off'
+          .text-right.m-top-md
+            = link_to t('.cancel'), :login, class: 'btn btn-default'
+            = form.button t('.submit'), id: 'new_password_submit', class: 'btn btn-brown'

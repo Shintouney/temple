@@ -1,0 +1,62 @@
+.modal-header
+  %button{ type: 'button', class: 'close', data: { dismiss: 'modal'} }
+    %span{"aria-hidden" => "true"} &times
+    %span.sr-only= t('.close')
+  %h4.modal-title
+    = t('.title')
+= simple_form_for @lesson, url: [:admin, @lesson], html: {class: 'remote_lesson_form'}, remote: true do |form|
+  .modal-body.no-padding
+    %ul.tab-bar.grey-tab
+      %li.active
+        = link_to t('.the_lesson'),'#lesson_form', data: { toggle: 'tab'}
+      %li
+        = link_to t('.participants'),'#lesson_users', data: { toggle: 'tab'}
+    .tab-content
+      #lesson_form.tab-pane.fade.in.active.padding-md
+        = render partial: 'form', object: form, locals: { input_disabled: !@lesson.upcoming? }
+      #lesson_users.tab-pane.fade
+        - if @lesson.lesson_bookings.any?
+          %table.table.table-striped.table-hover
+            %thead
+              %tr
+                %th
+                  &nbsp;
+                %th
+                  = User.human_attribute_name(:lastname)
+                %th
+                  = User.human_attribute_name(:firstname)
+                %th.text-center
+                  = t('.tryout')
+                %th.text-right{data: {orderable: 'false'}}
+                  = t('.actions')
+            %tbody
+              - @lesson.lesson_bookings.each do |lesson_booking|
+                %tr
+                  %td
+                    = lesson_booking.user.profile_image_miniature
+                  %td
+                    = lesson_booking.user.lastname
+                  %td
+                    = lesson_booking.user.firstname
+                  %td.text-center
+                    - tryout = lesson_booking.user.current_subscription.blank? ? false : (lesson_booking.user.current_subscription.start_at < (Time.now - 1.month))
+                    %em.fa.fa-lg{ class: tryout ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'}
+                  %td.text-right
+                    = link_to admin_user_path(lesson_booking.user), title: t('.show_link'), id: dom_id(lesson_booking.user, :show), class: 'btn btn-default btn-sm', target: '_blank' do
+                      %em.far.fa-eye
+        - else
+          %p.text-center.p-top-md
+            %b
+              = t('.no_participants_yet')
+
+  .modal-footer
+    - if @lesson.upcoming?
+      = form.button :button, t('admin.lessons.shared.cancel'), id: 'lesson_cancel', class: 'btn-default', data: { dismiss: 'modal' }, type: 'button'
+      = link_to admin_lesson_path(@lesson), method: :delete, id: dom_id(@lesson, :destroy), data: { confirm: t('.destroy_link_confirm') }, remote: true, class: 'btn btn-danger lesson_destroy_link' do
+        %em.far.fa-trash-alt
+        = t('.destroy_link')
+      = form.submit t('helpers.submit.update'), id: 'lesson_submit', class: 'btn btn-success'
+    - else
+      %p.alert.alert-info.text-left
+        = t('.lesson_finished')
+      = form.button :button, t('.back'), id: 'lesson_cancel', class: 'btn-default', data: { dismiss: 'modal' }, type: 'button'

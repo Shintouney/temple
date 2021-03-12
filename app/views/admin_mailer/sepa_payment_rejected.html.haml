@@ -1,0 +1,12 @@
+%p{align: "left", style: "color: #222222; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"}
+  = t('.sepa_payment_rejected')
+%p{align: "left", style: "color: #222222; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"}
+%h1
+  = t('.payment_id')
+  = @payment.id
+
+= t('.slimpay_id')
+= @payment.slimpay_direct_debit_id
+
+= t('.slimpay_status')
+= @payment.slimpay_status

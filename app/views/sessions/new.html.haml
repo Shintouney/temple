@@ -1,0 +1,30 @@
+.row
+  .col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+    = image_tag 'logo-temple-login.jpg', class: 'fadeInUp animation-delay1 login-logo'
+    .panel.panel-brown
+      .panel-heading
+        %h3.panel-title
+          = t('.title')
+      = form_for :session, url: sessions_path do |form|
+        .panel-body
+          = flash_content(flash) if flash.any?
+          .input-group
+            %span.input-group-addon
+              %em.fa.fa-user
+            = form.label :email, class: 'sr-only'
+            = form.email_field :email, required: true, autofocus: true, placeholder: User.human_attribute_name(:email), value: params[:session][:email], class: 'form-control'
+          %br
+          .input-group
+            %span.input-group-addon
+              %em.fa.fa-lock
+            = form.label :password, class: 'sr-only'
+            = form.password_field :password, required: true, placeholder: User.human_attribute_name(:password),class: 'form-control'
+          = form.hidden_field :remember_me, value: 1
+          %br
+          .row
+            .col-xs-6.col-sm-6
+              .p-top-sm
+                %small
+                  = link_to t('.new_password_link'), new_password_path
+            .col-xs-6.col-sm-6.text-right
+              = form.submit t('.submit'), class: 'btn btn-brown'

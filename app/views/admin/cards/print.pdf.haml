@@ -1,0 +1,17 @@
+!!!5
+%head
+  %meta{charset: "utf-8"}
+  - if params.key?('debug')
+    = stylesheet_link_tag asset_data_base64("card_print.css")
+  - else
+    = wicked_pdf_stylesheet_link_tag "card_print.css"
+%body
+  #card-layout
+    #card-informations
+      - if @user.profile_user_image.present?
+        - if params.key?('debug')
+          = image_tag(@user.profile_user_image.image.url(:card), class: 'img-rounded')
+        - else
+          = wicked_pdf_image_tag(@user.profile_user_image.image.url(:card), class: 'img-rounded')
+      #user-name
+        = "#{@user.lastname}&nbsp;#{@user.firstname}".html_safe

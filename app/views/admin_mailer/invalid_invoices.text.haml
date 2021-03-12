@@ -1,0 +1,5 @@
+= t('.invalid_invoices')
+\
+- @invoices.each do |invoice|
+  = admin_user_invoice_url(invoice.user, invoice)
+  \

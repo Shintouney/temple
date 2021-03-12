@@ -1,0 +1,48 @@
+.padding-md
+  = render "layouts/account/announces", announces: @current_announces
+  %h4.headline.m-top-none
+    = t('.title')
+    %span.label.label-success
+      = @announces.length
+
+    = link_to new_admin_announce_path, class: 'btn btn-success btn-xs pull-right' do
+      %em.fa.fa-plus
+      = t('.new_link')
+
+  .panel.panel-default
+    .table-responsive
+      %table.table.table-striped.table-hover{ data: {datatable: 'true'}}
+        %thead
+          %tr
+            %th= t('.content')
+            %th= t('.file')
+            %th= t('.link_to')
+            %th= t('.start_at')
+            %th= t('.end_at')
+            %th= t('.place')
+            %th= t('.status')
+            %th= t('.active')
+            %th.text-right{data: {orderable: 'false'}}
+              = t('.actions')
+        %tbody
+          - @announces.each do |announce|
+            %tr
+              %td
+                = truncate(strip_tags(announce.content), length: 30)
+              %td
+                = image_tag(announce.file, width: 100) if announce.file.present?
+              %td
+                = announce.target_link
+                -if announce.external_link?
+                  = icon('fas', 'external-link-alt')
+              %td= time_tag announce.start_at, format: :default if announce.start_at.present?
+              %td= time_tag announce.end_at, format: :default if announce.end_at.present?
+              %td= announce.place_tag
+              %td= announce.state
+              %td= announce.active_tag
+              %td.text-right
+                .btn-group.btn-group-sm
+                  = link_to edit_admin_announce_path(announce), title: t('.edit_link'), id: dom_id(Announce.find(announce.id), :edit), class: 'btn btn-default' do
+                    %em.far.fa-edit
+                  = link_to admin_announce_path(announce), method: :delete, id: dom_id(Announce.find(announce.id), :destroy), title: t('.destroy_link'), data: { confirm: t('.destroy_link_confirm') }, class: 'btn btn-danger' do
+                    %em.far.fa-trash-alt

@@ -1,0 +1,139 @@
+%aside.fixed
+  .sidebar-inner.scrollable-sidebar
+    .main-menu
+      %ul
+        %li{class: active_link_to_class(admin_root_path, active: /\/admin\z/)}
+          = link_to admin_root_path do
+            %span.menu-icon
+              %em.fas.fa-tachometer-alt.fa-lg
+            %span.text
+              = t('.dashboard')
+            %span.menu-hover
+        - if current_user.admin?
+          %li{class: active_link_to_class(admin_admin_users_path)}
+            = link_to admin_admin_users_path do
+              %span.menu-icon
+                %em.fa.fa-users.fa-lg
+              %span.text
+                = t('.admin_users')
+            %span.menu-hover
+        %li{class: active_link_to_class(admin_staff_users_path)}
+          = link_to admin_staff_users_path do
+            %span.menu-icon
+              %em.fa.fa-users.fa-lg
+            %span.text
+              = t('.staff_users')
+            %span.menu-hover
+        %li.openable{class: active_link_to_class(active_admin_users_path, active: /\/admin\/users.*/)}
+          = link_to '#' do
+            %span.menu-icon
+              %em.fa.fa-users.fa-lg
+            %span.text
+              = t('.users')
+            %span.menu-hover
+          %ul.submenu{class: active_link_to_class(active_admin_users_path, active: /\/admin\/users.*/, class_active: 'block')}
+            %li{class: active_link_to_class(new_admin_user_path)}
+              = link_to new_admin_user_path do
+                %span.submenu-label
+                  = t('.new_user')
+            %li{class: active_link_to_class(active_admin_users_path)}
+              = link_to active_admin_users_path do
+                %span.submenu-label
+                  = t('.active_users')
+            %li{class: active_link_to_class(inactive_admin_users_path)}
+              = link_to inactive_admin_users_path do
+                %span.submenu-label
+                  = t('.inactive_users')
+            %li{class: active_link_to_class(red_list_admin_users_path)}
+              = link_to red_list_admin_users_path do
+                %span.submenu-label
+                  = t('.red_list_users')
+            %li{class: active_link_to_class(temporarily_suspended_users_admin_users_path)}
+              = link_to temporarily_suspended_users_admin_users_path do
+                %span.submenu-label
+                  = t('.temporarily_suspended_users')
+
+        %li.openable{class: active_link_to_class(admin_card_scans_path, active: /(\/admin\/visits|\/admin\/card_scans)/)}
+          = link_to '#' do
+            %span.menu-icon
+              %em.far.fa-building.fa-lg
+            %span.text
+              = t('.user_logs')
+            %span.menu-hover
+          %ul.submenu{class: active_link_to_class(admin_card_scans_path, active: /(\/admin\/visits|\/admin\/card_scans)/, class_active: 'block')}
+            %li{class: active_link_to_class(logs_admin_visits_path)}
+              = link_to logs_admin_visits_path do
+                %span.submenu-label
+                  = t('.visits')
+            %li{class: active_link_to_class(admin_card_scans_path)}
+              = link_to admin_card_scans_path do
+                %span.submenu-label
+                  = t('.card_scans')
+        %li.openable{class: active_link_to_class(admin_articles_path, active: [['admin/articles', 'admin/article_categories'], []])}
+          = link_to '#' do
+            %span.menu-icon
+              %em.fa.fa-barcode.fa-lg
+            %span.text
+              = t('.articles')
+            %span.menu-hover
+          %ul.submenu{class: active_link_to_class(admin_articles_path, active: [['admin/articles', 'admin/article_categories'], []], class_active: 'block')}
+            %li{class: active_link_to_class(admin_articles_path)}
+              = link_to admin_articles_path do
+                %span.submenu-label
+                  = t('.items_list')
+            %li{class: active_link_to_class(admin_article_categories_path)}
+              = link_to admin_article_categories_path do
+                %span.submenu-label
+                  = t('.categories_list')
+        %li.openable{class: active_link_to_class(admin_lessons_path, active: [['admin/lessons', 'admin/lesson_templates', 'admin/lesson_drafts'], []])}
+          = link_to '#' do
+            %span.menu-icon
+              %em.fas.fa-calendar-alt.fa-lg
+            %span.text
+              = t('.schedules')
+            %span.menu-hover
+          %ul.submenu{class: active_link_to_class(admin_lessons_path, active: [['admin/lessons', 'admin/lesson_templates', 'admin/lesson_drafts'], []], class_active: 'block')}
+            %li{class: active_link_to_class(admin_lessons_path)}
+              = link_to admin_lessons_path do
+                %span.submenu-label
+                  = t('.lessons')
+            %li{class: active_link_to_class(admin_lesson_templates_path)}
+              = link_to admin_lesson_templates_path do
+                %span.submenu-label
+                  = t('.lesson_templates')
+            %li{class: active_link_to_class(admin_lesson_drafts_path)}
+              = link_to admin_lesson_drafts_path do
+                %span.submenu-label
+                  = t('.lesson_drafts')
+
+        %li.openable{class: active_link_to_class(admin_announces_path, active: [['admin/annouces', 'admin/groups'], []])}
+          = link_to '#' do
+            %span.menu-icon
+              %em.fa.fa-bullhorn.fa-lg
+            %span.text
+              = t('.communication')
+            %span.menu-hover
+          %ul.submenu{class: active_link_to_class(admin_announces_path, active: [['admin/announces', 'admin/groups'], []], class_active: 'block')}
+            %li{class: active_link_to_class(admin_announces_path)}
+              = link_to admin_announces_path do
+                %span.submenu-label
+                  = t('.announces')
+            %li{class: active_link_to_class(admin_groups_path)}
+              = link_to admin_groups_path do
+                %span.submenu-label
+                  = t('.groups')
+
+        %li{class: active_link_to_class(admin_subscription_plans_path)}
+          = link_to admin_subscription_plans_path do
+            %span.menu-icon
+              %em.fas.fa-ticket-alt.fa-lg
+            %span.text
+              = t('.subscription_plans')
+            %span.menu-hover
+        %li{class: active_link_to_class(admin_exports_path)}
+          = link_to admin_exports_path do
+            %span.menu-icon
+              %em.fa.fa-download.fa-lg
+            %span.text
+              = t('.exports')
+            %span.menu-hover

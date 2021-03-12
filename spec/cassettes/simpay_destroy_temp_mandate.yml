@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pugilinvest01:aysxdcfvgb@api-sandbox.slimpay.net/oauth/token
+    body:
+      encoding: UTF-8
+      string: grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Jan 2016 17:26:34 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Etag:
+      - '"0ef478924d541b62060ca7455ccb4b1ff"'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '129'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "access_token" : "485fc44f-f150-413f-825e-a03512af020d",
+          "token_type" : "bearer",
+          "expires_in" : 999,
+          "scope" : "api"
+        }
+    http_version: 
+  recorded_at: Tue, 05 Jan 2016 17:26:27 GMT
+- request:
+    method: get
+    uri: https://api-sandbox.slimpay.net/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer 485fc44f-f150-413f-825e-a03512af020d
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Jan 2016 17:26:34 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Etag:
+      - '"0852fb3063430d420b903e9ab98a47592"'
+      Content-Type:
+      - application/hal+json;profile="https://api.slimpay.net/alps/v1"
+      Content-Length:
+      - '2532'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"_links":{"self":{"href":"https://api-sandbox.slimpay.net/"},"https://api.slimpay.net/alps#post-token":{"href":"https://api-sandbox.slimpay.net/oauth/token"},"https://api.slimpay.net/alps#create-orders":{"href":"https://api-sandbox.slimpay.net/orders"},"https://api.slimpay.net/alps#get-orders":{"href":"https://api-sandbox.slimpay.net/orders{?creditorReference,reference}","templated":true},"https://api.slimpay.net/alps#get-creditors":{"href":"https://api-sandbox.slimpay.net/creditors{?reference}","templated":true},"https://api.slimpay.net/alps#create-mandates":{"href":"https://api-sandbox.slimpay.net/mandates"},"https://api.slimpay.net/alps#get-mandates":{"href":"https://api-sandbox.slimpay.net/mandates{?creditorReference,rum,id}","templated":true},"https://api.slimpay.net/alps#create-documents":{"href":"https://api-sandbox.slimpay.net/documents"},"https://api.slimpay.net/alps#get-documents":{"href":"https://api-sandbox.slimpay.net/documents{?creditorReference,entityReference,reference}","templated":true},"https://api.slimpay.net/alps#create-direct-debits":{"href":"https://api-sandbox.slimpay.net/direct-debits"},"https://api.slimpay.net/alps#get-direct-debits":{"href":"https://api-sandbox.slimpay.net/direct-debits{?id}","templated":true},"https://api.slimpay.net/alps#search-direct-debit-issues":{"href":"https://api-sandbox.slimpay.net/direct-debit-issues{?creditorReference,entityReference,subscriberReference,dateCreatedBefore,dateCreatedAfter}","templated":true},"https://api.slimpay.net/alps#get-direct-debit-issues":{"href":"https://api-sandbox.slimpay.net/direct-debit-issues{?id}","templated":true},"https://api.slimpay.net/alps#create-recurrent-direct-debits":{"href":"https://api-sandbox.slimpay.net/recurrent-direct-debits"},"https://api.slimpay.net/alps#get-recurrent-direct-debits":{"href":"https://api-sandbox.slimpay.net/recurrent-direct-debits{?id}","templated":true},"https://api.slimpay.net/alps#get-card-transactions":{"href":"https://api-sandbox.slimpay.net/card-transactions{?id}","templated":true},"https://api.slimpay.net/alps#get-card-aliases":{"href":"https://api-sandbox.slimpay.net/card-aliases{?id}","templated":true},"https://api.slimpay.net/alps#get-recurrent-card-transactions":{"href":"https://api-sandbox.slimpay.net/recurrent-card-transactions{?id}","templated":true},"https://api.slimpay.net/alps#get-card-transaction-issues":{"href":"https://api-sandbox.slimpay.net/card-transaction-issues{?id}","templated":true},"profile":{"href":"https://api-sandbox.slimpay.net/alps/v1"}}}'
+    http_version: 
+  recorded_at: Tue, 05 Jan 2016 17:26:27 GMT
+- request:
+    method: get
+    uri: https://api-sandbox.slimpay.net/orders?creditorReference=pugilinvest&reference=8b57a695-4bd6-11e5-a8f5-0744bb4e3cd4
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer 485fc44f-f150-413f-825e-a03512af020d
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 05 Jan 2016 17:26:34 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Etag:
+      - '"081e398d77c4a29930434f9314a849614"'
+      Content-Type:
+      - application/hal+json;profile="https://api.slimpay.net/alps/v1"
+      Content-Length:
+      - '967'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"_links":{"self":{"href":"https://api-sandbox.slimpay.net/creditors/pugilinvest/orders/8b57a695-4bd6-11e5-a8f5-0744bb4e3cd4"},"https://api.slimpay.net/alps#get-creditor":{"href":"https://api-sandbox.slimpay.net/creditors/pugilinvest"},"https://api.slimpay.net/alps#get-subscriber":{"href":"https://api-sandbox.slimpay.net/creditors/pugilinvest/orders/8b57a695-4bd6-11e5-a8f5-0744bb4e3cd4/subscribers/152"},"https://api.slimpay.net/alps#user-approval":{"href":"https://slimpay.net/slimpaytpe16/userApproval?accessCode=spIkqTEZLNs8UeZf2XGA7dz2o7KJAxK5hgJWtToWYPWKf5ij5woOmnM3LeWheE"},"https://api.slimpay.net/alps#get-order-items":{"href":"https://api-sandbox.slimpay.net/creditors/pugilinvest/orders/8b57a695-4bd6-11e5-a8f5-0744bb4e3cd4/items"}},"reference":"8b57a695-4bd6-11e5-a8f5-0744bb4e3cd4","state":"closed.aborted.aborted_byclient","started":true,"dateCreated":"2015-08-26T09:40:53.000+0000","dateModified":"2015-08-26T09:40:55.000+0000","mandateReused":false}'
+    http_version: 
+  recorded_at: Tue, 05 Jan 2016 17:26:28 GMT
+recorded_with: VCR 2.9.2

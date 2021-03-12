@@ -1,0 +1,320 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= depend_on_asset "jquery-ui/ui-bg_glass_75_ffffff_1x400.png"
+ *= depend_on_asset "jquery-ui/ui-icons_222222_256x240.png"
+ *= depend_on_asset "jquery-ui/ui-icons_888888_256x240.png"
+ *= depend_on_asset "jquery-ui/ui-icons_454545_256x240.png"
+ *= depend_on_asset "jquery-ui/ui-icons_2e83ff_256x240.png"
+ *= depend_on_asset "jquery-ui/ui-icons_f6cf3b_256x240.png"
+ *= depend_on_asset "jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png"
+ */
+
+$brown: #CFA161;
+$input-bg: #000;
+$input-color: #fff;
+$input-border: #67491f;
+$link-color: $brown;
+$input-group-addon-bg: $brown;
+$input-group-addon-border-color: $brown;
+
+@import "bootstrap-compass";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'endless/endless-login';
+@import 'jqueryui/jquery-ui-1.10.0.custom';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+
+
+/* =============================================================================
+   FRONT
+   ========================================================================== */
+body{
+  background: #262626;
+  color: #fff;
+}
+
+h1,
+h2,
+h3,
+.h2{
+  color: $brown;
+}
+
+
+a{
+  color: $link-color;
+  &:hover{
+    color: darken($link-color, 15%);
+  }
+}
+
+.application-front{
+  padding: 0 30px 0 290px ;
+}
+
+.left-sidebar{
+  position: fixed;
+  width: 260px;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+}
+
+.left-sidebar-logo{
+  width: 200px;
+  height: 200px;
+  display:block;
+  margin: 36px auto;
+}
+
+.left-sidebarlogo-sm{
+  width: 80px;
+  height: 80px;
+  display: none;
+}
+
+.left-sidebar-footer{
+  position: absolute;
+  bottom:0;
+  width:100%;
+  color: $brown;
+  a{
+    color: $brown;
+  }
+  hr{
+    border-color: $brown;
+  }
+}
+
+.top-bar{
+  display: none;
+  position: fixed;
+  z-index:1000;
+  height: 50px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #67491f;
+  background: #000;
+}
+
+.top-bar-logo{
+  display: block;
+  width: 140px;
+  height: 40px;
+  margin: 5px auto 0 auto;
+}
+
+@media (max-width: 1100px) {
+  .application-front{
+    padding: 0 30px 0 120px;
+  }
+
+  .left-sidebar{
+    width: 90px;
+  }
+
+  .left-sidebar-logo{
+    display: none
+  }
+
+  .left-sidebarlogo-sm{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    display:block;
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 768px){
+  .application-front{
+    padding: 60px 20px 0 20px;
+  }
+
+  .left-sidebar{
+    display: none;
+  }
+
+  .top-bar{
+    display: block;
+  }
+}
+
+/* =============================================================================
+   Unsubscribe Request
+   ========================================================================== */
+.unsubscribe_form{
+  color: #777;
+  font-family: "Open Sans","sans-serif";
+  input[type="text"] {
+    background-color : #EEE;
+    border-color: #CCC;
+  }
+  input[type="tel"] {
+    background-color : #EEE;
+    border-color: #CCC;
+    color: #808080;
+  }
+  input[type="email"] {
+    background-color : #EEE;
+    border-color: #CCC;
+    color: #808080;
+  }
+}
+
+/* =============================================================================
+   LOGO
+   ========================================================================== */
+.top-nav-logo{
+  float: right;
+  width: 160px;
+  margin-top: 20px;
+}
+
+.login-logo{
+	display:block;
+	margin: 20px auto;
+	width: 200px;
+	height: 200px;
+}
+
+.cross-text{
+  text-decoration: line-through;
+}
+
+.payment-way{
+  .radio-inline{
+    padding: 0 10px;
+    margin-bottom: 20px;
+    input[type="radio"]{
+     float:none;
+      margin-left: 0;
+    }
+  }
+}
+
+.payment-way-icon{
+  width: 60px;
+  margin-bottom: 5px;
+}
+
+/* =============================================================================
+   BOOTSTRAP EXTENDS
+   ========================================================================== */
+.page-header{
+  margin: 20px 0 0 0;
+  border:none;
+}
+
+ul{
+  padding-left: 40px;
+}
+
+.btn-brown {
+  @include button-variant(#000, $brown, #67491f);
+}
+
+.panel-brown {
+  @include panel-variant(#67491f, #000, $brown, #67491f);
+  background: #262626;
+  label{
+    font-weight: normal;
+  }
+
+  .panel-footer{
+    background: none;
+    border-color: #67491f;
+  }
+}
+
+input[type="text"], input[type="password"]{
+    border-color: #67491f;
+  }
+
+.modal-body{
+  color: #000;
+  textarea, input[type="text"]{
+    background: #fff;
+    color: #222;
+  }
+}
+
+/* =============================================================================
+   PRICE
+   ========================================================================== */
+.cursor-default{
+  cursor: default;
+}
+
+/* =============================================================================
+   SOCIAL SHARE BUTTON
+   ========================================================================== */
+.social-share-button{
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  a{
+    font-family: fontawesome;
+    font-size: 2em;
+  }
+}
+
+.social-share-button-twitter:after{ content: "\f081";}
+.social-share-button-facebook:after{ content: "\f082";}
+.social-share-button-google_plus:after{ content: "\f0d4";}
+.social-share-button-email:after{ content: "\f199";}
+
+/* =============================================================================
+   VERTICAL ALIGN
+   ========================================================================== */
+.vertical-align{
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+}
+
+/* =============================================================================
+   MEDIA $screen-xs-max
+   ========================================================================== */
+
+@media (max-width: $screen-xs-max) {
+
+  .top-nav-logo{
+    display:block;
+    float:none;
+    margin: 20px auto 0 auto;
+  }
+
+  .page-header{
+    margin-top: 0px;
+  }
+
+  .vertical-align{
+    position:relative;
+    top:auto;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(-0);
+    transform: translateY(0);
+  }
+
+}
+
+

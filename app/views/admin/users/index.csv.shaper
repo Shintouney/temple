@@ -1,0 +1,104 @@
+csv.headers do |csv|
+  user_columns = [
+    :id,
+    :email,
+    :created_at,
+    :last_subscription_end_at,
+    :commitment_period_end_at,
+    :firstname,
+    :lastname,
+    :street1,
+    :street2,
+    :postal_code,
+    :city,
+    :phone,
+    :birthdate,
+    :gender,
+    :card_reference,
+    :sponsor_id,
+    :facebook_url,
+    :linkedin_url,
+    :professional_sector,
+    :position,
+    :company,
+    :professional_address,
+    :professional_zipcode,
+    :professional_city,
+    :education,
+    :heard_about_temple_from
+  ]
+
+  profile_columns = [
+    :sports_practiced,
+    :attendance_rate,
+    :fitness_goals,
+    :boxing_disciplines_practiced,
+    :boxing_level,
+    :boxing_disciplines_wished,
+    :attendance_periods,
+    :weekdays_attendance_hours,
+    :weekend_attendance_hours,
+    :transportation_means
+  ]
+
+  csv.columns *user_columns+profile_columns
+  csv.mappings Hash[
+              user_columns.map { |column_name| [column_name, User.human_attribute_name(column_name)] } +
+              profile_columns.map { |column_name| [column_name, Profile.human_attribute_name(column_name)] }
+            ]
+end
+
+csv.rows @users do |csv, user|
+  csv.cells :id,
+            :email,
+            :firstname,
+            :lastname,
+            :street1,
+            :street2,
+            :postal_code,
+            :city,
+            :phone,
+            :card_reference,
+            :facebook_url,
+            :linkedin_url,
+            :professional_sector,
+            :position,
+            :company,
+            :professional_address,
+            :education,
+            :heard_about_temple_from,
+            :professional_zipcode,
+            :professional_city
+
+  csv.cell :created_at, l(user.created_at)
+  if user.current_subscription.present?
+    csv.cell :commitment_period_end_at, user.current_subscription.commitment_period
+  else
+    csv.cell :last_subscription_end_at, l(user.subscriptions.last.try(:decorate).try(:updated_at))
+    csv.cell :commitment_period_end_at, user.subscriptions.last.try(:decorate).try(:commitment_period)
+  end
+  csv.cell :birthdate, l(user.birthdate) if user.birthdate.present?
+  csv.cell :gender, user.gender_text if user.gender.present?
+
+  if user.profile.present?
+    csv.cell :attendance_rate, user.profile.attendance_rate.text if user.profile.attendance_rate.present?
+    csv.cell :boxing_level, user.profile.boxing_level.text if user.profile.boxing_level.present?
+
+    [ :sports_practiced,
+      :fitness_goals,
+      :boxing_disciplines_practiced,
+      :boxing_disciplines_wished,
+      :attendance_periods,
+      :weekdays_attendance_hours,
+      :weekend_attendance_hours,
+      :transportation_means ].each do |attribute|
+      if user.profile.public_send(attribute).present?
+        csv.cell attribute, user.profile.public_send(attribute).map(&:text).join(", ")
+      end
+    end
+  end
+
+  if user.sponsor.present?
+    csv.cell :sponsor_id, user.sponsor.email
+  end
+end

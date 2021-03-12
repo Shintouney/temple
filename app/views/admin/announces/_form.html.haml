@@ -1,0 +1,40 @@
+= form.input :content
+
+- if form.object.file.present?
+  .row
+    .col-sm-6
+      = form.input :file
+    .col-sm-6
+      = image_tag(form.object.file, width: 100, class: 'announce_file img-thumbnail') if form.object.file.present?
+- else
+  = form.input :file
+
+= form.input :target_link, wrapper: :vertical_input_group do
+  %span.input-group-addon https://
+  = form.input_field :target_link, class: "form-control"
+  %span.input-group-addon
+    %label.checkbox-inline
+      = form.input_field :external_link, disabled: form.object.target_link.blank?, boolean_style: :inline
+      = t('.external_link')
+
+= form.select :group_id, options_for_select( Group.all.map{ |g| ["#{g.name} / #{g.users.count} Membres", g.id] }, {selected: form.object.group_id })
+
+.row.m-bottom-sm
+  .col-sm-6
+    = form.input :start_at, as: :datepicker
+    %span.text-info= icon('fas', 'info-circle')
+    %span= t('.dates_needed_info')
+  .col-sm-6
+    = form.input :end_at, as: :datepicker
+
+.row
+  .col-sm-6
+    %label
+      = t('.place')
+    = form.input :place, label: false, as: :radio_buttons, item_wrapper_class: 'radio-inline inline', wrapper_class: 'm-top-xs'
+  .col-sm-6
+    = form.input :active, wrapper: :checkbox do
+      = form.input_field :active, boolean_style: :inline
+%hr
+= form.submit id: 'admin_announce_submit', class: 'btn btn-success'
+= link_to t('.cancel'), admin_announces_path, class: 'btn btn-default'

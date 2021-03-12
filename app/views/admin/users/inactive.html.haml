@@ -1,0 +1,19 @@
+.padding-md
+  %h4.headline.m-top-none
+    = t('.title')
+    %span.label.label-success
+      = @users.length
+  .panel.panel-default
+    %table#userInactiveTable.table.table-striped.table-hover.dt-responsive.nowrap{ data: { ajax: inactive_admin_users_path, order: '[[ 1, "asc" ]]', responsive: true }}
+      %thead
+        %tr
+          %th
+            = User.human_attribute_name(:lastname)
+          %th
+            = User.human_attribute_name(:firstname)
+          %th
+            = User.human_attribute_name(:email)
+          %th.text-right{data: {orderable: 'false'}}
+            = t('admin.users.index.actions')
+
+

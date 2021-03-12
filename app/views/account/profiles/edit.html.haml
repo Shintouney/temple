@@ -1,0 +1,62 @@
+%h4.headline
+  = t('.title')
+.panel.panel-default
+  .panel-body
+    = simple_form_for @profile, url: account_profile_path, method: :put do |form|
+
+      = form.simple_fields_for :user, @profile.user, include_id: false do |user_form|
+        %h4= t('.personnal_infos')
+        %hr
+        = user_form.input :professional_sector
+        = user_form.input :position
+        = user_form.input :company
+        = user_form.input :professional_address
+        = user_form.input :professional_zipcode
+        = user_form.input :professional_city
+        = user_form.input :education
+        = user_form.input :facebook_url
+        = user_form.input :linkedin_url
+        = user_form.input :heard_about_temple_from
+
+      %h4= t('.your_sport')
+      %hr
+      = form.label :sports_practiced
+      .row
+        .col-sm-6
+          = form.input :sports_practiced, :as => :check_boxes, collection: Profile.sports_practiced.options.to(4), label: false
+        .col-sm-6
+          = form.input :sports_practiced, :as => :check_boxes, collection: Profile.sports_practiced.options.from(5), label: false
+
+      %h4= t('.your_objectives')
+      %hr
+      .row
+        .col-sm-6
+          = form.input :attendance_rate, as: :radio_buttons
+        .col-sm-6
+          = form.input :fitness_goals, as: :check_boxes
+
+      %h4= t('.boxing_knowledge')
+      %hr
+      .row
+        .col-sm-6
+          = form.input :boxing_level, as: :radio_buttons
+          = form.input :boxing_disciplines_practiced, as: :check_boxes
+        .col-sm-6
+          = form.input :boxing_disciplines_wished, as: :check_boxes
+
+      %h4= t('.plan_to_come')
+      %hr
+      .row
+        .col-sm-4
+          = form.input :attendance_periods, as: :check_boxes
+          = form.input :transportation_means, as: :check_boxes
+        .col-sm-4
+          = form.input :weekdays_attendance_hours, as: :check_boxes
+        .col-sm-4
+          = form.input :weekend_attendance_hours, as: :check_boxes
+      %hr
+        = form.submit id: 'profile_submit', class: 'btn btn-success'
+
+%p.text-justify
+  %small
+    = t('.director_words')

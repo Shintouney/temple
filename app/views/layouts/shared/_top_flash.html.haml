@@ -1,0 +1,8 @@
+- if flash.any?
+  #flash
+    - {alert: 'alert-warning', notice: 'alert-info'}.map do |flash_key, css_class|
+      - if flash[flash_key]
+        .alert.alert-dismissable.fade.in{class: css_class}
+          %button.close{ type: 'button', data: { dismiss: 'alert'}, 'aria-hidden' => 'true' }
+            &times;
+          = flash[flash_key]

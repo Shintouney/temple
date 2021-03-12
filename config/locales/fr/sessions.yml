@@ -1,0 +1,6 @@
+fr:
+  sessions:
+    new:
+      new_password_link: "Mot de passe oublié ?"
+      title: Connexion
+      submit: Connexion

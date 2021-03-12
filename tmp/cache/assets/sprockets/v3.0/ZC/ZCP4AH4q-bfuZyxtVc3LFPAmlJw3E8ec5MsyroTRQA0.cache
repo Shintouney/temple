@@ -1,0 +1,25 @@
+I"4(function() {
+  var ready;
+
+  ready = function() {
+    return $('table[data-sortable=true] tbody').sortable({
+      handle: '.fa-arrows',
+      cursor: 'move',
+      update: function(event, ui) {
+        return $.ajax({
+          url: $(this).parent().data('sortable-url'),
+          type: "post",
+          data: $(this).sortable('serialize'),
+          dataType: 'script',
+          success: function() {
+            return ui.item.effect("highlight");
+          }
+        });
+      }
+    }).disableSelection();
+  };
+
+  $(document).ready(ready);
+
+}).call(this);
+:ET

@@ -1,0 +1,124 @@
+.row
+  .col-sm-12
+    - unless @current_user.profile.present?
+      .alert-animated
+        .alert-inner
+          .alert-message
+            = link_to edit_account_profile_path, id: "edit-profile-link" do
+              = t('.welcome')
+              %strong= t('.fill_in')
+.row
+  .col-sm-12.col-md-8
+    - if @user.current_subscription.present?
+      .col-sm-6
+        .panel-stat3.bg-grey{data: {mh: 'panels'}}
+          %h3.m-top-none
+            = t('.subscription')
+          %h5
+            = @user.current_subscription.subscription_plan_name
+          %p
+            %em.fas.fa-calendar-alt
+            = t('.subscription_since')
+            = @user.current_subscription.start_at
+          .stat-icon
+            %em.fas.fa-ticket-alt.fa-3x
+    .col-sm-6
+      = render 'next_lesson_booking', next_lesson_booking: @user.next_lesson_booking
+
+    .row
+      .col-sm-12
+        //- if current_user.has_access_to_planning? && current_user.is_not_in_red_list? && current_user.is_not_temporarily_suspended?
+        - if current_user.has_access_to_planning? && current_user.is_not_in_red_list?
+          .panel.panel-default
+            .panel-heading
+              .m-bottom-sm
+                %h4.m-top-none
+                  %em.fas.fa-calendar-alt
+                  = t('.planning')
+                %p
+                  - temple_locations = [ {p:"moliere",text:"Molière"}, {p:"maillot",text:"Maillot"}, {p:"amelot",text:"Amelot"} ]
+                  - temple_locations.each do |temple_location|
+                    = link_to @location == temple_location[:p] ? "#" : account_root_path(location: temple_location[:p]), class: "btn btn-primary btn-xs #{'btn-active' if @location == temple_location[:p]} little-margin-right" do
+                      %em.far.fa-eye
+                      %strong= temple_location[:text]
+                = render "rooms/rooms_descriptions"
+
+            .panel-body
+              #account_dashboard_calendar_container
+                #account_dashboard_calendar.calendar{data: {'events' => {'url' => lessons_path(location: @location, format: :json)}}}
+                #lessonModal.modal.fade
+                  .modal-dialog
+                    .modal-content
+        -else
+          .lead= t('.need_sepa')
+          - if current_user.mandates.any? && !current_user.mandates.last.ready?
+            = render partial: 'slimpay/mandate', locals: { user: current_user, mandate: current_user.mandates.last }
+          - else
+            = render partial: 'slimpay/no_sepa', locals: { user: current_user }
+
+  .col-sm-12.col-md-4
+    .row
+      .col-sm-6.col-md-12
+        .panel.panel-default
+          .panel-heading
+            %em.fa.fa-shopping-cart
+            - if @user.current_month_orders_count > UserDecorator::CURRENT_ORDERS_LIMIT
+              = t('.current_month_orders_truncated')
+            - else
+              = t('.current_month_orders')
+          .list-group
+            - unless @user.current_orders.empty?
+              - @user.current_orders.each do |order|
+                .list-group-item
+                  %h5.list-group-item-heading
+                    = l order.created_at.to_date
+                  %p.list-group-item-text
+                    = t('.order_items_count', count: order.order_items.size)
+                    = ' - '
+                    = order.computed_total_price_ati
+            - else
+              .list-group-item
+                %h5.list-group-item-heading
+                  = t(".no_order_yet")
+          - if @user.last_payment
+            .panel-footer.text-center
+              %small
+                = t('.last_payment')
+                = l(@user.last_payment.created_at.to_date)
+
+      - if @dashboard_announce.present?
+        .col-sm-6.col-md-12.text-center
+          - if @dashboard_announce.target_link.present?
+            = link_to @dashboard_announce.link, target: @dashboard_announce.target do
+              -if @dashboard_announce.file?
+                .thumbnail
+                  = image_tag @dashboard_announce.file, alt: ''
+                  .caption
+                    = raw @dashboard_announce.content
+              -else
+                = raw @dashboard_announce.content
+          - else
+            -if @dashboard_announce.file?
+              .thumbnail
+                = image_tag @dashboard_announce.file, alt: ''
+                .caption
+                = raw @dashboard_announce.content
+            -else
+              = raw @dashboard_announce.content
+
+      - unless @user.user_images.empty?
+        .col-sm-6.col-md-12
+          .panel.panel-default
+            .panel-heading
+              %em.far.fa-image
+              = t('.user_images')
+            .panel-body
+              #home-carousel.carousel.slide{ data: { ride: 'carousel'} }
+                .carousel-inner
+                  - @user.user_images.each_with_index do |user_image, idx|
+                    .item{class: ('active' if idx.zero?)}
+                      = image_tag user_image.image.url(:carousel)
+                = link_to '#home-carousel', class: 'left carousel-control', data: { slide: 'prev'} do
+                  %span.fa.fa-chevron-left.glyphicon-chevron-left
+                = link_to '#home-carousel', class: 'right carousel-control', data: { slide: 'next'} do
+                  %span.fa.fa-chevron-right.glyphicon-chevron-right

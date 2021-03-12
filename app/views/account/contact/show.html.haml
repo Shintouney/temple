@@ -1,0 +1,68 @@
+%h4.headline.m-top-none
+  = t('.title')
+.row
+  .col-sm-12.col-md-4
+    .row
+      .col-sm-6.col-md-12
+        .panel.panel-default
+          .panel-heading
+            %em.fas.fa-map-marker-alt.fa-lg
+            = t('.find_us')
+          .panel-body
+            %address
+              %strong
+                = t('.name_moliere')
+              %br
+              = t('.road_moliere')
+              %br
+              = t('.zip_code_moliere')
+              = t('.city_moliere')
+              %br
+              %br
+
+              %strong
+                = t('.name_maillot')
+              %br
+              = t('.road_maillot')
+              %br
+              = t('.zip_code_maillot')
+              = t('.city_maillot')
+              %br
+              %br
+
+              %strong
+                = t('.name_amelot')
+              %br
+              = t('.road_amelot')
+              %br
+              = t('.zip_code_amelot')
+              = t('.city_amelot')
+
+              %br
+              %br
+
+              %em.fa.fa-envelope
+              = mail_to t('.contact_email')
+              %br
+              %em.fa.fa-phone.fa-lg
+              = tel_to t('.phone_number')
+      .col-sm-6.col-md-12
+        .panel.panel-default
+          .panel-heading
+            %em.far.fa-clock.fa-lg
+            = t('.our_schedules')
+          .panel-body
+            %p
+              %strong
+                = t('.week_hours')
+            %p
+              %strong
+                = t('.weekend_hours')
+  .col-sm-12.col-md-8
+    .panel.panel-default
+      .panel-heading
+        %em.far.fa-compass.fa-lg
+        = t('.positioning_us')
+      .panel-body
+        .google-maps
+          %iframe{ src: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2624.63355138663!2d2.3356652999999996!3d48.8651978!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2515f74621%3A0xca45f1c35d12b993!2s11+Rue+Moli%C3%A8re!5e0!3m2!1sfr!2sfr!4v1397029767672', frameborder: '0', width: '800', height: '600'}

@@ -1,0 +1,35 @@
+I"®(function() {
+  var ready;
+
+  ready = function() {
+    var addBasket, totalBasket;
+    addBasket = function(article) {
+      return $('#basket').find("ul.list-group").append('<li class="list-group-item" data-article-price="' + article.data("article-price") + '">' + article.data("article-name") + '<button type="button" class="pull-right btn btn-danger btn-xs m-left-sm">&times;</button>' + '<span class="pull-right">' + String(article.data("article-price")).replace('.', ',') + ' â‚¬</span>' + '<input type="hidden" value="' + article.data("article-id") + '" name="order[order_items_attributes][][product_id]">' + '</li>');
+    };
+    totalBasket = function() {
+      var basket, total;
+      total = 0;
+      basket = $('#basket');
+      basket.find('.list-group-item').each(function(index, item) {
+        return total += parseFloat($(this).data('article-price'));
+      });
+      $('#basket_total').text(total.toFixed(2).replace('.', ','));
+      return basket.find('.well').toggle($('#basket .list-group-item').length <= 0);
+    };
+    $('#articles-catalog').on('click', '.well', function() {
+      addBasket($(this));
+      return totalBasket();
+    });
+    $("#basket").on("click", ".btn-danger", function() {
+      $(this).closest("li").remove();
+      return totalBasket();
+    });
+    return $("form").submit(function() {
+      return $("#order_direct_payment").removeAttr("disabled");
+    });
+  };
+
+  $(document).ready(ready);
+
+}).call(this);
+:ET

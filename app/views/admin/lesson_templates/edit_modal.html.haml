@@ -1,0 +1,15 @@
+.modal-header
+  %button{ type: 'button', class: 'close', data: { dismiss: 'modal'} }
+    %span{"aria-hidden" => "true"} &times
+    %span.sr-only= t('.close')
+  %h4.modal-title
+    = t('.title')
+= simple_form_for @lesson_template, url: [:admin, @lesson_template], remote: true, html: {class: 'remote_lesson_form'} do |form|
+  .modal-body
+    = render partial: 'form', object: form
+  .modal-footer
+    = form.button :button, t('.cancel'), id: 'lesson_template_edit_cancel', class: 'btn-default', data: { dismiss: 'modal'}, type: 'button'
+    = link_to admin_lesson_template_path(@lesson_template), method: :delete, id: dom_id(@lesson_template, :destroy), data: { confirm: t('.destroy_link_confirm') }, remote: true, class: 'btn btn-danger lesson_template_destroy_link' do
+      %em.far.fa-trash-alt
+      = t('.destroy_link')
+    = form.submit t('helpers.submit.update'), id: 'lesson_template_edit_submit', class: 'btn btn-success'

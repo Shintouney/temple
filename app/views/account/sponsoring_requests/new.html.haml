@@ -1,0 +1,18 @@
+%h3.headline
+  = t('.title')
+%h4.headlline
+  = t('.sponsoring_text_part1')
+  %br
+  = t('.sponsoring_text_part2')
+.panel.panel-default
+  .panel-body
+    = simple_form_for @sponsoring_request, url: account_sponsoring_request_path do |form|
+      = flash_content(flash) if flash.any?
+
+      = form.input :firstname, required: true
+      = form.input :lastname, required: true
+      = form.input :phone, required: true
+      = form.input :email, required: true
+
+      = form.hidden_field :user_id, value: current_user.id
+      = form.submit "Envoyer", class: 'btn btn-success'

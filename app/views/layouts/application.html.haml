@@ -1,0 +1,36 @@
+!!!5
+%html.no-js{ lang: 'fr'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{content: 'IE=edge,chrome=1', 'http-equiv' => 'X-UA-Compatible'}
+    %meta{content: 'width=device-width, initial-scale=1.0', name: 'viewport'}
+    = render "layouts/shared/favicons"
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: :all
+    = javascript_include_tag :modernizr
+    = javascript_include_tag 'application'
+    = render "layouts/shared/analytics"
+    %title= page_title
+  %body
+    .top-bar
+      = image_tag 'logo-top-application.jpg', class: 'top-bar-logo'
+    .left-sidebar.text-center
+      = image_tag 'logo-temple-login.jpg', class: 'left-sidebar-logo'
+      = image_tag 'logo-top-nav-small.jpg', class: 'left-sidebarlogo-sm'
+      = link_to t('.previous'), 'http://temple-nobleart.fr/devenir-membre', class: 'btn btn-brown btn-sm'
+      %div.left-sidebar-footer
+        %p
+          = t('.address_line_1')
+          %br
+          = t('.address_line_2')
+        %hr
+        %ul.list-inline.text-center
+          %li
+            = link_to t('.cgv'), 'http://temple-nobleart.fr/conditions-generales-de-vente'
+          %li
+            \-
+          %li
+            = link_to t('.press'), 'http://temple-nobleart.fr/presse'
+    .application-front
+      = flash_content(flash) if flash.any?
+      = yield

@@ -1,0 +1,6 @@
+%p{align: "left", style: "color: #222222; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: justify; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"}
+  = t('.greetings')
+%p{align: "left", style: "color: #222222; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: justify; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"}
+  = t('.mail_text', activity: @lesson.activity, room: @lesson.room_text, date: l(@lesson.start_at, format: '%d/%m/%Y'), start_at:  l(@lesson.start_at, format: '%H:%M'))
+%p{align: "center", style: "color: #222222; font-family: Garamond, 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: center; line-height: 19px; font-size: 14px; margin: 20px 0 20px; padding: 0;"}
+  = link_to t('.book_lesson'), account_lessons_url(anchor: @lesson.id), target: '_blank', style:'padding:9px 23px;background:#cfa161;color:#000;text-decoration:none;'

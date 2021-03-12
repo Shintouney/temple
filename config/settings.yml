@@ -1,0 +1,4 @@
+upload:
+  hash_secret: '7nKZpRqqondlEbg5OEDTuP4Iv4HzI2Nb_k1Wx3HYALN8CJtEpfB0nwZEdWkGdiSst'
+redis:
+  url: "redis://localhost:6379/0"

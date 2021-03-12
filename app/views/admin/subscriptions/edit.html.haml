@@ -1,0 +1,75 @@
+= render 'admin/users/menu', user: @user
+
+.padding-md
+  .row
+    = render 'admin/users/infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-edit.tab-pane.active
+          .panel.panel-default
+            .panel-body{id: 'current_subscription_plan'}
+              %h5
+                = t('.subscription_plan')
+              .col-sm-6
+                - if @user.current_subscription_plan
+                  = link_to @user.current_subscription_plan.name, edit_admin_subscription_plan_path(@user.current_subscription_plan)
+                - elsif @user.has_temporarily_suspended_subscription?
+                  = link_to @user.subscriptions.with_state(:temporarily_suspended).last.subscription_plan.name, edit_admin_subscription_plan_path(@user.subscriptions.with_state(:temporarily_suspended).last.subscription_plan)
+                  %p
+                    %strong= t('.subscription_suspended_until', date: I18n.l(@user.subscriptions.with_state(:temporarily_suspended).last.restart_date) )
+                - else
+                  = t('.no_subscription_plan')
+
+          .panel.panel-default
+            .panel-body
+              - if @user.has_temporarily_suspended_subscription? || (@user.current_subscription.present? && Date.parse(@user.current_subscription.start_at) > Date.today)
+                %h5= t('.choose_new_subscription_plan')
+                .col-sm-6
+                  %p
+                    %strong= t('.can_not_change_subscription')
+              - else
+                .col-sm-6
+                  %h5= t('.choose_new_subscription_plan')
+                  = simple_form_for 'subscription_plan', url: admin_user_subscription_path(@user), method: :put do |form|
+                    .input-group
+                      = form.input_field :id, collection: @user.updatable_subscription_plans
+
+                      %span.input-group-btn
+                        = form.button :submit, t('.update_subscription_button'), id: 'user_subscription_plan_submit', class: 'btn btn-success', data: {confirm: t('.update_confirm')}
+
+          .panel.panel-default
+            .panel-body
+              - if @user.has_temporarily_suspended_subscription?
+                %h5= t('.subscription_will_restart', date: I18n.l(@user.subscriptions.with_state(:temporarily_suspended).last.restart_date) )
+                = link_to restart_admin_user_subscription_path(@user), method: :post, data: { confirm: t('.restart_subscription_now_confirm')}, id: 'restart_subscription_now' do
+                  .btn.btn-danger
+                    = t('.restart_subscription_now')
+              - elsif @suspended_subscription_schedule.present?
+                %h5= t('.subscription_will_be_suspended', suspended_date: I18n.l(@suspended_subscription_schedule.scheduled_at.to_date), restart_date: I18n.l(@suspended_subscription_schedule.subscription_restart_date) )
+                = link_to admin_user_suspended_subscription_schedule_path(@user, id: @suspended_subscription_schedule), method: :delete, data: { confirm: t('.destroy_suspended_subscription_schedule_confirm')}, id: 'destroy_subscription' do
+                  .btn.btn-danger
+                    = t('.destroy_suspended_subscription')
+              - elsif @user.current_subscription.present?
+                %h5= t('.temporarily_suspend_subscription')
+                = simple_form_for SuspendedSubscriptionSchedule.new, url: admin_user_suspended_subscription_schedule_path(@user), method: :post do |form|
+                  = form.hidden_field :user_id, value: @user.id
+                  .row
+                    .col-sm-3
+                      .input-group
+                        = form.input :scheduled_at, as: :string, input_html: { value: (I18n.l(form.object.scheduled_at) if form.object.scheduled_at), data: {provide: 'datepicker-scheduled-at', min_date: "#{Date.tomorrow}"}, id: "subscription_restart_datepicker" }, label: t('.from'), required: true
+                    .col-sm-3
+                      .input-group
+                        = form.input :subscription_restart_date, as: :string, input_html: { value: (I18n.l(form.object.subscription_restart_date) if form.object.subscription_restart_date), data: {provide: 'datepicker', min_date: "#{@next_payment_at}"}, id: "suspension_start_datepicker" }, label: t('.to'), required: true
+                    .col-sm-3.p-top-md
+                      %span.input-group-btn
+                        = form.button :submit, t('.suspend_subscription'), id: 'user_suspend_subscription_submit', class: 'btn btn-success', data: {confirm: t('.suspend_subscription_confirm')}
+
+          - if current_user.admin?
+            - if @user.active? || @user.has_temporarily_suspended_subscription?
+              .panel.panel-default
+                .panel-body
+                  = link_to admin_user_subscription_path(@user), method: :delete, data: { confirm: t('.destroy_confirm')}, id: 'destroy_subscription' do
+                    .btn.btn-danger
+                      = t('.cancel_subscription')
+

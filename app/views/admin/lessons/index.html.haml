@@ -1,0 +1,27 @@
+#admin_lessons_calendar_container
+  .padding-md
+    .headline.m-top-none
+      .row
+        .col-sm-8.col-md-8.col-lg-3
+          %h4.m-top-none
+            %em.fas.fa-calendar-alt.fa-lg
+            = t('.title')
+          - temple_locations = [ {p:"moliere",text:"Molière"}, {p:"maillot",text:"Maillot"}, {p:"amelot",text:"Amelot"} ]
+          - temple_locations.each do |temple_location|
+            = link_to @location == temple_location[:p] ? "#" : admin_lessons_path(location: temple_location[:p]), class: "btn btn-primary btn-xs #{'btn-active' if @location == temple_location[:p]} little-margin-right" do
+              %em.far.fa-eye
+              %strong= temple_location[:text]
+          %div
+            = link_to new_admin_lesson_path, class: 'btn btn-success btn-xs', id: 'new_lesson', data: { toggle: 'modal', target: '#lessonModal' } do
+              %em.fa.fa-plus
+              = t('.add_lesson')
+        .col-sm-4.col-md-4.col-lg-9
+          = render "rooms/rooms_descriptions"
+
+    .panel.panel-default
+      .panel-body
+        #admin_lessons_calendar.calendar{data: {'events' => {'url' => admin_lessons_path(location: @location, format: :json)}}}
+
+  #lessonModal{ class: 'modal fade', tabindex: "-1", role: "dialog", data: { backdrop: 'static' } }
+    .modal-dialog
+      .modal-content

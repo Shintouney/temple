@@ -1,0 +1,23 @@
+fr:
+  activemerchant:
+    errors:
+      messages:
+        "is invalid": "n'est pas valide"
+        "is required": "doit être renseigné"
+        "cannot be empty": "doit être renseigné"
+        "expired": "date de validité expirée"
+      attributes:
+        number:
+          "is not a valid credit card number": "n'est pas un numéro valide"
+        month:
+          "is not a valid month": "n'est pas valide"
+        year:
+          "is not a valid year": "n'est pas valide"
+        cvv:
+          missing: " doit être renseigné"
+    credit_card:
+      brand:
+        visa: Visa
+        master: Mastercard
+        american_express: American Express
+        bogus: Test

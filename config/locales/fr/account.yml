@@ -1,0 +1,131 @@
+fr:
+  location:
+    moliere: Molière
+    maillot: Maillot
+    amelot: Amelot
+  account:
+    contact:
+      show:
+        city_moliere: Paris
+        city_maillot: Paris
+        city_amelot: Paris
+        contact_email: 'contact@temple-nobleart.fr'
+        find_us: Nous trouver
+        name_moliere: Temple | Molière
+        name_maillot: Temple | Maillot
+        name_amelot: Temple | Amelot
+        our_schedules: Nos horaires des salles
+        phone_number: '01 49 27 03 11'
+        positioning_us: Nous localiser
+        road_moliere: 11 rue Molière
+        road_maillot: 66 boulevard Gouvion Saint-Cyr
+        road_amelot: 138 rue Amelot
+        title: Contact
+        week_hours: 'Du lundi au vendredi : 7h - 23h'
+        weekend_hours: 'Le samedi et dimanche : 9h30 - 18h'
+        zip_code_moliere: 75001
+        zip_code_maillot: 75017
+        zip_code_amelot: 75011
+    credit_cards:
+      edit:
+        title: Edition des informations de carte de crédit
+      form:
+        submit: Mettre à jour
+      show:
+        credit_card_owner_name: Nom
+        credit_card_expiration_date: Date d'expiration
+        edit: Editer
+        title: Informations de carte de crédit
+        your_credit_card: Votre carte de credit
+    dashboard:
+      index:
+        current_month_orders: Mes achats du mois
+        current_month_orders_truncated: Mes derniers achats du mois
+        informations: Informations
+        last_payment: "Dernier prélèvement effectué le "
+        lesson_full: Cours complets
+        need_sepa: "Un mandat SEPA actif est nécessaire pour accéder au planning."
+        no_order_yet: "Aucun achat n'a été effectué de votre part."
+        order_items_count:
+          one: "%{count} article"
+          other: "%{count} articles"
+        remaining_place: 'Places restantes : '
+        subscription: Votre abonnement
+        subscription_since: actif depuis le
+        title: Tableau de bord
+        planning: Planning | Temple
+        user_images: Mes photos
+        welcome: "Bienvenue au Temple. Mieux vous connaître est l'un de nos objectifs, pour nous aider, "
+        fill_in: remplissez ce formulaire.
+      next_lesson_booking:
+        location: Temple | %{location}
+        next_lesson_booking: Mon prochain cours
+        no_next_lesson_booking: Aucun cours réservé actuellement
+    invitations:
+      new_modal:
+        cancel: Annuler
+        submit: Valider
+        title: Envoyer une invitation à rejoindre le Temple
+      created_modal:
+        close: Fermer
+        invitation_sent: "Votre invitation a été envoyée."
+        title: Envoyer une invitation à rejoindre le Temple
+    invoices:
+      credit_note:
+        company_name: Temple
+        company_infos_html: '11 rue Molière<br/>75001 Paris<br/>Tel:  01 49 27 03 11'
+        invoice_reference: "Facture d'avoir n°:"
+        issue_date: "Date d'émission :"
+        taxes_rate: "TVA %{rate} :"
+        telephone: "Tel :"
+        total_price_ati: 'Total TTC :'
+        total_price_te: 'Total HT :'
+      index:
+        actions: Actions
+        invoice_order_items: Articles
+        invoice_credit_note_pdf: Télécharger la facture d'avoir au format PDF
+        invoice_show_pdf: Télécharger la facture au format PDF
+        title: Vos factures
+      show:
+        company_name: Temple
+        company_infos_html: '11 rue Molière<br/>75001 Paris<br/>Tel:  01 49 27 03 11'
+        invoice_reference: "Facture n°:"
+        issue_date: "Date d'émission :"
+        taxes_rate: "TVA %{rate} :"
+        telephone: "Tel :"
+        total_price_ati: 'Total TTC :'
+        total_price_te: 'Total HT :'
+    lessons:
+      index:
+        create_mandate: Rendez-vous aux moyens de paiement pour créer un mandat SEPA.
+        need_sepa: "Vous devez avoir un mandat SEPA actif pour accéder au planning."
+        title: Planning | Temple
+    payment_means:
+      index:
+        title: Moyens de paiement
+        mandate: Mandat SEPA
+    lesson_requests:
+      new:
+        submit: "Envoyer"
+        title: "Organisez votre cours particulier"
+        lesson_text_part1: "Pour organiser un cours particulier, nous vous invitons à nous indiquer vos préférences concernant vos disponibilités et le Club de votre choix (Temple | Molière ou Temple | Maillot ou Temple | Amelot)."
+        lesson_text_part2: "L’Equipe du Temple ne manquera pas de revenir vers vous afin de confirmer votre cours."
+        lesson_text_part3: "Nous vous souhaitons une excellente expérience pugilistique !"
+      create:
+        notice: 'Votre demande a bien été envoyé.'
+    sponsoring_requests:
+      new:
+        submit: "Envoyer"
+        title: "Parrain"
+        sponsoring_text_part1: "Vous pouvez parrainer un(e) proche en renseignant ses informations de contact ci-dessous."
+        sponsoring_text_part2: "L'Equipe du Temple prendra alors contact avec elle / lui directement."
+      create:
+        notice: 'Votre demande de parrainage a bien été envoyé.'
+    users:
+      form:
+        notice_email_disabled: "Pour modifier votre adresse e-mail, veuillez prendre contact avec l'administrateur du site"
+        notice_gender_disabled: "Pour modifier votre civilité, veuillez prendre contact avec l'administrateur du site"
+        notice_lastname_disabled: "Pour modifier votre nom, veuillez prendre contact avec l'administrateur du site"
+        notice_firstname_disabled: "Pour modifier votre prénom, veuillez prendre contact avec l'administrateur du site"
+      show:
+        title: Mettre à jour vos informations personnelles

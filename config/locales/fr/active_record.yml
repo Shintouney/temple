@@ -1,0 +1,308 @@
+fr:
+  activerecord:
+    models:
+      article: Article
+      article_category: Catégorie d'article
+      order: Commande
+      order_item: Article
+      payment: Facture
+      user: Membre
+    attributes:
+      active_merchant:
+        billing:
+          credit_card:
+            first_name: Prénom
+            last_name: Nom
+            number: Numéro
+            month: Mois d'expiration
+            year: Année d'expiration
+            brand: Type de carte
+            verification_value: Code de vérification
+      _product: &product_attributes
+        name: Nom
+        price_ati: Prix TTC
+        price_te: Prix HT
+        taxes_rate: TVA
+      article:
+        <<: *product_attributes
+        article_category: Catégorie d'article
+      article_category:
+        name: Nom
+      announce:
+        active: "Annonce active"
+        announce_type: "Type d'annonce"
+        content: 'Contenu'
+        file: "Image"
+        start_at: "Début d'affichage"
+        end_at: "Fin d'affichage"
+        place: Emplacement
+      card_scan:
+        accepted: "Accepté ?"
+        card_reference: RFID carte
+        location: Salle
+        scanned_at: "Date du passage"
+        scan_point: "Point de passage"
+      credit_card:
+        brand: Type de carte
+        cvv: cvv
+        number: Numéro
+      group:
+        name: Nom du groupe
+        created_at: Date de création
+        filter_between_age: Par âge
+        filter_gender: Par genre
+        filter_postal_code: Par code postal
+        filter_with_subscription: Par abonnement
+        filter_created_since: Par vie de Membre
+        filter_usual_room: Par espace (déjà réservé 3 fois)
+        filter_usual_activity: Par activité (déjà réservé 3 fois)
+        filter_frequencies: Par fréquence de visite sur le dernier mois
+        filter_last_booking_dates: Par date de dernière réservation
+        filter_last_visite_dates: Par date de dernière visite
+        filter_last_article: Par achats de produits et service déjà réalisés
+        search: Recherche de Membre par filtre
+      invoice:
+        billing_address: Adresse de facturation
+        state: Statut
+        end_at: Date d'émission
+        reference: Référence
+        total_price_ati: Prix total TTC
+        state: Status
+        state/open: En cours
+        state/canceled: Annulée
+        state/refunded: Remboursée
+        state/paid: Payée
+        state/pending_payment: En attente de paiement
+        state/pending_payment_retry: En attente de nouvel essai de paiement
+        state/payment_not_needed: Non due
+        state/sepa_waiting: Virement en cours
+      lesson: &lesson_attributes
+        activity: Activité
+        coach_name: Nom du professeur
+        end_at: Date de fin
+        max_spots: Places maximum
+        room: Espace
+        start_at: Date de début
+      lesson_template:
+        <<: *lesson_attributes
+        end_at_hour: Heure de fin
+        start_at_hour: Heure de début
+        weekday: Jour
+      lesson_draft:
+        <<: *lesson_attributes
+        end_at_hour: Heure de fin
+        start_at_hour: Heure de début
+        weekday: Jour
+      order:
+        created_at: Créée le
+        direct_payment: "Paiement immédiat ?"
+        location: Salle
+        state: Statut
+        total_price_ati: Prix total TTC
+      order_item:
+        created_at: Date
+        product_name: Nom de l'article
+        product_price_ati: Prix TTC
+        product_price_te: Prix HT
+        product_taxes_rate: TVA
+      payment:
+        created_at: Date
+        paybox_transaction: ID de transaction Paybox
+        price: Montant
+        state: Statut
+        paybox_call_number: Numéro d'appel Paybox
+      suspended_subscription_schedule:
+        scheduled_at: Date de suspension
+        subscription_restart_date: Date de reprise
+      user:
+        billing_name: "Nom de facturation"
+        billing_address: "Adresse de facturation"
+        birthdate: Date de naissance
+        card_access: Accès à la salle par carte
+        card_reference: RFID carte
+        city: Ville
+        created_at: Date de création
+        commitment_period_end_at: Fin de la période d'engagement
+        last_subscription_end_at: Date de fin d'abonnement
+        location: Salle par défaut
+        email: E-mail
+        facebook_url: Adresse du profil Facebook
+        firstname: Prénom
+        gender: Civilité
+        lastname: Nom
+        linkedin_url: Adresse du profil LinkedIn
+        id: Identifiant
+        origin_location: Origine de l'inscription
+        password: Mot de passe
+        password_confirmation: Confirmez votre mot de passe
+        payment_mode: Moyen de paiement
+        phone: Téléphone
+        postal_code: Code postal
+        street1: Adresse
+        street2: Adresse (suite)
+        professional_sector: Secteur professionnel
+        position: Poste
+        company: Entreprise
+        professional_address: Adresse postale professionnelle
+        professional_zipcode: Code postal
+        professional_city: Ville
+        education: Formation
+        heard_about_temple_from: Comment avez-vous connu le Club Temple ?
+        receive_mail_ical: "Je souhaite recevoir un email d'invitation après réservation d'un cours"
+        receive_booking_confirmation: "Je souhaite recevoir un email de confirmation après réservation d'un cours"
+      profile:
+        sports_practiced: "Actuellement ou récemment (moins d’un an), quel(s) sport(s) pratiquez-vous ou avez-vous pratiqué régulièrement ?"
+        attendance_rate: "Votre fréquence de venue :"
+        fitness_goals: "Votre objectif physique :"
+        boxing_disciplines_practiced: "Avez-vous déjà pratiqué la boxe ?"
+        boxing_level: "Votre niveau en boxe :"
+        boxing_disciplines_wished: "Au Temple, vous souhaitez pratiquer la boxe :"
+        attendance_periods: "Vous comptez venir :"
+        weekdays_attendance_hours: "En semaine, vous comptez venir :"
+        weekend_attendance_hours: "Le week-end, vous comptez venir :"
+        transportation_means: "Vous comptez venir :"
+      visit:
+        ended_at: Heure de fin
+        location: Salle
+        started_at: Heure de début
+      unsubscribe_request:
+        firstname: 'Prénom'
+        lastname: 'Nom'
+        phone: 'Téléphone'
+        email: 'E-mail'
+        desired_date: 'Date souhaitée de résiliation'
+        health_reason: 'Santé / blessure (un justificatif vous sera demandé si vous êtes toujours en période d’engagement)'
+        moving_reason: "Déménagement / mutation (un justificatif vous sera demandé si vous êtes toujours en période d’engagement)"
+        other_reason: 'Autre'
+      lesson_request:
+        first_coach_name: 'Nom du premier professeur'
+        second_coach_name: 'Nom du deuxième professeur'
+        comment: 'Message (nous préciser les créneaux souhaités pour le cours)'
+        user: 'Membre'
+      sponsoring_request:
+        firstname: 'Prénom'
+        lastname: 'Nom'
+        phone: 'Téléphone'
+        email: 'E-mail'
+      subscription_plan:
+        <<: *product_attributes
+        commitment_period: Période d'engagement en mois
+        code: Code
+        discount_period: Période de promotion en mois
+        discounted_price_te: Prix promotionnel HT
+        discounted_price_ati: Prix promotionnel TTC
+        sponsorship_price_te: Prix parrainage HT
+        locations: Salles
+        sponsorship_price_ati: Prix parrainage TTC
+        displayable: Affiché sur la liste des formules
+        expire_at: Date limite d'affichage sur la vitrine
+        favorite: Mis en avant sur la liste des formules
+      subscription:
+        origin_location: Origine de l'inscription
+        replaced_date: Date de remplacement
+    errors:
+      models:
+        _product:
+          attributes: &product_attributes_errors
+            price_te:
+              cannot_be_zero_when_price_ati_is_not_zero: ne peut être zéro si le prix TTC n'est pas à zéro
+        announce:
+          attributes:
+            content:
+              any_content: "Définissez au moins un texte ou une image."
+            file:
+              any_content: "Définissez au moins un texte ou une image."
+            start_at:
+              before_end_at: "la date de début doit être inférieur ou égale à la date de fin."
+        article:
+          attributes:
+            <<: *product_attributes_errors
+        credit_card:
+          attributes:
+            brand:
+              missing: doit être remplis
+            cvv:
+              missing: doit être remplis
+            number:
+              missing: doit être remplis
+        lesson:
+          attributes:
+            end_at:
+              must_be_after_start_at: doit être postérieure à l'heure de début
+              must_be_longer: un cours ne peut durer moins de 15 minutes
+            max_spots:
+              must_be_higher: Le maximum de places ne peut être inférieur au nombre de places déjà reservées.
+            room:
+              must_not_overlap: un cours existe déjà sur cette tranche horaire
+            start_at:
+              must_be_upcoming: doit être dans le futur
+        lesson_booking:
+          max_spots_reached: Aucune place n'est disponible pour ce cours
+          user_has_forbidden_access: Accès à la salle non autorisé
+          user_has_forbidden_access_to_location: Votre abonnement ne vous donne pas accès à cette salle
+          user_has_upcoming_lessons: Un seul cours à la fois peut être réservé
+          lesson_already_booked: "Vous avez déjà réservé ce cours"
+          lesson_is_not_upcoming: Le cours est déjà passé
+        lesson_template:
+          attributes:
+            end_at_hour:
+              must_be_after_start_at_hour: doit être postérieure à l'heure de début
+              must_be_longer: un cours ne peut durer moins de 15 minutes
+        lesson_draft:
+          attributes:
+            end_at_hour:
+              must_be_after_start_at_hour: doit être postérieure à l'heure de début
+              must_be_longer: un cours ne peut durer moins de 15 minutes
+        order:
+          attributes:
+            base:
+              can_not_destroy_without_open_invoice: La commande ne peut être supprimée car sa facture a été validée.
+        subscription:
+          must_be_in_past_or_present: doit être une date dans le passé ou le présent
+          must_be_greater_than_next_payment_at: doit être une date supérieur au prochain paiement
+          last_open_invoice_must_exist: doit être comparée à la date du prochain paiement qui n'existe pas (aucune date dans la dernière facture ouverte)
+        subscription_plan:
+          attributes:
+            <<: *product_attributes_errors
+            base:
+              can_not_destroy_with_subscriptions: L'abonnement a des souscriptions et ne peut être supprimé.
+            discount_period:
+              must_have_reduced_price: doit avoir un prix promotionnel (ou parrainage) défini
+            discounted_price_te:
+              cannot_be_zero_when_price_ati_is_not_zero: ne peut être zéro si le prix TTC n'est pas à zéro
+            sponsorship_price_te:
+              cannot_be_zero_when_price_ati_is_not_zero: ne peut être zéro si le prix TTC n'est pas à zéro
+          is_not_editable: n'est pas éditable
+        suspended_subscription_schedule:
+          attributes:
+            subscription_restart_date:
+              must_be_greater_than_scheduled_at: doit être suppérieur à la date de suspension
+        user:
+          attributes:
+            password:
+              password_format: doit contenir au minimum 8 caractères alphanumériques dont 1 lettre et 1 chiffre
+        visit:
+          attributes:
+            base:
+              visit_in_progress_for_user: Le Membre a déjà une visite en cours.
+            ended_at:
+              must_be_after_started_at: doit être postérieure à l'heure de début
+  activemodel:
+    attributes:
+      subscription_plan_selection_validator:
+        sponsor_email: E-mail du parrain
+      invitation_form:
+        to: Destinataire(s)
+        text: Votre message
+    errors:
+      models:
+        invitation_form:
+          attributes:
+            to:
+              has_invalid_emails: contient une adresse e-mail invalide
+        subscription_plan_selection_validator:
+          attributes:
+            code:
+              invalid_match: invalide
+        user/card_updater:
+          card_already_assigned: Cette carte est déjà assignée

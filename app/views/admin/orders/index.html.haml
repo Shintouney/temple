@@ -1,0 +1,49 @@
+= render 'admin/users/menu', user: @user
+
+.padding-md
+  .row
+    = render 'admin/users/infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-orders.tab-pane.active
+          .panel.panel-default.table-responsive
+            .panel-heading
+              %h5
+                = t('.orders')
+                %span.label.label-danger.pull-right
+                  = @user.orders.size
+            %table.table.table-striped.table-hover#user_orders_table{ data: { datatable: 'true', order: '[[ 3, "desc" ]]'}}
+              %thead
+                %tr
+                  %th
+                    = OrderItem.model_name.human.pluralize
+                  %th
+                    = Order.human_attribute_name(:total_price_ati)
+                  %th
+                    = Order.human_attribute_name(:state)
+                  %th
+                    = Order.human_attribute_name(:created_at)
+                  %th.text-right{data: {orderable: 'false'}}
+                    = t('.actions')
+              %tbody
+                - @user_orders.each do |order|
+                  %tr
+                    %td
+                      %ul.list-unstyled
+                        - order.order_items.each do |order_item|
+                          %li= order_item.product_name
+                    %td
+                      = order.computed_total_price_ati
+                    %td
+                      = render partial: 'admin/orders/payment_details', locals: { order: order }
+                    %td{data: {order: order.object.created_at.to_i}}
+                      = order.created_at
+                    %td.text-right
+                      .btn-group.btn-group-sm
+                        = link_to admin_user_order_path(@user, order), id: dom_id(order, :show), title: t('.order_show'), class: 'btn btn-default btn-sm' do
+                          %em.far.fa-eye
+                        - if order.object.invoice&.open?
+                          = link_to admin_user_order_path(@user, order), method: :delete, id: dom_id(order, :destroy), title: t('.order_destroy'), class: 'btn btn-danger btn-sm', data: { confirm: t('.order_destroy_confirm') } do
+                            %em.far.fa-trash-alt
+            != pagy_bootstrap_nav(@pagy)

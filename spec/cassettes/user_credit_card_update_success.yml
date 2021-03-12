@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=1111222233334444&DATEVAL=1017&CVV=123&REFABONNE=TEMPLE%23test%2300005%231439890219&MONTANT=0000000000&DEVISE=978&VERSION=00104&TYPE=00056&DATEQ=18082015113019&NUMQUESTION=1274289206&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 Aug 2015 09:30:20 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '229'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        TlVNVFJBTlM9MDAwNjc5NDAzNCZOVU1BUFBFTD0wMDEyNzIxOTA1Jk5VTVFV
+        RVNUSU9OPTEyNzQyODkyMDYmU0lURT0xOTk5ODg4JlJBTkc9OTkmQVVUT1JJ
+        U0FUSU9OPVhYWFhYWCZDT0RFUkVQT05TRT0wMDAwMCZDT01NRU5UQUlSRT1E
+        ZW1hbmRlIHRyYWl06WUgYXZlYyBzdWNj6HMmUkVGQUJPTk5FPVRFTVBMRSN0
+        ZXN0IzAwMDA1IzE0Mzk4OTAyMTkmUE9SVEVVUj1TTERMcmNzTE1QQyZQQVlT
+        PT8/Pw==
+    http_version: 
+  recorded_at: Tue, 18 Aug 2015 09:30:21 GMT
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=1111222233334444&DATEVAL=1017&CVV=123&REFABONNE=TEMPLE%23test%2300005%231439890219&MONTANT=0000017640&DEVISE=978&VERSION=00104&TYPE=00057&DATEQ=18082015113021&NUMQUESTION=1274836912&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 Aug 2015 09:30:22 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '229'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        TlVNVFJBTlM9MDAwNjc5NDAzNSZOVU1BUFBFTD0wMDEyNzIxOTA2Jk5VTVFV
+        RVNUSU9OPTEyNzQ4MzY5MTImU0lURT0xOTk5ODg4JlJBTkc9OTkmQVVUT1JJ
+        U0FUSU9OPVhYWFhYWCZDT0RFUkVQT05TRT0wMDAwMCZDT01NRU5UQUlSRT1E
+        ZW1hbmRlIHRyYWl06WUgYXZlYyBzdWNj6HMmUkVGQUJPTk5FPVRFTVBMRSN0
+        ZXN0IzAwMDA1IzE0Mzk4OTAyMTkmUE9SVEVVUj1TTERMcmNzTE1QQyZQQVlT
+        PT8/Pw==
+    http_version: 
+  recorded_at: Tue, 18 Aug 2015 09:30:23 GMT
+recorded_with: VCR 2.9.2

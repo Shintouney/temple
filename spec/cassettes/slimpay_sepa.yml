@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pugilinvest%23jb%40novagile.com:XwRqYQ@api-sandbox.slimpay.net/oauth/token
+    body:
+      encoding: UTF-8
+      string: Accept=application%2Fhal%2Bjson%3B%20profile%3D%27https%3A%2F%2Fapi.slimpay.net%2Falps%2Fv1%27&Content-type=application%2Fhal%2Bjson&grant_type=client_credentials&scope=api_admin
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 11 Aug 2015 14:48:14 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Etag:
+      - '"0a4f9bd6965531207ca0691b95dce7fed"'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '135'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "access_token" : "23689a82-81f9-4438-8842-766cda45ce0f",
+          "token_type" : "bearer",
+          "expires_in" : 999,
+          "scope" : "api_admin"
+        }
+    http_version: 
+  recorded_at: Tue, 11 Aug 2015 14:48:07 GMT
+- request:
+    method: patch
+    uri: https://api-sandbox.slimpay.net/creditors/pugilinvest/apps/pugilinvest01
+    body:
+      encoding: UTF-8
+      string: '{"returnUrl":"http://test.host/admin/users/2/credit_card/edit"}'
+    headers:
+      Accept:
+      - application/hal+json; profile='https://api.slimpay.net/alps/v1'
+      Authorization:
+      - Bearer 23689a82-81f9-4438-8842-766cda45ce0f
+      Content-Type:
+      - application/hal+json
+      Grant-Type:
+      - client_credentials
+      Scope:
+      - api_admin
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 11 Aug 2015 14:48:14 GMT
+      Server:
+      - Apache-Coyote/1.1
+      X-Powered-By:
+      - 'Servlet 2.4; JBoss-4.2.3.GA (build: SVNTag=JBoss_4_2_3_GA date=200905191306)/JBossWeb-2.0'
+      Etag:
+      - '"058269db04aef7d6143b4f8a3283a57f1"'
+      Content-Type:
+      - application/hal+json;profile='https://api.slimpay.net/alps/v1'
+      Content-Length:
+      - '232'
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"_links":{"self":{"href":"https://api-sandbox.slimpay.net/creditors/pugilinvest/apps/pugilinvest01"}},"notifyUrl":"http://69fb1f39.ngrok.com/ipn","returnUrl":"http://test.host/admin/users/2/credit_card/edit","name":"pugilinvest01"}'
+    http_version: 
+  recorded_at: Tue, 11 Aug 2015 14:48:07 GMT
+recorded_with: VCR 2.9.2

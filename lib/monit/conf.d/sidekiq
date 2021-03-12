@@ -1,0 +1,7 @@
+check process sidekiq with pidfile /srv/temple_staging/shared/pids/sidekiq.pid
+  start program = "/bin/bash -c 'cd /srv/temple_staging/current && RAILS_MAX_THREADS=5 WEB_CONCURRENCY=2 RAILS_ENV=staging /usr/local/rbenv/shims/bundle exec sidekiq -e staging -P /srv/temple_staging/shared/pids/sidekiq.pid --daemon —index 0 -C /srv/temple_staging/shared/config/sidekiq.yml -L /srv/temple_staging/shared/log/sidekiq.log'" with timeout 10 seconds
+  stop program = "/bin/bash -c 'cd /srv/temple_staging/current && RAILS_ENV=staging /usr/local/rbenv/shims/bundle exec sidekiqctl stop /srv/temple_staging/shared/pids/sidekiq.pid'"
+  if totalmem > 512 Mb then alert
+  if cpu usage > 98% for 3 cycles then restart
+  if uptime < 1 minute then exec "/usr/local/rbenv/shims/ruby /etc/monit/slack.rb 'Sidekiq restarted'"
+  if 5 restarts within 5 cycles then timeout

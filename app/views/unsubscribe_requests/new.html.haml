@@ -1,0 +1,28 @@
+= image_tag 'logo-temple-login.jpg', class: 'fadeInUp animation-delay1 login-logo'
+.panel.panel-brown
+  .panel-heading
+    %h3.panel-title{ style: 'font-family: "Open Sans",sans-serif; text-align: center;' }
+      Vous souhaitez résilier votre abonnement au Temple | Noble Art.
+      %br
+      Nous vous invitons à remplir le formulaire ci-dessous.
+.panel.panel-default
+  .panel-body.unsubscribe_form
+    = simple_form_for @unsubscribe_request, url: unsubscribe_request_path do |form|
+      = flash_content(flash) if flash.any?
+
+      = form.input :firstname, required: true
+      = form.input :lastname, required: true
+      = form.input :phone, required: true
+      = form.input :email, required: true
+      = form.input :desired_date, required: true, as: :datepicker,  input_html: {data: { provide: 'birthdaypicker' }}
+      .row
+        .col-sm-12{ style: 'padding-left: 40px;'}
+          %p{ style: 'font-size: 14px; font-weight: bold;' } * Raison de votre résiliation :
+          - if form.object.errors.present? && form.object.errors[:reason_must_be_filled].present?
+            %span{ style: 'color: #A94442;' }
+              = "Au moins une raison doit être renseignée"
+          = form.input :health_reason, as: :boolean
+          = form.input :moving_reason, as: :boolean
+          = form.input :other_reason
+
+      = form.submit "Envoyer", class: 'btn btn-brown'

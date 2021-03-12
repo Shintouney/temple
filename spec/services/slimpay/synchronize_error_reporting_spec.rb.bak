@@ -1,0 +1,62 @@
+require 'rails_helper'
+
+describe Slimpay::SynchronizeErrorReporting, type: :model do
+
+  # TODO : Rewrite all tests with vcr instead of mocking
+  describe '#execute'  do
+    let(:synchronize) { Slimpay::SynchronizeErrorReporting.new }
+    let(:file_name) { "REJ_#{Date.today.strftime('%Y%m%d')}.csv" }
+    let(:file_remote_path) { "/out/#{file_name}"}
+    let(:file_local_path) { File.join(Dir.tmpdir, 'slimpayerrorreporting', file_name) }
+
+    before(:each) do
+      @error_parser = Slimpay::ErrorParser.new('spec/fixtures/bad_slimpay_rtrans.csv')
+    end
+
+    context "with a successful connection" do
+      it "should create a SuccessFactorsImport record with the downloaded file" do
+        @tmpdir_mock = double('tmpdir')
+        Dir.stub(:mktmpdir).with('slimpayerrorreporting').and_return(@tmpdir_mock)
+        @sftp_mock = double('sftp')
+        Net::SFTP.stub(:start).and_yield(@sftp_mock)
+        @entry_mock = double('entry')
+        @sftp_mock.stub_chain(:dir, :foreach).and_yield(@entry_mock)
+        @entry_mock.stub_chain(:name, :include?).and_return(true)
+        @entry_mock.stub(:name).and_return(file_name)
+        Rtransaction.stub_chain(:where, :blank?).and_return true
+        Pathname.stub_chain(:new, :join, :to_s).and_return(file_remote_path)
+        File.stub(:join).and_return(file_local_path)
+
+        @sftp_mock.stub(:download!).with(file_remote_path).and_return(@file)
+        File.stub(:write).with(file_local_path, @file).and_return(@file)
+
+        @tmpfile_path_mock = mock 'tmpfile_path'
+        Slimpay::ErrorParser.stub(:new).and_return(@error_parser)
+        @error_parser.stub(:execute).and_return(true)
+
+        Rtransaction.stub(:create!).and_return(true)
+
+        synchronize.execute
+      end
+    end
+
+    context "with a successful connection" do
+      it "should create a SuccessFactorsImport record with the downloaded file" do
+        @tmpdir_mock = double('tmpdir')
+        Dir.stub(:mktmpdir).with('slimpayerrorreporting').and_return(@tmpdir_mock)
+        @sftp_mock = double('sftp')
+        Net::SFTP.stub(:start).and_yield(@sftp_mock)
+        @entry_mock = double('entry')
+        @sftp_mock.stub_chain(:dir, :foreach).and_yield(@entry_mock)
+        @entry_mock.stub_chain(:name, :include?).and_return(true)
+        @entry_mock.stub(:name).and_return(file_name)
+        Rtransaction.stub_chain(:where, :blank?).and_return true
+        Pathname.stub_chain(:new, :join, :to_s).and_return(file_remote_path)
+        File.stub(:join).and_return(file_local_path)
+        @sftp_mock.stub(:download!).with(file_remote_path).and_raise(Net::SSH::AuthenticationFailed)
+
+        expect { subject.execute }.to raise_error(Net::SSH::AuthenticationFailed)
+      end
+    end
+  end
+end

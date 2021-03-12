@@ -1,0 +1,47 @@
+fr:
+  lessons:
+    decorator:
+      activity_label: "Cours : "
+      coach_name_label: "Professeur : "
+      booking_status_label: "Places réservées : "
+      full_lesson_title: Ce cours est plein
+      full_lesson_text: Recevez une notification par mail en cas de désistement d’un participant.
+    send_lesson_event:
+      lesson_temple: "Nouveau cours au Temple - %{location}"
+      lesson_temple_alarm: "Rappel : Cours au Temple dans une heure !"
+      lesson_description: "Cours de %{activity} avec %{coach_name} à %{start_time} le %{start_date}"
+    show_modal:
+      activity: "Activité :"
+      back: Retour
+      btn_yes: Oui
+      btn_no: Non
+      cancel: Annuler
+      canceling: 'Annulation en cours...'
+      create_lesson_booking: Réservation du cours
+      destroy_request_notification: "Suppression de la notification"
+      lesson_booked: Vous avez réservé ce cours
+      lesson_booked_finished: Ce cours est terminé
+      lesson_booking_available: Cours disponible à la réservation
+      lesson_details: Détails du cours
+      location: Temple | %{location}
+      participants: 'Les Membres participant à ce cours :'
+      no_participants_yet: Aucun Membre du Temple n'est actuellement inscrit à ce cours
+      notification_already_available: "Vous receverez un email d'alerte si une place se libère"
+      remaining_places: "Places restantes :"
+      removed_lesson: "Ce cours n'est plus disponible, cliquer ici pour recharger la page"
+      room: "Espace :"
+      receive_booking_confirmation: "Recevoir un email de confirmation"
+      send_lesson_event: "Recevoir une invitation iCalendrier avec cet email"
+      show_link: "Voir le Membre"
+      submit: "Réserver"
+      submiting: "Réservation en cours..."
+      submit_destroy: "Annuler la réservation"
+      submit_new_lesson_and_cancel_other: "Réserver ce cours et annuler votre précédente réservation ?"
+      you: Vous
+      request_notification: "Notification disponibilité"
+  lesson_templates:
+    decorator:
+      booking_status_label: "Places maximum : "
+  lesson_drafts:
+    decorator:
+      booking_status_label: "Places maximum : "

@@ -1,0 +1,22 @@
+default: &default
+  prepared_statements: false
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: haitem
+  password: tsctsc
+  database: temple_production
+  checkout_timeout: <%= ENV.fetch("CHECKOUT_TIMEOUT") { 5 } %>
+  min_messages: warning
+  pool: <%= ((ENV.fetch("RAILS_MAX_THREADS") { 5 }).to_i * (ENV.fetch("WEB_CONCURRENCY") { 1 }).to_i) || 5 %>
+  timeout: 5000
+  template: template0
+test:
+  <<: *default
+  database: temple_test<%= ENV.fetch("TEST_ENV_NUMBER") {} %>
+development:
+  <<: *default
+staging:
+  <<: *default
+production:
+  <<: *default

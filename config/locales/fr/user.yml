@@ -1,0 +1,5 @@
+fr:
+  user:
+    decorator:
+      last_visit: "Dernière visite :"
+      payments_up_to_date: "Paiements à jour ?"

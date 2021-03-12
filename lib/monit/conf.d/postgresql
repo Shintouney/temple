@@ -1,0 +1,8 @@
+check process postgres with pidfile /var/run/postgresql/9.3-main.pid
+  start program = "/etc/init.d/postgresql start"
+  stop program = "/etc/init.d/postgresql stop"
+  if totalmem > 512 Mb then alert
+  if cpu usage > 98% for 3 cycles then restart
+  if 5 restarts within 5 cycles then timeout
+  if failed host 127.0.0.1 port 5432 then restart
+  if uptime < 1 minute then exec "/usr/local/rbenv/shims/ruby /etc/monit/slack.rb 'Postgresql restarted'"

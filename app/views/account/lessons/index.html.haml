@@ -1,0 +1,33 @@
+#account_lessons_calendar_container
+
+  - if current_user.has_access_to_planning?
+    .headline.m-top-none
+      .row
+        .col-sm-8.col-md-4
+          %h4.m-top-none
+            .em.fas.fa-calendar-alt.fa-lg
+            = t('.title')
+          %p
+            - temple_locations = [ {p:"moliere",text:"Molière"}, {p:"maillot",text:"Maillot"}, {p:"amelot",text:"Amelot"} ]
+            - temple_locations.each do |temple_location|
+              = link_to @location == temple_location[:p] ? "#" : account_lessons_path(location: temple_location[:p]), class: "btn btn-primary btn-xs #{'btn-active' if @location == temple_location[:p]} little-margin-right" do
+                %em.far.fa-eye
+                %strong= temple_location[:text]
+        .col-sm-4.col-md-8
+          = render "rooms/rooms_descriptions"
+
+    .panel.panel-default
+      .panel-body
+        #account_lessons_calendar.calendar{data: {'events' => {'current_lesson_id' => @current_lesson.try(:id), 'url' => lessons_path(location: @location, format: :json)}}}
+
+    #lessonModal.modal.fade{ data: { backdrop: 'static' } }
+      .modal-dialog
+        .modal-content
+  - else
+    .lead= t('.need_sepa')
+    .row
+      .col-sm-12.col-md-6.col-md-offset-3
+        - if current_user.mandates.any? && !current_user.mandates.last.ready?
+          = render partial: 'slimpay/mandate', locals: { user: current_user, mandate: current_user.mandates.last }
+        - else
+          = render partial: 'slimpay/no_sepa', locals: { user: current_user }

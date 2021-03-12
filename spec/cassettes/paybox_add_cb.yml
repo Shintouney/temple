@@ -1,0 +1,132 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=1111222233334444&DATEVAL=1017&CVV=123&REFABONNE=TEMPLE%23test%2300013%231440063492&MONTANT=0000017760&DEVISE=978&VERSION=00104&TYPE=00056&DATEQ=20082015113812&NUMQUESTION=0866182739&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Aug 2015 09:38:14 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '229'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        TlVNVFJBTlM9MDAwNjgwMDkzMiZOVU1BUFBFTD0wMDEyNzMzMTQ5Jk5VTVFV
+        RVNUSU9OPTA4NjYxODI3MzkmU0lURT0xOTk5ODg4JlJBTkc9OTkmQVVUT1JJ
+        U0FUSU9OPVhYWFhYWCZDT0RFUkVQT05TRT0wMDAwMCZDT01NRU5UQUlSRT1E
+        ZW1hbmRlIHRyYWl06WUgYXZlYyBzdWNj6HMmUkVGQUJPTk5FPVRFTVBMRSN0
+        ZXN0IzAwMDEzIzE0NDAwNjM0OTImUE9SVEVVUj1TTERMcmNzTE1QQyZQQVlT
+        PT8/Pw==
+    http_version: 
+  recorded_at: Thu, 20 Aug 2015 09:38:15 GMT
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: REFERENCE=1&PORTEUR=SLDLrcsLMPC&DATEVAL=1017&CVV=123&REFABONNE=TEMPLE%23test%2300013%231440063492&MONTANT=0000017760&DEVISE=978&VERSION=00104&TYPE=00053&DATEQ=20082015113815&NUMQUESTION=1108904135&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Aug 2015 09:38:16 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '229'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        TlVNVFJBTlM9MDAwNjgwMDkzMyZOVU1BUFBFTD0wMDEyNzMzMTUwJk5VTVFV
+        RVNUSU9OPTExMDg5MDQxMzUmU0lURT0xOTk5ODg4JlJBTkc9OTkmQVVUT1JJ
+        U0FUSU9OPVhYWFhYWCZDT0RFUkVQT05TRT0wMDAwMCZDT01NRU5UQUlSRT1E
+        ZW1hbmRlIHRyYWl06WUgYXZlYyBzdWNj6HMmUkVGQUJPTk5FPVRFTVBMRSN0
+        ZXN0IzAwMDEzIzE0NDAwNjM0OTImUE9SVEVVUj1TTERMcmNzTE1QQyZQQVlT
+        PT8/Pw==
+    http_version: 
+  recorded_at: Thu, 20 Aug 2015 09:38:16 GMT
+- request:
+    method: post
+    uri: https://preprod-ppps.paybox.com/PPPS.php
+    body:
+      encoding: US-ASCII
+      string: PORTEUR=1111222233334444&DATEVAL=1017&CVV=123&REFABONNE=TEMPLE%23test%2300013%231440063492&MONTANT=0000017760&DEVISE=978&VERSION=00104&TYPE=00057&DATEQ=20082015113817&NUMQUESTION=0866948351&SITE=1999888&RANG=99&CLE=1999888I&PAYS=&ARCHIVAGE=
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 20 Aug 2015 09:38:18 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '229'
+      Content-Type:
+      - text/html; charset=ISO-8859-1
+      Accept-Ranges:
+      - none
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        TlVNVFJBTlM9MDAwNjgwMDkzNCZOVU1BUFBFTD0wMDEyNzMzMTUxJk5VTVFV
+        RVNUSU9OPTA4NjY5NDgzNTEmU0lURT0xOTk5ODg4JlJBTkc9OTkmQVVUT1JJ
+        U0FUSU9OPVhYWFhYWCZDT0RFUkVQT05TRT0wMDAwMCZDT01NRU5UQUlSRT1E
+        ZW1hbmRlIHRyYWl06WUgYXZlYyBzdWNj6HMmUkVGQUJPTk5FPVRFTVBMRSN0
+        ZXN0IzAwMDEzIzE0NDAwNjM0OTImUE9SVEVVUj1TTERMcmNzTE1QQyZQQVlT
+        PT8/Pw==
+    http_version: 
+  recorded_at: Thu, 20 Aug 2015 09:38:18 GMT
+recorded_with: VCR 2.9.2

@@ -1,0 +1,90 @@
+= render 'menu', user: @user
+
+.padding-md
+  .row
+    = render 'infos', user: @user
+
+    .col-sm-12.col-md-9
+      .tab-content
+        #user-overview.tab-pane.active
+          .row
+            .col-sm-12
+              .panel.panel-default
+                .panel-heading
+                  %em.fa.fa-bars.fa-fw
+                  = t('.orders_overview')
+                %ul.list-group#user_orders_overview
+                  - @user.latest_orders.each do |order|
+                    %li.list-group-item
+                      %p
+                        %strong
+                          = order.computed_total_price_ati
+                        %span.pull-right
+                          = order.created_at
+                      %p
+                        %span.label.label-info
+                          = t('.order_items_count')
+                          = order.order_items.length
+                        = render partial: 'admin/orders/payment_details', locals: { order: order }
+              - if @user.current_subscription
+                .panel.panel-default
+                  .panel-heading
+                    %em.fas.fa-ticket-alt.fa-fw
+                    = t('.subscription')
+                  .panel-body
+                    %p
+                      = @user.current_subscription.subscription_plan_name
+                    %p
+                      = t('.subscription_since')
+                      = @user.current_subscription.start_at
+
+              .panel.panel-default
+                .panel-heading#access_planning
+                  %em.fas.fa-calendar-alt.fa-fw
+                  = t('.access_to_planning')
+
+                  %strong.text-success{ class: ('hide' if !@user.has_access_to_planning?)}
+                    = t('.authorize')
+
+                  %strong.text-danger{ class: ('hide' if @user.has_access_to_planning?)}
+                    = t('.no_authorize')
+
+                .panel-body
+                  .row
+                    .col-sm-6
+                      %table.table.table-bordered.m-bottom-none
+                        %tbody
+                          %tr
+                            %th= t('.mandate')
+                            %td#access-mandate{ data: { state: @user.mandates.ready.last.present?.to_s } }
+                              - if @user.mandates.ready.last.present?
+                                %em.fa.fa-2x.fa-check.text-success{ 'aria-label' => t('.good') }
+                              - else
+                                %em.fa.fa-2x.fa-times.text-danger{ 'aria-label' => t('.bad') }
+                          %tr
+                            %th= t('.payments')
+                            %td#access-payments{ data: { state: (!@user.has_late_payments?).to_s } }
+                              -if @user.has_late_payments_retry?
+                                %em.fa.fa-2x.fa-times.text-danger{ 'aria-label' => t('.bad') }
+                              - else
+                                %em.fa.fa-2x.fa-check.text-success{ 'aria-label' => t('.good') }
+                    .col-sm-6
+                      .form-group
+                        %label.col-sm-7.control-label{ 'for' => 'force_access' }= t('.force_access_to_planning')
+                        %input#force_access.access-toggler{ type: 'checkbox', name: 'force_access', checked: @user.force_access_to_planning?, data: { toggle: 'toggle', onstyle: 'success', path: force_access_to_planning_admin_user_path(@user) } }
+                      .form-group.m-bottom-none
+                        %label.col-sm-7.control-label{ 'for' => 'forbid_access' }= t('.forbid_access_to_planning')
+                        %input#forbid_access.access-toggler{ type: 'checkbox', name: 'forbid_access', checked: @user.forbid_access_to_planning?, data: { toggle: 'toggle', onstyle: 'danger', path: forbid_access_to_planning_admin_user_path(@user) } }
+
+  - if @user.sponsored_users.any?
+    .row
+      .col-sm-12.col-md-3
+        .panel.panel-default.hidden-sm
+          .panel-heading.text-center
+            %strong
+              = t('.sponsored_users')
+          .panel-body
+            %ul.list-group
+              - @user.sponsored_users.each do |sponsored_user|
+                %li.list-group-item
+                  = link_to sponsored_user.full_name, admin_user_path(sponsored_user.id)

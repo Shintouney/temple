@@ -1,0 +1,42 @@
+csv.headers do |csv|
+  user_columns = %i(email firstname lastname phone)
+  csv.columns *user_columns+%i(start_at end_of_commitment last_payment last_failed_payment retries_count reason amount_due)
+
+  red_columns = { start_at: I18n.t('admin.users.index.current_subscription_started_at'),
+                  end_of_commitment: I18n.t('admin.users.red_list.end_of_commitment'),
+                  last_payment: I18n.t('admin.users.red_list.last_payment'),
+                  last_failed_payment: I18n.t('admin.users.red_list.last_failed_payment'),
+                  retries_count: I18n.t('admin.users.red_list.retries_count'),
+                  reason: I18n.t('admin.users.red_list.reason'),
+                  amount_due: I18n.t('admin.users.red_list.amount_due')
+                }
+
+  csv.mappings Hash[user_columns.map { |column_name| [column_name, User.human_attribute_name(column_name)] }].merge(red_columns)
+end
+
+csv.rows @users do |csv, user|
+  if user.present?
+    csv.cell :email, user.email
+    csv.cell :firstname, user.firstname
+    csv.cell :lastname, user.lastname
+    csv.cell :phone, user.phone
+  end
+  csv.cell :start_at, user.current_subscription.try(:start_at)
+  csv.cell :end_of_commitment, user.current_subscription.try(:commitment_period)
+  if user.payments.with_state(:accepted).present?
+    csv.cell :last_payment, user.payments.with_state(:accepted).last.created_at
+  else
+    csv.cell :last_payment, nil
+  end
+  payment_declined_exist = user.payments.with_state(:declined).present?
+  if payment_declined_exist
+    csv.cell :last_failed_payment, user.payments.with_state(:declined).last.created_at
+    csv.cell :retries_count, user.payments.with_state(:declined).last.invoices.last.payments.with_state(:declined).count
+    csv.cell :reason, user.payments.with_state(:declined).last.comment
+  else
+    csv.cell :last_failed_payment, nil
+    csv.cell :retries_count, nil
+    csv.cell :reason, nil
+  end
+  csv.cell :amount_due, format('%#.02f', user.invoices.with_states([:pending_payment, :pending_payment_retry]).sum(:total_price_ati))
+end

@@ -1,0 +1,70 @@
+.padding-md
+  %h4.headline
+    = t('.title')
+    %span.label.label-success
+      = @users.length
+  .panel.panel-default
+    %table#user-red-list-table.table.table-striped.table-hover{ data: { datatable: 'true', order: '[[ 0, "desc" ]]' } }
+      %thead
+        %tr
+          %th
+            = User.human_attribute_name(:lastname)
+          %th
+            = User.human_attribute_name(:firstname)
+          %th
+            = User.human_attribute_name(:email)
+          %th
+            = t('admin.users.index.current_subscription_started_at')
+          %th
+            = t('.end_of_commitment')
+          %th
+            = t('.last_payment')
+          %th
+            = t('.last_failed_payment')
+          %th
+            = t('.retries_count')
+          %th
+            = t('.reason')
+          %th
+            = t('.amount_due')
+          %th.text-right{data: {orderable: 'false'}}
+            = t('admin.users.index.actions')
+      %tbody
+        - @users.each do |user|
+          - payment_declined_exist = user.payments.with_state(:declined).present?
+          %tr
+            %td
+              = user.lastname
+            %td
+              = user.firstname
+            %td
+              = user.email
+            - if user.subscriptions.last.present?
+              %td{ data: { order: user.subscriptions.last.start_at.to_time.to_i } }
+                = user.subscriptions.last.start_at
+            - else
+              %td
+            - if user.subscriptions.last.present?
+              %td{ data: { order: Time.parse(user.subscriptions.last.decorate.commitment_period).to_i } }
+                = user.subscriptions.last.decorate.commitment_period
+            - else
+              %td
+            - if user.payments.with_state(:accepted).last.present?
+              %td{ data: { order: user.payments.with_state(:accepted).last.created_at.to_time.to_i } }
+                = time_tag user.payments.with_state(:accepted).last.created_at, format: "%d/%m/%y" if user.payments.with_state(:accepted).present?
+            - else
+              %td
+
+            %td{ data: { order: user.payments.with_state(:declined).last.try(:created_at).try(:to_time).try(:to_i) } }
+              = time_tag user.payments.with_state(:declined).last.created_at, format: "%d/%m/%y" if payment_declined_exist
+            %td= user.payments.with_state(:declined).last.invoices.last.payments.with_state(:declined).count if payment_declined_exist
+            %td= user.payments.with_state(:declined).last.comment if payment_declined_exist
+            %td
+              = format '%#.02f', user.invoices.with_states([:pending_payment, :pending_payment_retry]).sum(:total_price_ati)
+              €
+            %td.text-right
+              .btn-group.btn-group-sm
+                = link_to admin_user_path(user), title: t('admin.users.index.show_link'), id: dom_id(user, :show), class: 'btn btn-default' do
+                  %em.far.fa-eye
+                = link_to edit_admin_user_path(user), title: t('admin.users.index.edit_link'), id: dom_id(user, :edit), class: 'btn btn-default' do
+                  %em.far.fa-edit

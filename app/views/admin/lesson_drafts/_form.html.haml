@@ -1,0 +1,16 @@
+.row
+  .col-sm-12
+    = form.input :location
+.row
+  .col-sm-6
+    = form.input :room
+  .col-sm-6
+    = form.input :max_spots
+= form.input :coach_name
+= form.input :activity
+= form.input :weekday, as: :select, collection: weekdays_options
+.row
+  .col-sm-6
+    = form.input :start_at_hour, as: :timepicker, readonly: true
+  .col-sm-6
+    = form.input :end_at_hour, as: :timepicker, readonly: true
